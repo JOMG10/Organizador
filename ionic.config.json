@@ -1,0 +1,8 @@
+{
+  "name": "Prestamo",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular",
+  "id": "dc328946"
+}
