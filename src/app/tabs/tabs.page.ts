@@ -7,6 +7,10 @@ import { Component } from '@angular/core';
 })
 export class TabsPage {
 
+  INICIO = "INICIO";
+  OPCION1 = "OPCION_1"
+  OPCION2 = "OPCION_2"
+  opcion = this.INICIO
   constructor() {}
 
 }
