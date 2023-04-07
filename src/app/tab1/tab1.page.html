@@ -1,14 +1,63 @@
 <ion-content [fullscreen]="true">
+
+  <ion-card-title>Card Title</ion-card-title>
+  <ion-card>
+    <ion-card-header>
+      <img alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/card-media.png" />
+
+      <ion-card-subtitle>Card Subtitle</ion-card-subtitle>
+    </ion-card-header>
+
+    <ion-card-content>
+      Here's a small text description for the card content. Nothing more, nothing less.
+    </ion-card-content>
+
+    <ion-button fill="clear">Mostrar mas</ion-button>
+    <ion-button>+ agregar</ion-button>
+  </ion-card>
+
   <ion-card>
     <ion-card-header>
       <ion-card-title>ACTIVIDADES DEL DIA DE HOY </ion-card-title>
       <ion-card-subtitle>
         * Horario del dia de hoy <br>
+        * actividades a realizar <br>
+        * Horario del dia de hoy <br>
+        * actividades a realizar <br>
+        * Horario del dia de hoy <br>
         * actividades a realizar
       </ion-card-subtitle>
     </ion-card-header>
-
-    <ion-card-content>
-    </ion-card-content>
   </ion-card>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>ACTIVIDADES PARA MAÑANA </ion-card-title>
+      <ion-card-subtitle>
+        * Horario del dia de hoy <br>
+        * actividades a realizar <br>
+        * Horario del dia de hoy <br>
+        * actividades a realizar <br>
+        * Horario del dia de hoy <br>
+        * actividades a realizar
+      </ion-card-subtitle>
+    </ion-card-header>
+  </ion-card>
+
+  <ion-fab slot="fixed" vertical="bottom" horizontal="end">
+    <ion-fab-button>
+      <ion-icon name="chevron-up-circle"></ion-icon>
+    </ion-fab-button>
+    <ion-fab-list side="top">
+      <ion-fab-button>
+        <ion-icon name="document"></ion-icon>
+      </ion-fab-button>
+      <ion-fab-button>
+        <ion-icon name="color-palette"></ion-icon>
+      </ion-fab-button>
+      <ion-fab-button>
+        <ion-icon name="globe"></ion-icon>
+      </ion-fab-button>
+    </ion-fab-list>
+  </ion-fab>
 </ion-content>
