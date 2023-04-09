@@ -4,17 +4,13 @@
   <ion-card>
     <ion-card-header>
       <img alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/card-media.png" />
-
       <ion-card-subtitle>Card Subtitle</ion-card-subtitle>
     </ion-card-header>
 
     <ion-card-content>
       Here's a small text description for the card content. Nothing more, nothing less.
     </ion-card-content>
-
     <ion-button fill="clear">Mostrar mas</ion-button>
-    <ion-button>+ agregar</ion-button>
-  </ion-card>
 
   <ion-card>
     <ion-card-header>
@@ -28,9 +24,36 @@
         * actividades a realizar
       </ion-card-subtitle>
     </ion-card-header>
+    <ion-button id="open-modal">+ agregar</ion-button>
+    <ion-header>
+    </ion-header>
+    <ion-content class="ion-padding">
+      <ion-modal trigger="open-modal" (willDismiss)="onWillDismiss($event)">
+        <ng-template>
+          <ion-header>
+            <ion-toolbar>
+              <ion-buttons slot="start">
+                <ion-button (click)="cancel()">Cancel</ion-button>
+              </ion-buttons>
+              <ion-title>Welcome</ion-title>
+              <ion-buttons slot="end">
+                <ion-button (click)="confirm()" [strong]="true">Confirm</ion-button>
+              </ion-buttons>
+            </ion-toolbar>
+          </ion-header>
+          <ion-content class="ion-padding">
+            <ion-item>
+              <ion-label position="stacked">Enter your name</ion-label>
+              <ion-input type="text" placeholder="Your name" [(ngModel)]="name"></ion-input>
+            </ion-item>
+          </ion-content>
+        </ng-template>
+      </ion-modal>
+    </ion-content>
+  </ion-card>
   </ion-card>
 
-  <ion-card>
+  <ion-card >
     <ion-card-header>
       <ion-card-title>ACTIVIDADES PARA MAÑANA </ion-card-title>
       <ion-card-subtitle>

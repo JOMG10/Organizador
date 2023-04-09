@@ -15,6 +15,9 @@ import { Tab4Page } from './tab4.page';
     IonicModule,
     Tab4PageRoutingModule
   ],
+  exports: [
+    Tab4Page
+  ],
   declarations: [Tab4Page]
 })
 export class Tab4PageModule {}
