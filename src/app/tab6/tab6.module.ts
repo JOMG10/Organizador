@@ -10,16 +10,16 @@ import { Tab6Page } from './tab6.page';
 
 
 @NgModule({
-    imports: [
-        CommonModule,
-        FormsModule,
-        IonicModule,
-        Tab6PageRoutingModule
-    ],
-    exports: [
-        Tab6Page
-    ],
-    declarations: [Tab6Page]
+  imports: [
+    CommonModule,
+    FormsModule,
+    IonicModule,
+    Tab6PageRoutingModule
+  ],
+  exports: [
+    Tab6Page
+  ],
+  declarations: [Tab6Page]
 })
 export class Tab6PageModule {}
 

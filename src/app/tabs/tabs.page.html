@@ -7,31 +7,31 @@
 
   <ion-content class="ion-padding" >
       <ion-menu-toggle >
-          <ion-item (click)="this.opcion = this.INICIO " [routerLink]="'tab1'" >
+          <ion-item (click)="this.opcion = this.INICIO " (click)="cambiarInicio()"  [routerLink]="'tab1'" >
               <ion-label >INICIO</ion-label>
             <ion-icon slot="start" name="home-outline"></ion-icon>
           </ion-item>
-          <ion-item (click)="this.opcion = this.OPCION1"  [routerLink]="'tab2'">
+          <ion-item (click)="this.opcion = this.OPCION1"  (click)="cambiarCalendario()" [routerLink]="'tab2'">
              <ion-label>CALENDARIO</ion-label>
             <ion-icon slot="start" name="calendar-outline"></ion-icon>
           </ion-item>
-          <ion-item (click)="this.opcion = this.OPCION2 " [routerLink]="'tab3'">
-            <ion-label>AGENDA</ion-label>
+          <ion-item (click)="this.opcion = this.OPCION2 " (click)="cambiarAgenda()" [routerLink]="'tab3'">
+            <ion-label >AGENDA</ion-label>
             <ion-icon slot="start" name="book-outline"></ion-icon>
           </ion-item>
-          <ion-item (click)="this.opcion = this.OPCION3" [routerLink]="'tab4'">
+          <ion-item (click)="this.opcion = this.OPCION3" (click)="cambiarHorario()"   [routerLink]="'tab4'">
             <ion-label>HORARIO</ion-label>
             <ion-icon slot="start" name="stopwatch-outline"></ion-icon>
           </ion-item>
-          <ion-item (click)="this.opcion = this.OPCION4 " [routerLink]="'tab5'">
+          <ion-item (click)="this.opcion = this.OPCION4 " (click)="cambiarPerfil()" [routerLink]="'tab5'">
             <ion-label>MI PERFIL</ion-label>
             <ion-icon slot="start" name="accessibility-outline"></ion-icon>
           </ion-item>
-          <ion-item (click)="this.opcion = this.OPCION5 " [routerLink]="'tab6'">
+          <ion-item (click)="this.opcion = this.OPCION5 " (click)="cambiarConfiguracion()" [routerLink]="'tab6'">
             <ion-label>CONFIGURACION</ion-label>
             <ion-icon slot="start" name="construct-outline"></ion-icon>
           </ion-item>
-          <ion-item (click)="this.opcion = this.OPCION6 " [routerLink]="'tab7'">
+          <ion-item (click)="this.opcion = this.OPCION6 "  (click)="cambiarAcerca()" [routerLink]="'tab7'">
             <ion-label>ACERCA DE </ion-label>
             <ion-icon slot="start" name="information-circle-outline"></ion-icon>
           </ion-item>
@@ -44,7 +44,7 @@
       <ion-buttons slot="start" >
         <ion-menu-button></ion-menu-button>
       </ion-buttons>
-      <ion-title >Menu</ion-title>
+      <ion-title >{{nombre}}</ion-title>
     </ion-toolbar>
   </ion-header>
   <ion-content class="ion-padding">
@@ -55,9 +55,6 @@
     <app-tab5 *ngIf="this.opcion===this.OPCION4"></app-tab5>
     <app-tab6 *ngIf="this.opcion===this.OPCION5"></app-tab6>
     <app-tab7 *ngIf="this.opcion===this.OPCION6"></app-tab7>
-
-
-
   </ion-content>
 </div>
 
