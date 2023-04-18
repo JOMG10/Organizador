@@ -17,5 +17,12 @@ export class TabsPage {
 
   opcion = this.INICIO
   constructor() {}
-
+  nombre="INICIO";
+  cambiarInicio() {this.nombre = "INICIO";}
+  cambiarCalendario() {this.nombre = "CALENDARIO";}
+  cambiarAgenda() {this.nombre = "AGENDA";}
+  cambiarHorario() {this.nombre = "HORARIO";}
+  cambiarPerfil() {this.nombre = "MI PERFIL";}
+  cambiarConfiguracion() {this.nombre = "CONFIGURACION";}
+  cambiarAcerca() {this.nombre = "ACERCA DE";}
 }

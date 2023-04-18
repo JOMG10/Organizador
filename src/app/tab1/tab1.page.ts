@@ -7,18 +7,19 @@ import { Component } from '@angular/core';
 })
 export class Tab1Page {
   name: any;
-
   constructor() {}
 
   onWillDismiss($event: any) {
-    
   }
-
   cancel() {
-    
   }
 
   confirm() {
-    
   }
+
+  INICIO = "INICIO";
+  OPCION1 = "OPCION_1"
+
+  opcion = this.INICIO
+
 }
