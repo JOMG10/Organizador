@@ -13,4 +13,13 @@ export class Tab4Page implements OnInit {
   ngOnInit() {
   }
 
+  onWillDismiss($event: any) {
+
+  }
+
+  cancel() {
+
+  }
+
+  protected readonly confirm = confirm;
 }
