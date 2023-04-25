@@ -1,11 +1,21 @@
-import { Component } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {BehaviorSubject} from "rxjs";
+import {FirestoreService} from "../services/firestore.service";
+import {getBoolean} from "@angular/fire/remote-config";
 
 @Component({
   selector: 'app-tabs',
   templateUrl: 'tabs.page.html',
   styleUrls: ['tabs.page.scss']
 })
-export class TabsPage {
+export class TabsPage implements OnInit{
+
+  constructor(
+    ) {
+  }
+
+  ngOnInit() {
+  }
 
   INICIO = "INICIO";
   OPCION1 = "OPCION_1"
@@ -16,7 +26,6 @@ export class TabsPage {
   OPCION6 = "OPCION_6"
 
   opcion = this.INICIO
-  constructor() {}
   nombre="INICIO";
   cambiarInicio() {this.nombre = "INICIO";}
   cambiarCalendario() {this.nombre = "CALENDARIO";}
@@ -25,4 +34,6 @@ export class TabsPage {
   cambiarPerfil() {this.nombre = "MI PERFIL";}
   cambiarConfiguracion() {this.nombre = "CONFIGURACION";}
   cambiarAcerca() {this.nombre = "ACERCA DE";}
+
+
 }

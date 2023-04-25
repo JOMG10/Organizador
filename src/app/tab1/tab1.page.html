@@ -1,119 +1,107 @@
-<ion-content [fullscreen]="true">
 
+
+<ion-fab class="fondo" horizontal="end" >
+  <ion-icon name="moon" ></ion-icon>
+  <ion-toggle [ngModel]="darkMode"
+              (ionChange)="cambio()" ></ion-toggle>
+</ion-fab>
 <ion-card-header>
       <img alt="Silhouette of mountains" src="/assets/img/logo_itvo_1.png" />
     </ion-card-header>
 
-  <!-- agregar-->
-  <ion-card>
+<!-- agregar-->
+  <!--cartas de las actividades de la semana -->
+  <ion-card class="my-card">
     <ion-card-header>
-      <ion-card-header>
       <ion-card-title>ACTIVIDADES DEL DIA DE HOY </ion-card-title>
-      <ion-card-subtitle>
-      </ion-card-subtitle>
-      </ion-card-header>
-      <ion-card-content>
-        * Horario del dia de hoy <br>
-        * actividades a realizar <br>
-        * Horario del dia de hoy <br>
-        * actividades a realizar <br>
-        * Horario del dia de hoy <br>
-        * actividades a realizar
-      </ion-card-content>
     </ion-card-header>
-    <ion-button id="open-modal">+ agregar
-      <ion-content class="ion-padding">
-        <ion-modal trigger="open-modal" (willDismiss)="onWillDismiss($event)">
-          <ng-template>
-            <ion-header>
-              <ion-toolbar>
-                <ion-buttons slot="start">
-                  <ion-button (click)="cancel()"><ion-icon name="backspace"></ion-icon></ion-button>
-                </ion-buttons>
-                <ion-title>AGREGAR ACTIVIDAD</ion-title>
-                <ion-buttons slot="end" >
-                  <ion-button (click)="confirm()" [strong]="true" id="guardar">Guardar</ion-button>
-                </ion-buttons>
-              </ion-toolbar>
-            </ion-header>
-            <ion-content class="ion-padding">
-              <ion-item>
-                <ion-input label="Input with clear button" labelPlacement="stacked" [clearInput]="true"
-                           placeholder="AGREGAR TITULO" >
-                </ion-input>
-              </ion-item>
+    <app-formulario></app-formulario>
 
-              <!-- calendario-->
-              <ion-item>
-                <ion-icon slot="start" name="calendar-outline"></ion-icon>
-                <ion-datetime-button datetime="datetime" slot="end"></ion-datetime-button>
-                <ion-modal [keepContentsMounted]="true">
-                  <ng-template>
-                    <ion-datetime id="datetime" ></ion-datetime>
-                  </ng-template>
-                </ion-modal>
-              </ion-item>
-
-              <ion-item>
-                <label>Agregar a favoritos</label>
-                <ion-icon slot="start" name="star-outline"></ion-icon>
-                <ion-toggle [checked]="false" slot="end"></ion-toggle><br /><br />
-              </ion-item>
-
-              <ion-item>
-                <ion-icon slot="start" name="document-outline"></ion-icon>
-                <ion-input label="Input with clear button" labelPlacement="stacked" [clearInput]="true"
-                           placeholder="Agregar nota" >
-                </ion-input>
-              </ion-item>
-
-            </ion-content>
-          </ng-template>
-        </ion-modal>
-      </ion-content>
-    </ion-button>
+    <!--boton para agregar nueva nota -->
   </ion-card>
 
-
-
-  <ion-card >
+  <ion-card class="my-card" >
     <ion-card-header>
       <ion-card-header>
-        <ion-card-title>ACTIVIDADES DEL DIA DE HOY </ion-card-title>
+        <ion-card-title>ACTIVIDADES DE MAÑANA</ion-card-title>
         <ion-card-subtitle>
         </ion-card-subtitle>
       </ion-card-header>
       <ion-card-content>
-        * Horario del dia de hoy <br>
-        * actividades a realizar <br>
-        * Horario del dia de hoy <br>
-        * actividades a realizar <br>
-        * Horario del dia de hoy <br>
-        * actividades a realizar
       </ion-card-content>
     </ion-card-header>
   </ion-card>
 
-</ion-content>
+  <ion-card class="my-card">
+    <ion-card-header>
+      <ion-card-header>
+        <ion-card-title>LUNES</ion-card-title>
+        <ion-card-subtitle>
+        </ion-card-subtitle>
+      </ion-card-header>
+      <ion-card-content>
 
+      </ion-card-content>
+    </ion-card-header>
+  </ion-card>
 
-<ion-fab slot="fixed" vertical="bottom" horizontal="end">
-  <ion-fab-button>
-    <ion-icon name="chevron-up-circle"></ion-icon>
+  <ion-card class="my-card" >
+    <ion-card-header>
+      <ion-card-header>
+        <ion-card-title>MARTES</ion-card-title>
+        <ion-card-subtitle>
+        </ion-card-subtitle>
+      </ion-card-header>
+      <ion-card-content>
+
+      </ion-card-content>
+    </ion-card-header>
+  </ion-card>
+
+  <ion-card class="my-card" >
+    <ion-card-header>
+      <ion-card-header>
+        <ion-card-title>MIERCOLES</ion-card-title>
+        <ion-card-subtitle>
+        </ion-card-subtitle>
+      </ion-card-header>
+      <ion-card-content>
+
+      </ion-card-content>
+    </ion-card-header>
+  </ion-card>
+
+  <ion-card class="my-card" >
+    <ion-card-header>
+      <ion-card-header>
+        <ion-card-title>JUEVES</ion-card-title>
+        <ion-card-subtitle>
+        </ion-card-subtitle>
+      </ion-card-header>
+      <ion-card-content>
+
+      </ion-card-content>
+    </ion-card-header>
+  </ion-card>
+
+  <ion-card class="my-card" >
+    <ion-card-header>
+      <ion-card-header>
+        <ion-card-title>VIERNES</ion-card-title>
+        <ion-card-subtitle>
+        </ion-card-subtitle>
+      </ion-card-header>
+      <ion-card-content>
+
+      </ion-card-content>
+    </ion-card-header>
+  </ion-card>
+
+<ion-fab class="my-fab" horizontal="end">
+  <ion-fab-button id="open-modal" >
+    <ion-icon name="add"></ion-icon>
   </ion-fab-button>
-  <ion-fab-list side="top">
-    <ion-fab-button  >
-      <ion-icon name="document" ></ion-icon>
-    </ion-fab-button>
-    <ion-fab-button>
-      <ion-icon name="color-palette" ></ion-icon>
-    </ion-fab-button>
-    <ion-fab-button>
-      <ion-icon name="globe"></ion-icon>
-    </ion-fab-button>
-  </ion-fab-list>
 </ion-fab>
-
 
 
 

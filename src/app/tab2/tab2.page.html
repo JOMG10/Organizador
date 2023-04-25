@@ -1,40 +1,18 @@
-<ion-content [fullscreen]="true">
 
     <ion-datetime></ion-datetime>
 
-  <ion-card >
-    <ion-card-header>
-      <ion-card-header>
-        <ion-card-title>ACTIVIDADES DEL DIA DE HOY </ion-card-title>
-        <ion-card-subtitle>
-        </ion-card-subtitle>
-      </ion-card-header>
-      <ion-card-content>
-        * Horario del dia de hoy <br>
-        * actividades a realizar <br>
-        * Horario del dia de hoy <br>
-        * actividades a realizar <br>
-        * Horario del dia de hoy <br>
-        * actividades a realizar
-      </ion-card-content>
-    </ion-card-header>
-  </ion-card>
+    <ion-list>
+      <ion-item>
+        <ion-badge slot="start">01</ion-badge>
+        <ion-label>ACTIVIDADES DE LA SEMANA </ion-label>
+      </ion-item>
+    </ion-list>
 
-</ion-content>
+    <app-formulario></app-formulario>
 
-<ion-fab slot="fixed" vertical="bottom" horizontal="end">
-  <ion-fab-button>
-    <ion-icon name="chevron-up-circle"></ion-icon>
-  </ion-fab-button>
-  <ion-fab-list side="top">
-    <ion-fab-button>
-      <ion-icon name="document"></ion-icon>
-    </ion-fab-button>
-    <ion-fab-button>
-      <ion-icon name="color-palette"></ion-icon>
-    </ion-fab-button>
-    <ion-fab-button>
-      <ion-icon name="globe"></ion-icon>
-    </ion-fab-button>
-  </ion-fab-list>
-</ion-fab>
+
+    <ion-fab class="my-fab" horizontal="end">
+      <ion-fab-button id="open-modal" >
+        <ion-icon name="add"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
