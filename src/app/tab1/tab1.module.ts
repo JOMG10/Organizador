@@ -7,19 +7,26 @@ import { ExploreContainerComponentModule } from '../explore-container/explore-co
 
 import { Tab1PageRoutingModule } from './tab1-routing.module';
 import {Tab2PageModule} from "../tab2/tab2.module";
+import {FormularioPageModule} from "../formulario/formulario.module";
+import {ListaPageModule} from "../lista/lista.module";
+import {TabsPageModule} from "../tabs/tabs.module";
+
+let SharedModule;
 
 @NgModule({
-    imports: [
-        IonicModule,
-        CommonModule,
-        FormsModule,
-        ExploreContainerComponentModule,
-        Tab1PageRoutingModule,
-        Tab2PageModule
-    ],
-    exports: [
-        Tab1Page
-    ],
-    declarations: [Tab1Page]
+  declarations: [Tab1Page],
+  exports: [
+    Tab1Page
+  ],
+  imports: [
+    IonicModule,
+    CommonModule,
+    FormsModule,
+    ExploreContainerComponentModule,
+    Tab1PageRoutingModule,
+    Tab2PageModule,
+    FormularioPageModule,
+    ListaPageModule,
+  ]
 })
 export class Tab1PageModule {}

@@ -1,52 +1,36 @@
 
+<ion-segment class="segment-fixed" [(ngModel)]="segmentValue">
+  <ion-segment-button value="option1">
+    <ion-label>TODO </ion-label>
+  </ion-segment-button>
+  <ion-segment-button value="option2">
+    <ion-label>ARCHIVADOS</ion-label>
+  </ion-segment-button>
 
-<ion-header>
-  <ion-toolbar>
-    <ion-segment value="all">
-      <ion-segment-button value="all">
-        <ion-label>TODO</ion-label>
-      </ion-segment-button>
-      <ion-segment-button value="favorites">
-        <ion-label>FAVORITOS</ion-label>
-      </ion-segment-button>
-    </ion-segment>
-  </ion-toolbar>
-</ion-header>
+</ion-segment>
 
-<ion-list>
-  <ion-item>
-    <ion-toolbar>
-      <ion-buttons slot="primary" >
-        <ion-button id="popover-button"  >
-          <ion-icon slot="icon-only" ios="ellipsis-horizontal" md="ellipsis-vertical"></ion-icon>
-        </ion-button>
-      </ion-buttons>
-      <ion-label>Pokémon Yellow</ion-label>
-    </ion-toolbar>
-  </ion-item>
-</ion-list>
+<!-- Contenido que se mostrará dependiendo de la opción seleccionada en el segmento-->
+<div *ngIf="segmentValue === 'option1'">
+  <div class="espacio"></div>
+    <app-formulario></app-formulario>
+</div>
+<div *ngIf="segmentValue === 'option2'">
+  <div class="espacio"></div>
+  <p>Contenido de la opción 2</p>
+</div>
+<div *ngIf="segmentValue === 'option3'">
+  <p>Contenido de la opción 3</p>
+</div>
 
 
 
-<ion-popover trigger="popover-button" [dismissOnSelect]="true">
-  <ng-template>
-    <ion-content>
-      <ion-list>
-        <ion-item [button]="true" [detail]="false">Editar <ion-icon slot="start" name="brush-outline"></ion-icon></ion-item>
-        <ion-item [button]="true" [detail]="false">Eliminar <ion-icon slot="start" name="trash-outline"></ion-icon>
-        </ion-item>
-        <ion-item [button]="true" [detail]="false">completado <ion-icon slot="start" name="checkmark-outline"></ion-icon></ion-item>
-        <ion-item [button]="true" id="nested-trigger">More options...</ion-item>
-        <ion-popover trigger="nested-trigger" [dismissOnSelect]="true" side="end">
-          <ng-template>
-            <ion-content>
-              <ion-list>
-                <ion-item [button]="true" [detail]="false">Nested option</ion-item>
-              </ion-list>
-            </ion-content>
-          </ng-template>
-        </ion-popover>
-      </ion-list>
-    </ion-content>
-  </ng-template>
-</ion-popover>
+<ion-fab class="my-fab" horizontal="end">
+  <ion-fab-button id="open-modal" >
+    <ion-icon name="add"></ion-icon>
+  </ion-fab-button>
+</ion-fab>
+
+
+
+
+

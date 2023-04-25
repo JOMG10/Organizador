@@ -30,6 +30,18 @@ import {Tab7PageModule} from "../tab7/tab7.module";
     Tab6PageModule,
     Tab7PageModule
   ],
+  exports:[  IonicModule,
+    CommonModule,
+    FormsModule,
+    TabsPageRoutingModule,
+    RouterLink,
+    Tab1PageModule,
+    Tab2PageModule,
+    Tab3PageModule,
+    Tab4PageModule,
+    Tab5PageModule,
+    Tab6PageModule,
+    Tab7PageModule],
   declarations: [TabsPage]
 })
 export class TabsPageModule {}

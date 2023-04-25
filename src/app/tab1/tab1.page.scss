@@ -1,12 +1,47 @@
-ion-card {
-  background-color: #c3e5c7;
-  color: black;
-}
 
 ion-button#guardar {
   background-color: #2dd36f;
 }
 
-ion-card-content{
-  color: black;
+
+.my-fab {
+  position: fixed;
+  top:600px;
+
 }
+
+.fondo {
+  position: fixed;
+  top:60px;
+}
+
+.my-card {
+  margin-left: 0px; /* Ajusta el margen izquierdo según tu necesidad */
+  margin-right: 0px; /* Ajusta el margen derecho según tu necesidad */
+}
+
+.my-list {
+  margin-left: 0px; /* Ajusta el margen izquierdo según tu necesidad */
+  margin-right: 0px; /* Ajusta el margen derecho según tu necesidad */
+}
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 100%;
+}
+
+code {
+  white-space: pre-wrap;
+}
+
+/* Tu archivo de estilos CSS existente */
+
+/* Clase CSS personalizada para el icono del menú */
+.icono-menu {
+  font-size: 24px; /* Tamaño de fuente del icono */
+  color: red; /* Color del icono */
+  margin-right: 5px; /* Margen derecho del icono */
+}
+

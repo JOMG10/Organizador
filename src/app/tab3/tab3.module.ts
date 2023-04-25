@@ -6,6 +6,8 @@ import { Tab3Page } from './tab3.page';
 import { ExploreContainerComponentModule } from '../explore-container/explore-container.module';
 
 import { Tab3PageRoutingModule } from './tab3-routing.module';
+import {FormularioPageModule} from "../formulario/formulario.module";
+import {ListaPageModule} from "../lista/lista.module";
 
 @NgModule({
     imports: [
@@ -13,7 +15,9 @@ import { Tab3PageRoutingModule } from './tab3-routing.module';
         CommonModule,
         FormsModule,
         ExploreContainerComponentModule,
-        Tab3PageRoutingModule
+        Tab3PageRoutingModule,
+        FormularioPageModule,
+        ListaPageModule
     ],
     exports: [
         Tab3Page

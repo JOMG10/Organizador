@@ -5,3 +5,37 @@ ion-col {
   color: #fff;
   text-align: center;
 }
+
+.segment-fixed {
+  position: fixed;
+  top: 55px; /* Puedes ajustar la posición vertical (top) según tu necesidad */
+  left: 0px; /* Puedes ajustar la posición horizontal (left) según tu necesidad */
+  right: 0px; /* Puedes ajustar la posición horizontal (right) según tu necesidad */
+  z-index: 999; /* Puedes ajustar el valor del índice z (z-index) según tu necesidad */
+  justify-content: center;
+  background-color: #c3e5c7;  /*Puedes ajustar el color de fondo según tu necesidad */
+  /* Puedes agregar más estilos según tu necesidad */
+}
+
+.no-padding ion-item {
+  --padding-start: 0;
+  --padding-end: 0;
+  --padding-top: 0;
+  --padding-bottom: 0;
+}
+
+.espacio {
+  margin-bottom: 20px; /* ajusta la cantidad de espacio según tus necesidades */
+}
+
+.my-fab {
+  position: fixed;
+  top:700px;
+}
+
+
+
+
+
+
+
