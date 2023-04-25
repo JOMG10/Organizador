@@ -17,6 +17,7 @@ export class FormularioPage implements OnInit {
   enableNewNota  = true;
   visible = false;
   data: any;
+  valor:Date=new Date();
 
   private path = 'FormularioNotas/';
 
