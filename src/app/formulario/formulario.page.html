@@ -1,6 +1,7 @@
 
-<!-- lista de las notas nuevas -->
-  <ion-item *ngFor="let actividad of notas" >
+<!-- lista de las notas nuevas
+
+  <ion-item *ngFor="let actividad of contenido" >
     <ion-buttons slot="end">
       <ion-button  (click)="act = actividad; mostrarActionSheet()" >
         <ion-icon name="ellipsis-vertical-outline"></ion-icon>
@@ -12,9 +13,15 @@
                  [class.tachado]="isChecked" [ngClass]="{'tachado': actividad.check}">{{actividad.title}}</ion-label>
     </ion-toolbar>
   </ion-item>
+-->
 
-<ion-button (click)="abrirModal(); nuevo()">+ agregar
+<!--boton para agregar nuevo -->
+
+<ion-button (click)="abrirModal(); nuevo()">tenis
 </ion-button>
+
+
+<!--inicio del formulario modal
 
 <ion-modal trigger="open-modal" (willDismiss)="onWillDismiss($event)" *ngIf="enableNewNota"  >
     <ng-template>
@@ -35,7 +42,8 @@
                      placeholder="AGREGAR UN TITULO"  [(ngModel)]="act.title">
           </ion-input>
         </ion-item>
-        <!-- calendario-->
+
+                 calendario
 
         <ion-item id="click-trigger" >
           <ion-icon slot="start" name="calendar-outline"></ion-icon>
@@ -43,9 +51,9 @@
         <ion-popover trigger="click-trigger" triggerAction="click">
           <ng-template>
             <ion-content class="ion-padding" ></ion-content>
-            <ion-datetime [(ngModel)]="act.fecha" displayFormat="DD/MM/YYYY" picker-format="DD/MM/YYYY" >
+            <ion-datetime  displayFormat="AAAA-MM-DD" [(ngModel)]="act.fecha" >
             </ion-datetime>
-            <ion-button (click)="closePopover()" size="small" shape="round">aceptar</ion-button>
+            <ion-button (click)="closePopover()" size="small" shape="round" >aceptar</ion-button>
           </ng-template>
         </ion-popover>
         </ion-item>
@@ -64,6 +72,121 @@
       </ion-content>
     </ng-template>
   </ion-modal>
+
+-->
+
+<!--agregar zapatos -->
+
+<ion-button id="click-trigger">Zapatos</ion-button>
+<ion-popover trigger="click-trigger" triggerAction="click">
+  <ng-template>
+    <ion-item>
+      <ion-input label="Default input" placeholder="nombre" [(ngModel)]="Zap.nombreZ"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input label="Default input" placeholder="descripcion" [(ngModel)]="Zap.descripcionZ"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-input label="Default input" placeholder="precio" [(ngModel)]="Zap.precioZ"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input label="Default input" placeholder="ruta imagen" [(ngModel)]="Zap.rutaImagenZ"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input label="Default input" placeholder="colores" [(ngModel)]="Zap.coloresZ"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-button class="form" [strong]="true"  (click)="guardarNotaZ(); nuevoZ()"
+            slot="end" >Guardar</ion-button>
+    </ion-item>
+
+  </ng-template>
+</ion-popover>
+
+<!--agregar tenis -->
+<ion-modal trigger="open-modal" (willDismiss)="onWillDismiss($event)" *ngIf="enableNewNota"  >
+  <ng-template>
+    <ion-header>
+      <ion-toolbar>
+        <ion-buttons slot="start"  >
+          <ion-button (click)="closeModal(); nuevo()" ><ion-icon name="backspace" ></ion-icon></ion-button>
+        </ion-buttons>
+
+        <ion-title >AGREGAR ACTIVIDAD</ion-title>
+        <ion-button class="form" [strong]="true" id="guardar" (click)="guardarNota();
+            closeModal(); nuevo()" slot="end" >Guardar</ion-button>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content class="ion-padding">
+      <ion-item>
+        <ion-input  [clearInput]="true"
+                    placeholder="nombre del tenis"  [(ngModel)]="act.nombre">
+        </ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-icon slot="start" name="document-outline"></ion-icon>
+        <ion-input [clearInput]="true"
+                   placeholder="descripcion" [(ngModel)]="act.descripcion">
+        </ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-icon slot="start" name="document-outline"></ion-icon>
+        <ion-input [clearInput]="true"
+                   placeholder="precio" [(ngModel)]="act.precio">
+        </ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-icon slot="start" name="document-outline"></ion-icon>
+        <ion-input [clearInput]="true"
+                   placeholder="colores" [(ngModel)]="act.colores">
+        </ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-icon slot="start" name="document-outline"></ion-icon>
+        <ion-input [clearInput]="true"
+                   placeholder="ruta de la imagen" [(ngModel)]="act.rutaImagen">
+        </ion-input>
+      </ion-item>
+    </ion-content>
+  </ng-template>
+</ion-modal>
+
+
+<!--agregar sanadalias y chanclas  -->
+
+<ion-button id="sandalias">sandalias</ion-button>
+<ion-popover trigger="sandalias" triggerAction="click">
+  <ng-template>
+    <ion-item>
+      <ion-input label="Default input" placeholder="nombreS" [(ngModel)]="San.nombreS"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input label="Default input" placeholder="descripcionS" [(ngModel)]="San.descripcionS"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-input label="Default input" placeholder="precioS" [(ngModel)]="San.precioS"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input label="Default input" placeholder="ruta imagenS" [(ngModel)]="San.rutaImagenS"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input label="Default input" placeholder="coloresS" [(ngModel)]="San.coloresS"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-button class="form" [strong]="true"  (click)="guardarNotaS(); nuevoS()"
+                  slot="end" >Guardar</ion-button>
+    </ion-item>
+
+  </ng-template>
+</ion-popover>
+
+
 
 
 

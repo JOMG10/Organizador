@@ -6,7 +6,7 @@ import { Tab1Page } from './tab1.page';
 import { ExploreContainerComponentModule } from '../explore-container/explore-container.module';
 
 import { Tab1PageRoutingModule } from './tab1-routing.module';
-import {Tab2PageModule} from "../tab2/tab2.module";
+import {Tab02PageModule} from "../tab02/tab02.module";
 import {FormularioPageModule} from "../formulario/formulario.module";
 import {ListaPageModule} from "../lista/lista.module";
 import {TabsPageModule} from "../tabs/tabs.module";
@@ -24,7 +24,7 @@ let SharedModule;
     FormsModule,
     ExploreContainerComponentModule,
     Tab1PageRoutingModule,
-    Tab2PageModule,
+    Tab02PageModule,
     FormularioPageModule,
     ListaPageModule,
   ]
