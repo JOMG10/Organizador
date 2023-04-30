@@ -28,7 +28,7 @@ export class TabsPage implements OnInit{
   opcion = this.INICIO
   nombre="INICIO";
   cambiarInicio() {this.nombre = "INICIO";}
-  cambiarCalendario() {this.nombre = "CALENDARIO";}
+  cambiarCalendario() {this.nombre = "COMPRAS";}
   cambiarAgenda() {this.nombre = "AGENDA";}
   cambiarHorario() {this.nombre = "HORARIO";}
   cambiarPerfil() {this.nombre = "MI PERFIL";}

@@ -1,8 +1,6 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import { ModalController ,IonModal} from '@ionic/angular';
-import {Actividad, Fondo} from "../models";
 import {FirestoreService} from "../services/firestore.service";
-import {AngularFireDatabase} from "@angular/fire/compat/database";
 @Component({
   selector: 'app-tab1',
   templateUrl: 'tab1.page.html',
@@ -11,10 +9,11 @@ import {AngularFireDatabase} from "@angular/fire/compat/database";
 export class Tab1Page {
 
   isVisible = false;
+  fechaActual: Date;
+
 
   constructor(public modalController: ModalController, public firestore: FirestoreService,) {
-    const prefersDark= window.matchMedia('(prefers-color-scheme: dark)');
-    this.darkMode = prefersDark.matches;
+    this.fechaActual=new Date();
   }
 
 
@@ -23,6 +22,13 @@ export class Tab1Page {
   private path = 'Fondo/';
 
   ngOnInit(): void { }
+
+  models = [
+    { id: 1, nombre: 'Sandalias', subtitulo:'contenido de sandalias' },
+    { id: 2, nombre: 'Zapatos',  subtitulo:'contenido de Zapatos'},
+    { id: 3, nombre: 'Tenis',  subtitulo:'contenido de tenis'},
+    { id: 4, nombre: 'Deportes',  subtitulo:'contenido de Deportes ' }
+  ];
 
   @ViewChild(IonModal) modal!: IonModal ;
   cancel() {
@@ -42,11 +48,6 @@ export class Tab1Page {
   ionFabAbierto = false;
   async abrirModal() {
     await this.modal.present(); // Abrir el ion-modal
-  }
-  darkMode: boolean = true;
-  cambio(){
-    this.darkMode=!this.darkMode;
-    document.body.classList.toggle('dark');
   }
 
 

@@ -12,13 +12,14 @@ import {AngularFireAuthModule} from "@angular/fire/compat/auth";
 import {AngularFirestoreModule} from "@angular/fire/compat/firestore";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {BehaviorSubject} from "rxjs";
+import {TabsPageModule} from "./tabs/tabs.module";
 
 @NgModule({
   declarations: [AppComponent],
   exports: [AppComponent],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,
-    AngularFireModule.initializeApp(environment.firebaseConfig), IonicModule,FormsModule,ReactiveFormsModule,
-    RouterModule, AngularFireAuthModule, AngularFirestoreModule],
+    imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,
+        AngularFireModule.initializeApp(environment.firebaseConfig), IonicModule, FormsModule, ReactiveFormsModule,
+        RouterModule, AngularFireAuthModule, AngularFirestoreModule, TabsPageModule],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],
 
