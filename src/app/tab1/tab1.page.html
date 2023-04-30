@@ -1,107 +1,92 @@
+<ion-header>
+   <!-- <ion-label> {{ fechaActual | date: 'dd/MM/yyyy' }}</ion-label> -->
+  <h3>CALZADO Y ACCESORIOS</h3>
+</ion-header>
 
+<ion-content>
+  <div class="hero">
+    <!-- <img src="assets/img/logo_zapateria.png" alt="Zapatería XYZ" style="max-width: 100px; max-height: 100px;"> -->
+    <h4>Encuentra los zapatos que necesitas</h4>
+    <p>Contamos con una amplia variedad de zapatos de la mejor calidad para ti</p>
+    <!-- <ion-button routerLink="/productos">Ver productos</ion-button> -->
+  </div>
 
-<ion-fab class="fondo" horizontal="end" >
-  <ion-icon name="moon" ></ion-icon>
-  <ion-toggle [ngModel]="darkMode"
-              (ionChange)="cambio()" ></ion-toggle>
-</ion-fab>
-<ion-card-header>
-      <img alt="Silhouette of mountains" src="/assets/img/logo_itvo_1.png" />
-    </ion-card-header>
-
-<!-- agregar-->
-  <!--cartas de las actividades de la semana -->
-  <ion-card class="my-card">
+  <img alt="Silhouette of mountains" src="/assets/img/logo_tenis.jpg" />
+  <div>
     <ion-card-header>
-      <ion-card-title>ACTIVIDADES DEL DIA DE HOY </ion-card-title>
+      <ion-card-title>Selecciones destacadas para ti</ion-card-title>
     </ion-card-header>
-    <app-formulario></app-formulario>
+  <ion-slides  >
+    <ion-slide>
+      <ion-grid>
+        <ion-row>
+          <ion-col (click)="abrirModal()" class="ion-col">
+            <img src="assets/img/tenis/tenis5.png">
+            <p>tenis nike </p>
+            <p>Precio: $3000</p>
 
-    <!--boton para agregar nueva nota -->
-  </ion-card>
+          </ion-col>
+          <ion-col class="ion-col">
+            <img src="assets/img/tenis/tenis5.png">
+            <p>tenis nike </p>
+            <p>Precio: $3000</p>
+          </ion-col>
+          <ion-col class="ion-col">
+            <img src="assets/img/tenis/tenis5.png">
+            <p>tenis nike </p>
+            <p>Precio: $3000</p>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-slide>
+    <ion-slide>
+      <ion-grid>
+        <ion-row>
+          <ion-col class="ion-col">
+            <img src="assets/img/tenis/tenis5.png">
+            <p>tenis nike </p>
+            <p>Precio: $3000</p>
+          </ion-col>
+          <ion-col class="ion-col">
+            <img src="assets/img/tenis/tenis5.png">
+            <p>tenis nike </p>
+            <p>Precio: $3000</p>
+          </ion-col>
+          <ion-col class="ion-col">
+            <img src="assets/img/tenis/tenis5.png">
+            <p>tenis nike </p>
+            <p>Precio: $3000</p>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-slide>
+  </ion-slides>
+  </div>
 
-  <ion-card class="my-card" >
+  <div>
     <ion-card-header>
+      <ion-card-title>Novedades de medina tenis</ion-card-title>
+    </ion-card-header>
+    <img src="assets/img/nuevo.jpg">
+
+  </div>
+
+  <ion-col size="6" size-md="4" size-lg="3" *ngFor="let categoria of models">
+    <ion-card routerLink="/productos/" >
       <ion-card-header>
-        <ion-card-title>ACTIVIDADES DE MAÑANA</ion-card-title>
-        <ion-card-subtitle>
-        </ion-card-subtitle>
+        <ion-card-title>{{categoria.nombre}}</ion-card-title>
       </ion-card-header>
-      <ion-card-content>
-      </ion-card-content>
-    </ion-card-header>
-  </ion-card>
+    </ion-card>
+  </ion-col>
 
-  <ion-card class="my-card">
-    <ion-card-header>
-      <ion-card-header>
-        <ion-card-title>LUNES</ion-card-title>
-        <ion-card-subtitle>
-        </ion-card-subtitle>
-      </ion-card-header>
-      <ion-card-content>
-
-      </ion-card-content>
-    </ion-card-header>
-  </ion-card>
-
-  <ion-card class="my-card" >
-    <ion-card-header>
-      <ion-card-header>
-        <ion-card-title>MARTES</ion-card-title>
-        <ion-card-subtitle>
-        </ion-card-subtitle>
-      </ion-card-header>
-      <ion-card-content>
-
-      </ion-card-content>
-    </ion-card-header>
-  </ion-card>
-
-  <ion-card class="my-card" >
-    <ion-card-header>
-      <ion-card-header>
-        <ion-card-title>MIERCOLES</ion-card-title>
-        <ion-card-subtitle>
-        </ion-card-subtitle>
-      </ion-card-header>
-      <ion-card-content>
-
-      </ion-card-content>
-    </ion-card-header>
-  </ion-card>
-
-  <ion-card class="my-card" >
-    <ion-card-header>
-      <ion-card-header>
-        <ion-card-title>JUEVES</ion-card-title>
-        <ion-card-subtitle>
-        </ion-card-subtitle>
-      </ion-card-header>
-      <ion-card-content>
-
-      </ion-card-content>
-    </ion-card-header>
-  </ion-card>
-
-  <ion-card class="my-card" >
-    <ion-card-header>
-      <ion-card-header>
-        <ion-card-title>VIERNES</ion-card-title>
-        <ion-card-subtitle>
-        </ion-card-subtitle>
-      </ion-card-header>
-      <ion-card-content>
-
-      </ion-card-content>
-    </ion-card-header>
-  </ion-card>
 
 <ion-fab class="my-fab" horizontal="end">
   <ion-fab-button id="open-modal" >
     <ion-icon name="add"></ion-icon>
   </ion-fab-button>
 </ion-fab>
+
+</ion-content>
 
 
 

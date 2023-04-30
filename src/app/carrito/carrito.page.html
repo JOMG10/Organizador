@@ -1,0 +1,94 @@
+
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>carrito de compras</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content >
+  <ion-card>
+    <ion-card-content>
+      <ion-list *ngFor="let carrito of contenido">
+        <ion-item>
+          <ion-thumbnail slot="start">
+            <ion-img [src]="carrito.rutaImagen"> </ion-img>
+          </ion-thumbnail>
+          <ion-label>{{carrito.nombre}}</ion-label>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-button expand="block" (click)="abrirModal()">Finalizar compra</ion-button>
+
+
+  <!--inicio de modal para registrar informacion de entrega al cliente -->
+
+<ion-modal trigger="open-modal" (willDismiss)="onWillDismiss($event)" *ngIf="enableNewNota"  >
+  <ng-template>
+    <ion-header>
+      <ion-toolbar>
+        <ion-buttons slot="start"  >
+          <ion-button (click)="closeModal()" ><ion-icon name="backspace" ></ion-icon></ion-button>
+        </ion-buttons>
+
+        <ion-title >FORMULARIO PARA FINALIZAR COMPRA</ion-title>
+        <ion-buttons slot="end">
+          <ion-icon name="cart-outline" onclick="href = '/carrito';"></ion-icon>
+          <ion-badge></ion-badge>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content >
+    <ion-item>
+      <ion-label position="floating">Nombre</ion-label>
+      <ion-input type="text"  name="nombre" ></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Telefono</ion-label>
+      <ion-input type="text"  name="telefono" ></ion-input>
+    </ion-item>
+      <ion-item>
+        <ion-label position="floating">Direccion de entrega</ion-label>
+        <ion-input type="text" name="direccion" ></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Referencias</ion-label>
+        <ion-input type="text"  name="referencias" ></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-list>
+          <ion-item>
+            <ion-select aria-label="Fruit" interface="popover" placeholder="Selecionar municipio">
+              <ion-select-option value="apples">Santa Cruz Xoxocotlan</ion-select-option>
+              <ion-select-option value="oranges">Centro</ion-select-option>
+              <ion-select-option value="bananas">Cuilapan</ion-select-option>
+            </ion-select>
+          </ion-item>
+        </ion-list>
+      </ion-item>
+      <ion-item>
+        <ion-list>
+          <ion-item>
+            <ion-select aria-label="Fruit" interface="popover" placeholder="Metodo de pago">
+              <ion-select-option value="transferencia">Transferencia</ion-select-option>
+              <ion-select-option value="Depositos">Deposito</ion-select-option>
+            </ion-select>
+          </ion-item>
+        </ion-list>
+      </ion-item>
+    </ion-content>
+      <ion-button expand="block" class="ion-margin-top" (click)="presentAlert();closeModal()"
+      >FINALIZAR COMPRA</ion-button>
+
+  </ng-template>
+</ion-modal>
+
+</ion-content>
+
+
+

@@ -8,7 +8,7 @@ import { TabsPageRoutingModule } from './tabs-routing.module';
 import { TabsPage } from './tabs.page';
 import {RouterLink} from "@angular/router";
 import {Tab1PageModule} from "../tab1/tab1.module";
-import {Tab2PageModule} from "../tab2/tab2.module";
+import {Tab02PageModule} from "../tab02/tab02.module";
 import {Tab3PageModule} from "../tab3/tab3.module";
 import {Tab4PageModule} from "../tab4/tab4.module";
 import {Tab5PageModule} from "../tab5/tab5.module";
@@ -23,25 +23,25 @@ import {Tab7PageModule} from "../tab7/tab7.module";
     TabsPageRoutingModule,
     RouterLink,
     Tab1PageModule,
-    Tab2PageModule,
+    Tab02PageModule,
     Tab3PageModule,
     Tab4PageModule,
     Tab5PageModule,
     Tab6PageModule,
-    Tab7PageModule
+    Tab7PageModule,
   ],
-  exports:[  IonicModule,
-    CommonModule,
-    FormsModule,
-    TabsPageRoutingModule,
-    RouterLink,
-    Tab1PageModule,
-    Tab2PageModule,
-    Tab3PageModule,
-    Tab4PageModule,
-    Tab5PageModule,
-    Tab6PageModule,
-    Tab7PageModule],
+    exports: [IonicModule,
+        CommonModule,
+        FormsModule,
+        TabsPageRoutingModule,
+        RouterLink,
+        Tab1PageModule,
+        Tab02PageModule,
+        Tab3PageModule,
+        Tab4PageModule,
+        Tab5PageModule,
+        Tab6PageModule,
+        Tab7PageModule, TabsPage],
   declarations: [TabsPage]
 })
 export class TabsPageModule {}
