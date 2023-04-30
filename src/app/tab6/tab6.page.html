@@ -2,7 +2,7 @@
 
 </ion-header>
 
-<ion-content>
+<ion-content >
   <ion-list>
     <ion-item>
       <ion-title>Notificaciones</ion-title>
@@ -23,13 +23,12 @@
     </ion-item>
   </ion-list>
 
-  <ion-list>
+  <ion-list >
     <ion-item>
-      <ion-title>Modo Oscuro</ion-title>
-      <ion-select aria-label="ModoOscuro" placeholder="ModoOscuro">
-        <ion-select-option value="activar">Activar</ion-select-option>
-        <ion-select-option value="desactivar">Desactivar</ion-select-option>
-      </ion-select>
+      <ion-title>Modo Oscuro <ion-icon name="moon" ></ion-icon> </ion-title>
+      <ion-fab class="fondo" horizontal="end" >
+        <ion-toggle [ngModel]="darkMode" (ionChange)="cambio()" [(ngModel)]="config.fondo" ></ion-toggle>
+      </ion-fab>
     </ion-item>
   </ion-list>
 
