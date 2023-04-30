@@ -1,9 +1,17 @@
 import { Component, OnInit } from '@angular/core';
-import {ActionSheetController, AlertController, ModalController} from "@ionic/angular";
-import { NavController } from '@ionic/angular';
-import {FormGroup} from "@angular/forms";
-import {dateTimestampProvider} from "rxjs/internal/scheduler/dateTimestampProvider";
-import {DatePipe} from "@angular/common";
+import {FirestoreService} from "../services/firestore.service";
+
+
+interface Carrito {
+  nombre: string;
+  descripcion: string;
+  precio:string;
+  colores:string;
+  rutaImagen:string;
+  id:string;
+}
+
+
 
 
 
@@ -15,9 +23,30 @@ import {DatePipe} from "@angular/common";
 })
 export class ListaPage implements OnInit {
 
- constructor() {
+  private path = 'Carrito/';
+
+ constructor(public firestore: FirestoreService) {
  }
 
  ngOnInit() {
+   this.getActividad();
  }
+
+  contenido:Carrito[] = [];
+  carro : Carrito = {
+    nombre:'',
+    descripcion:'',
+    precio: '',
+    colores: '',
+    rutaImagen:'',
+    id:this.firestore.getId()
+  };
+
+  getActividad(){
+    this.firestore.getCollection<Carrito>(this.path).subscribe( res => {
+      this.contenido = res;
+    });
+  }
+
+
 }

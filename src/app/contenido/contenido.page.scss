@@ -1,0 +1,25 @@
+.bolsa {
+  margin: 10px;
+}
+
+.badge {
+  position: absolute;
+  top: 1px;
+  right: 8px;
+  color: red;
+  background-color: white;
+  padding: 0.2rem 0.6rem;
+  border-radius: 50%;
+  font-size: 0.6rem;
+}
+
+ion-button {
+  font-size: 0.8rem; // ajusta el valor según tus necesidades
+  --padding-start: 0.5rem; // ajusta el valor según tus necesidades
+  --padding-end: 0.5rem; // ajusta el valor según tus necesidades
+}
+
+.list-tallas {
+  text-align: center;
+  margin: 0;
+}

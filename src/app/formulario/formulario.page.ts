@@ -1,9 +1,42 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {ActionSheetController, AlertController, IonModal, ModalController, PopoverController,} from "@ionic/angular";
 import {FirestoreService} from "../services/firestore.service";
-import {Actividad} from "../models";
 import {NgForm} from "@angular/forms";
 
+interface Actividad {
+  title: string;
+  nota: string;
+  fecha: Date;
+  import: boolean;
+  id:string;
+  check: boolean;
+}
+
+interface Tenis {
+  nombre: string;
+  descripcion: string;
+  precio:string;
+  colores:string;
+  rutaImagen:string;
+  id:string;
+}
+
+interface Zapato {
+  nombreZ: string;
+  descripcionZ: string;
+  precioZ:string;
+  coloresZ:string;
+  rutaImagenZ:string;
+  idZ:string;
+}
+interface Sandalias {
+  nombreS: string;
+  descripcionS: string;
+  precioS:string;
+  coloresS:string;
+  rutaImagenS:string;
+  idS:string;
+}
 
 @Component({
   selector: 'app-formulario',
@@ -12,48 +45,163 @@ import {NgForm} from "@angular/forms";
 })
 export class FormularioPage implements OnInit {
 
+  private path = 'Tenis/';
+
   import: boolean = false; // Variable para almacenar el estado del checkbox
   isChecked: boolean = false; // Variable para almacenar el estado del checkbox
   enableNewNota  = true;
   visible = false;
   data: any;
 
-  private path = 'FormularioNotas/';
+
 
   constructor( private actionSheetCtrl: ActionSheetController,private alertController: AlertController,
                private modalController: ModalController, public firestore: FirestoreService,
                private popoverController: PopoverController) {
 
   }
-  notas:Actividad[] = [];
+  ngOnInit() {
+    this.getActividad();
+    this. getActividadZ();
+    this.getActividadS();
+  }
+
+  //comienza agrega a tenis
+  contenido:Tenis[] = [];
+  act : Tenis = {
+    nombre:'',
+    descripcion:'',
+    precio: '',
+    colores: '',
+    rutaImagen:'',
+    id:this.firestore.getId()
+  };
+  getActividad(){
+    this.firestore.getCollection<Tenis>(this.path).subscribe( res => {
+      this.contenido = res;
+    });
+  }
+  nuevo() {
+    this.enableNewNota = true;
+    this.act  = {
+      nombre:'',
+      descripcion:'',
+      precio: '',
+      colores: '',
+      rutaImagen:'',
+      id:this.firestore.getId()
+    };
+  }
+
+  /////////////contenido de zapato
+  private pat = 'Zapatos/';
+  contendZ:Zapato[] = [];
+  Zap : Zapato = {
+    nombreZ:'',
+    descripcionZ:'',
+    precioZ: '',
+    coloresZ: '',
+    rutaImagenZ:'',
+    idZ:this.firestore.getId()
+  };
+
+  getActividadZ(){
+    this.firestore.getCollection<Zapato>(this.pat).subscribe( res => {
+      this.contendZ = res;
+    });
+  }
+
+  nuevoZ() {
+    this.enableNewNota = true;
+    this.Zap  = {
+      nombreZ:'',
+      descripcionZ:'',
+      precioZ: '',
+      coloresZ: '',
+      rutaImagenZ:'',
+      idZ:this.firestore.getId()
+    };
+  }
+
+  guardarNotaZ(){
+    this.firestore.creatDoc( this.Zap,this.pat, this.Zap.idZ);
+  }
+
+  ////////aqui empieza el contenidpo de las sandalias
+
+
+  private pathS = 'Sandalias/';
+  contenidoS:Sandalias[] = [];
+  San : Sandalias = {
+    nombreS:'',
+    descripcionS:'',
+    precioS: '',
+    coloresS: '',
+    rutaImagenS:'',
+    idS:this.firestore.getId()
+  };
+
+  getActividadS(){
+    this.firestore.getCollection<Sandalias>(this.pathS).subscribe( res => {
+      this.contenidoS = res;
+    });
+  }
+
+  nuevoS() {
+    this.enableNewNota = true;
+    this.San = {
+      nombreS:'',
+      descripcionS:'',
+      precioS: '',
+      coloresS: '',
+      rutaImagenS:'',
+      idS:this.firestore.getId()
+    };
+  }
+
+  guardarNotaS(){
+    this.firestore.creatDoc( this.San,this.pathS, this.San.idS);
+  }
+
+
+
+
+
+  //comienza la agregar a formulkarionotas
+
+/* notas:Actividad[] = [];
+
   act : Actividad = {
     title:'',
     nota:'',
-    fecha: "",
+    fecha: new Date(),
     import: false,
     check:false,
     id:this.firestore.getId()
   };
 
-  cambiarFecha(){
-
-    }
+ */
 
 
 
 
-  ngOnInit() { this.getActividad(); }
+ // ngOnInit() { this.getActividad(); }
 
   guardarNota(){
       this.firestore.creatDoc( this.act,this.path, this.act.id);
   }
 
-  getActividad(){
+ /* getActividad(){
     this.firestore.getCollection<Actividad>(this.path).subscribe( res => {
       this.notas = res;
     });
   }
+  */
 
+
+
+
+  /*actionShet de borrar, editar y eliminar
   async mostrarActionSheet() {
     const actionSheet = await this.actionSheetCtrl.create({
       header: 'Opciones', // Encabezado del action sheet
@@ -96,6 +244,8 @@ export class FormularioPage implements OnInit {
     await actionSheet.present(); // Mostrar el action sheet
   }
 
+   */
+
 
   async borrar() {
     const alert = await this.alertController.create({
@@ -126,17 +276,21 @@ export class FormularioPage implements OnInit {
   }
   onWillDismiss($event: any) {  }
 
-  nuevo() {
+  /* nuevo() {
     this.enableNewNota = true;
     this.act  = {
       title:'',
       nota:'',
-      fecha: "hola",
+      fecha: new Date(''),
       import: false,
       check:false,
       id:this.firestore.getId()
     };
   }
+
+   */
+
+
 
   // Función para abrir el modal
 

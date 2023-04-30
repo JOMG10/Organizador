@@ -11,8 +11,8 @@
               <ion-label >INICIO</ion-label>
             <ion-icon slot="start" name="home-outline"></ion-icon>
           </ion-item>
-          <ion-item (click)="this.opcion = this.OPCION1"  (click)="cambiarCalendario()" [routerLink]="'tab2'">
-             <ion-label>CALENDARIO</ion-label>
+          <ion-item (click)="this.opcion = this.OPCION1"  (click)="cambiarCalendario()" [routerLink]="'tab02'">
+             <ion-label>COMPRAR</ion-label>
             <ion-icon slot="start" name="calendar-outline"></ion-icon>
           </ion-item>
           <ion-item (click)="this.opcion = this.OPCION2 " (click)="cambiarAgenda()" [routerLink]="'tab3'">
@@ -45,11 +45,12 @@
         <ion-menu-button ></ion-menu-button>
       </ion-buttons>
       <ion-title >{{nombre}}</ion-title>
+      <ion-icon name="search-outline" slot="end" id="buscador"></ion-icon>
     </ion-toolbar>
   </ion-header>
   <ion-content class="ion-padding" >
     <app-tab1 *ngIf="this.opcion===this.INICIO"></app-tab1>
-    <app-tab2 *ngIf="this.opcion===this.OPCION1"></app-tab2>
+    <app-tab02 *ngIf="this.opcion===this.OPCION1"></app-tab02>
     <app-tab3 *ngIf="this.opcion===this.OPCION2"></app-tab3>
     <app-tab4 *ngIf="this.opcion===this.OPCION3"></app-tab4>
     <app-tab5 *ngIf="this.opcion===this.OPCION4"></app-tab5>
