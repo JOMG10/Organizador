@@ -1,0 +1,109 @@
+
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button ></ion-back-button>
+    </ion-buttons>
+    <ion-title>Area de tenis</ion-title>
+    <ion-buttons slot="end">
+      <ion-icon name="cart-outline" routerLink="/carrito"></ion-icon>
+      <ion-badge>{{valor}}</ion-badge>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div>
+    <ion-card-header>
+      <ion-card-title></ion-card-title>
+    </ion-card-header>
+    <ion-grid >
+      <ion-row>
+        <ion-col size="5" *ngFor="let teniss of contenido" class="ion-col">
+          <ion-card (click)=" act = teniss; abrirModal()">
+            <ion-img [src]="teniss.rutaImagen"></ion-img>
+            <ion-card-content>
+              <p>{{teniss.descripcion}}</p>
+              <p>Precio: $ {{teniss.precio}}</p>
+              <p>colores: {{teniss.colores}}</p>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+
+  <!--inicio del modal para mostrar mas detallado el producto -->
+
+  <ion-modal trigger="open-modal" (willDismiss)="onWillDismiss($event)" *ngIf="enableNewNota"  >
+    <ng-template>
+      <ion-header>
+        <ion-toolbar>
+          <ion-buttons slot="start"  >
+            <ion-button (click)="closeModal()" ><ion-icon name="backspace" ></ion-icon></ion-button>
+          </ion-buttons>
+
+          <ion-title >DETALLES DE PRODUCTO</ion-title>
+          <ion-buttons slot="end">
+            <ion-icon name="cart-outline" onclick="href = '/carrito';"></ion-icon>
+            <ion-badge>{{valor}}</ion-badge>
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content class="ion-padding">
+        <div>
+          <ion-card-header>
+            <ion-card-title></ion-card-title>
+          </ion-card-header>
+          <ion-slides>
+            <ion-slide>
+              <ion-card>
+                <ion-img [src]="act.rutaImagen"></ion-img>
+              </ion-card>
+
+            </ion-slide>
+          </ion-slides>
+
+          <ion-card >
+            <ion-card-content >
+              <label>{{act.nombre}}</label> <br>
+              <label>{{act.descripcion}}</label> <br>
+              <label>{{act.precio}}</label>
+            </ion-card-content>
+          </ion-card>
+        </div>
+
+        <ion-button expand="block" class="ion-margin-top"  (click)="setOpen(true); seleccionarTalla();">{{tallaSelecion}}</ion-button>
+        <ion-button expand="block" class="ion-margin-top" (click)="presentAlert(); closeModal(); guardarNota() " >Agregar a carrito</ion-button>
+
+        <!--modal para seleccionar la talla -->
+
+        <ion-content class="ion-padding">
+          <ion-modal [isOpen]="isModalOpen">
+            <ng-template>
+              <ion-header>
+                <ion-toolbar>
+                  <ion-title>Tallas disponibles</ion-title>
+                  <ion-buttons slot="end">
+                    <ion-button (click)="setOpen(false)">cancelar</ion-button>
+                  </ion-buttons>
+                </ion-toolbar>
+              </ion-header>
+              <ion-content class="ion-padding" *ngFor="let talla of tallas" >
+                <ion-item class="list-tallas" >
+                  <ion-label (click)="tallaSelecionada()">
+                    {{talla.talla}}
+                  </ion-label>
+                </ion-item>
+              </ion-content>
+            </ng-template>
+          </ion-modal>
+        </ion-content>
+
+      </ion-content>
+    </ng-template>
+  </ion-modal>
+
+</ion-content>
+
+

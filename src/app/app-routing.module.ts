@@ -25,34 +25,7 @@ const routes: Routes = [
   {
     path: 'lista',
     loadChildren: () => import('./lista/lista.module').then( m => m.ListaPageModule)
-  },
-  {
-    path: 'tab02',
-    loadChildren: () => import('./tab02/tab02.module').then( m => m.Tab02PageModule)
-  },
-  {
-    path: 'contenido',
-    loadChildren: () => import('./contenido/contenido.module').then( m => m.ContenidoPageModule)
-  },
-  {
-    path: 'asandalias',
-    loadChildren: () => import('./asandalias/asandalias.module').then( m => m.AsandaliasPageModule)
-  },
-  {
-    path: 'azapatos',
-    loadChildren: () => import('./azapatos/azapatos.module').then( m => m.AzapatosPageModule)
-  },
-  {
-    path: 'accesorios',
-    loadChildren: () => import('./accesorios/accesorios.module').then( m => m.AccesoriosPageModule)
-  },  {
-    path: 'atenis',
-    loadChildren: () => import('./atenis/atenis.module').then( m => m.AtenisPageModule)
   }
-
-
-
-
 
 ];
 @NgModule({
