@@ -23,34 +23,11 @@ const routes: Routes = [
     loadChildren: () => import('./formulario/formulario.module').then( m => m.FormularioPageModule)
   },
   {
-    path: 'tab02',
-    loadChildren: () => import('./tab02/tab02.module').then( m => m.Tab02PageModule)
-  },
-  {
-    path: 'dama',
-    loadChildren: () => import('./dama/dama.module').then( m => m.DamaPageModule)
-  },
-  {
-    path: 'caballero',
-    loadChildren: () => import('./caballero/caballero.module').then( m => m.CaballeroPageModule)
-  },
-  {
-    path: 'boys',
-    loadChildren: () => import('./boys/boys.module').then( m => m.BoysPageModule)
-  },
-  {
-    path: 'bgirls',
-    loadChildren: () => import('./bgirls/bgirls.module').then( m => m.BgirlsPageModule)
-  },
-  {
-    path: 'carrito',
-    loadChildren: () => import('./carrito/carrito.module').then( m => m.CarritoPageModule)
-  },
+    path: 'lista',
+    loadChildren: () => import('./lista/lista.module').then( m => m.ListaPageModule)
+  }
 
-
-
-
- ];
+];
 @NgModule({
   imports: [
     RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules })

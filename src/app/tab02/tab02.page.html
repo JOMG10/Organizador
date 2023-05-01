@@ -31,11 +31,10 @@
     <ion-card routerLink="{{categoria.link}}" >
       <ion-card-header>
         <ion-card-title>{{categoria.nombre}}</ion-card-title>
+        <ion-card-subtitle>Card Subtitle</ion-card-subtitle>
       </ion-card-header>
     </ion-card>
   </ion-col>
-
-  <!--comienzo de recomendado  -->
 
   <div>
     <ion-card-header>
@@ -74,9 +73,10 @@
       </ion-card-header>
     </ion-card>
   </ion-col>
+
 </div>
 
-<!-- *******************comienza el segundo segmento  ***************************-->
+<!--comienza el segundo segmento -->
 <div *ngIf="segmentValue === 'option2'">
   <div class="espacio"></div>
 
@@ -87,15 +87,14 @@
     </ion-card>
   </div>
 
-  <ion-col size="6" size-md="4" size-lg="3" *ngFor="let categoriaD of modelosD">
-    <ion-card routerLink="{{categoriaD.link}}" >
+  <ion-col size="6" size-md="4" size-lg="3" *ngFor="let categoria of modelos">
+    <ion-card routerLink="/productos/" >
       <ion-card-header>
-        <ion-card-title>{{categoriaD.nombre}}</ion-card-title>
+        <ion-card-title>{{categoria.nombre}}</ion-card-title>
+        <ion-card-subtitle>Card Subtitle</ion-card-subtitle>
       </ion-card-header>
     </ion-card>
   </ion-col>
-
-<div>
   <ion-card-header>
     <ion-card-title>recomendado para ti</ion-card-title>
   </ion-card-header>
@@ -123,8 +122,6 @@
     </ion-slide>
   </ion-slides>
 </div>
-</div>
-
 
 <!--comienza el tercer segmento -->
 <div *ngIf="segmentValue === 'option3'">

@@ -15,27 +15,27 @@ interface Actividad {
 interface Tenis {
   nombre: string;
   descripcion: string;
-  precio:number;
+  precio:string;
   colores:string;
   rutaImagen:string;
   id:string;
 }
 
 interface Zapato {
-  nombre: string;
-  descripcion: string;
-  precio:number;
-  colores:string;
-  rutaImagen:string;
-  id:string;
+  nombreZ: string;
+  descripcionZ: string;
+  precioZ:string;
+  coloresZ:string;
+  rutaImagenZ:string;
+  idZ:string;
 }
 interface Sandalias {
-  nombre: string;
-  descripcion: string;
-  precio:number;
-  colores:string;
-  rutaImagen:string;
-  id:string;
+  nombreS: string;
+  descripcionS: string;
+  precioS:string;
+  coloresS:string;
+  rutaImagenS:string;
+  idS:string;
 }
 
 @Component({
@@ -71,7 +71,7 @@ export class FormularioPage implements OnInit {
   act : Tenis = {
     nombre:'',
     descripcion:'',
-    precio: 0,
+    precio: '',
     colores: '',
     rutaImagen:'',
     id:this.firestore.getId()
@@ -86,7 +86,7 @@ export class FormularioPage implements OnInit {
     this.act  = {
       nombre:'',
       descripcion:'',
-      precio: 0,
+      precio: '',
       colores: '',
       rutaImagen:'',
       id:this.firestore.getId()
@@ -97,12 +97,12 @@ export class FormularioPage implements OnInit {
   private pat = 'Zapatos/';
   contendZ:Zapato[] = [];
   Zap : Zapato = {
-    nombre:'',
-    descripcion:'',
-    precio: 0,
-    colores: '',
-    rutaImagen:'',
-    id:this.firestore.getId()
+    nombreZ:'',
+    descripcionZ:'',
+    precioZ: '',
+    coloresZ: '',
+    rutaImagenZ:'',
+    idZ:this.firestore.getId()
   };
 
   getActividadZ(){
@@ -114,17 +114,17 @@ export class FormularioPage implements OnInit {
   nuevoZ() {
     this.enableNewNota = true;
     this.Zap  = {
-      nombre:'',
-      descripcion:'',
-      precio: 0,
-      colores: '',
-      rutaImagen:'',
-      id:this.firestore.getId()
+      nombreZ:'',
+      descripcionZ:'',
+      precioZ: '',
+      coloresZ: '',
+      rutaImagenZ:'',
+      idZ:this.firestore.getId()
     };
   }
 
   guardarNotaZ(){
-    this.firestore.creatDoc( this.Zap,this.pat, this.Zap.id);
+    this.firestore.creatDoc( this.Zap,this.pat, this.Zap.idZ);
   }
 
   ////////aqui empieza el contenidpo de las sandalias
@@ -133,12 +133,12 @@ export class FormularioPage implements OnInit {
   private pathS = 'Sandalias/';
   contenidoS:Sandalias[] = [];
   San : Sandalias = {
-    nombre:'',
-    descripcion:'',
-    precio: 0,
-    colores: '',
-    rutaImagen:'',
-    id:this.firestore.getId()
+    nombreS:'',
+    descripcionS:'',
+    precioS: '',
+    coloresS: '',
+    rutaImagenS:'',
+    idS:this.firestore.getId()
   };
 
   getActividadS(){
@@ -150,17 +150,17 @@ export class FormularioPage implements OnInit {
   nuevoS() {
     this.enableNewNota = true;
     this.San = {
-      nombre:'',
-      descripcion:'',
-      precio: 0,
-      colores: '',
-      rutaImagen:'',
-      id:this.firestore.getId()
+      nombreS:'',
+      descripcionS:'',
+      precioS: '',
+      coloresS: '',
+      rutaImagenS:'',
+      idS:this.firestore.getId()
     };
   }
 
   guardarNotaS(){
-    this.firestore.creatDoc( this.San,this.pathS, this.San.id);
+    this.firestore.creatDoc( this.San,this.pathS, this.San.idS);
   }
 
 

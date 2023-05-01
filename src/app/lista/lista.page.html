@@ -1,0 +1,28 @@
+
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>carrito de compras</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content >
+  <ion-card>
+    <ion-card-content>
+      <ion-list *ngFor="let carrito of contenido">
+        <ion-item>
+          <ion-thumbnail slot="start">
+            <ion-img [src]="carrito.rutaImagen"> </ion-img>
+          </ion-thumbnail>
+          <ion-label>{{carrito.nombre}}</ion-label>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-button expand="block">Finalizar compra</ion-button>
+
+</ion-content>
+
