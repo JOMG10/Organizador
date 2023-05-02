@@ -7,31 +7,31 @@
 
   <ion-content class="ion-padding" >
       <ion-menu-toggle >
-          <ion-item (click)="this.opcion = this.INICIO " (click)="cambiarInicio()"  [routerLink]="'tab1'" >
+          <ion-item (click)="this.opcion = this.INICIO; cambiarInicio()"  [routerLink]="'tab1'" >
               <ion-label >INICIO</ion-label>
             <ion-icon slot="start" name="home-outline"></ion-icon>
           </ion-item>
-          <ion-item (click)="this.opcion = this.OPCION1"  (click)="cambiarCalendario()" [routerLink]="'tab02'">
+          <ion-item (click)="this.opcion = this.OPCION1; cambiarCalendario()" [routerLink]="'tab02'">
              <ion-label>COMPRAS</ion-label>
             <ion-icon slot="start" name="calendar-outline"></ion-icon>
           </ion-item>
-          <ion-item (click)="this.opcion = this.OPCION2 " (click)="cambiarPendiente()" [routerLink]="'tab3'">
-            <ion-label >PENDIENTES</ion-label>
+          <ion-item (click)="this.opcion = this.OPCION2; cambiarPendiente()" [routerLink]="'tab3'">
+            <ion-label >MIS PEDIDOS</ion-label>
             <ion-icon slot="start" name="book-outline"></ion-icon>
           </ion-item>
-          <ion-item (click)="this.opcion = this.OPCION3" (click)="cambiarHorario()"   [routerLink]="'tab4'">
-            <ion-label>HORARIO</ion-label>
+          <ion-item (click)="this.opcion = this.OPCION3; cambiarHorario()"   [routerLink]="'tab4'">
+            <ion-label>HISTORIAL</ion-label>
             <ion-icon slot="start" name="stopwatch-outline"></ion-icon>
           </ion-item>
-          <ion-item (click)="this.opcion = this.OPCION4 " (click)="cambiarPerfil()" [routerLink]="'tab5'">
+          <ion-item (click)="this.opcion = this.OPCION4; cambiarPerfil()" [routerLink]="'tab5'">
             <ion-label>MI PERFIL</ion-label>
             <ion-icon slot="start" name="accessibility-outline"></ion-icon>
           </ion-item>
-          <ion-item (click)="this.opcion = this.OPCION5 " (click)="cambiarConfiguracion()" [routerLink]="'tab6'">
+          <ion-item (click)="this.opcion = this.OPCION5; cambiarConfiguracion()" [routerLink]="'tab6'">
             <ion-label>CONFIGURACION</ion-label>
             <ion-icon slot="start" name="construct-outline"></ion-icon>
           </ion-item>
-          <ion-item (click)="this.opcion = this.OPCION6 "  (click)="cambiarAcerca()" [routerLink]="'tab7'">
+          <ion-item (click)="this.opcion = this.OPCION6; cambiarAcerca()" [routerLink]="'tab7'">
             <ion-label>ACERCA DE </ion-label>
             <ion-icon slot="start" name="information-circle-outline"></ion-icon>
           </ion-item>

@@ -24,20 +24,8 @@ export class CarritoPage implements OnInit {
               private actionSheetCtrl: ActionSheetController
               ) {  }
 
- /* startProgress(){
 
-    setInterval(() => {
-      this.progress += 0.01;
-
-      // Reset the progress bar when it reaches 100%
-      // to continuously show the demo
-      if (this.progress > 1) {
-        setTimeout(() => {
-          this.progress = 0;
-        }, 1000);
-      }
-    }, 50);
-  }*/ //iniciador de progreso de carga
+  //iniciador de progreso de carga
 
   ngOnInit() {
     this.getActividad();
@@ -73,7 +61,7 @@ export class CarritoPage implements OnInit {
   }
 
 //mensaje de finalizacion de compra
-  valor = 1
+  valor = 0
   async presentAlert() {
     this.valor=2
 

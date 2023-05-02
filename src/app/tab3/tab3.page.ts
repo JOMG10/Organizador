@@ -1,9 +1,19 @@
-import { Component } from '@angular/core';
-import {ModalController} from "@ionic/angular";
+import {Component, OnInit, ViewChild} from '@angular/core';
+import {IonModal, ModalController} from "@ionic/angular";
+import {FirestoreService} from "../services/firestore.service";
 
 interface DataItem {
   nombre: String;
   apellido:String;
+}
+
+interface Pendientes {
+  nombre: string;
+  descripcion: string;
+  precio:string;
+  colores:string;
+  rutaImagen:string;
+  id:string;
 }
 
 @Component({
@@ -13,10 +23,14 @@ interface DataItem {
 
 })
 
-export class Tab3Page {
+export class Tab3Page implements OnInit{
 
+  @ViewChild(IonModal) modal!: IonModal ;
 
-  constructor(public modalController: ModalController) {
+  constructor(public modalController: ModalController, private firestore:FirestoreService) {
+  }
+  ngOnInit() {
+    this.getActividad();
   }
 
   visible = false;
@@ -25,7 +39,25 @@ export class Tab3Page {
   data: any;
   isVisible: any;
   currentSolicitud: any;
+  enableNewNota  = true;
 
+  private path="Pendientes/";
+
+  contenido:Pendientes[] = [];
+  carro : Pendientes = {
+    nombre:'',
+    descripcion:'',
+    precio: '',
+    colores: '',
+    rutaImagen:'',
+    id:this.firestore.getId()
+  };
+
+  getActividad(){
+    this.firestore.getCollection<Pendientes>(this.path).subscribe( res => {
+      this.contenido = res;
+    });
+  }
 
   showModal(i: any): void {
     this.isVisible = true;
@@ -62,6 +94,15 @@ export class Tab3Page {
       this.modalController.dismiss({ data: this.nuevoItem });
     }
   }
+
+  //abrir modal
+  onWillDismiss($event: any) {  }
+  async abrirModal() {
+    await this.modal.present(); // Abrir el ion-modal
+  }
+
+
+
 
 
 }
