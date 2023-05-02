@@ -12,11 +12,11 @@
             <ion-icon slot="start" name="home-outline"></ion-icon>
           </ion-item>
           <ion-item (click)="this.opcion = this.OPCION1"  (click)="cambiarCalendario()" [routerLink]="'tab02'">
-             <ion-label>COMPRAR</ion-label>
+             <ion-label>COMPRAS</ion-label>
             <ion-icon slot="start" name="calendar-outline"></ion-icon>
           </ion-item>
-          <ion-item (click)="this.opcion = this.OPCION2 " (click)="cambiarAgenda()" [routerLink]="'tab3'">
-            <ion-label >AGENDA</ion-label>
+          <ion-item (click)="this.opcion = this.OPCION2 " (click)="cambiarPendiente()" [routerLink]="'tab3'">
+            <ion-label >PENDIENTES</ion-label>
             <ion-icon slot="start" name="book-outline"></ion-icon>
           </ion-item>
           <ion-item (click)="this.opcion = this.OPCION3" (click)="cambiarHorario()"   [routerLink]="'tab4'">
