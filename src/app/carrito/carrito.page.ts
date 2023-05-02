@@ -1,8 +1,7 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {FirestoreService} from "../services/firestore.service";
-import {AlertController, IonModal, ModalController, PopoverController} from "@ionic/angular";
-
-
+import {AngularFirestore, AngularFirestoreDocument} from "@angular/fire/compat/firestore";
+import {ActionSheetController, AlertController, IonModal, ModalController, PopoverController} from "@ionic/angular";
 interface Carrito {
   nombre: string;
   descripcion: string;
@@ -11,9 +10,6 @@ interface Carrito {
   rutaImagen:string;
   id:string;
 }
-
-
-
 @Component({
   selector: 'app-carrito',
   templateUrl: './carrito.page.html',
@@ -23,15 +19,10 @@ export class CarritoPage implements OnInit {
 
   private path = 'Carrito/';
   public progress = 0;
-
-
   constructor(public firestore: FirestoreService, private modalController:ModalController,
               private popoverController:PopoverController, private alertController:AlertController,
-              ) {
-
-  }
-
-
+              private actionSheetCtrl: ActionSheetController
+              ) {  }
 
  /* startProgress(){
 
@@ -51,8 +42,6 @@ export class CarritoPage implements OnInit {
   ngOnInit() {
     this.getActividad();
   }
-
-
   contenido:Carrito[] = [];
   carro : Carrito = {
     nombre:'',
@@ -62,7 +51,6 @@ export class CarritoPage implements OnInit {
     rutaImagen:'',
     id:this.firestore.getId()
   };
-
   getActividad(){
     this.firestore.getCollection<Carrito>(this.path).subscribe( res => {
       this.contenido = res;
@@ -100,7 +88,65 @@ export class CarritoPage implements OnInit {
   }
 
 
-  //
+  //borrar el carrito de compras, para nuevo carrito
+  async deleteCarrito(){
+    this.firestore.deleteCollection(this.path);
+  }
+
+  //agregar el carrito de compra a pendientes
+  private pathDestino='Pendientes/';
+  copiarColeccion(){
+    this.firestore.copyCollection(this.path,this.pathDestino)
+  }
+
+
+
+
+
+  /*actionShet de borrar, editar y eliminar
+ async mostrarActionSheet() {
+   const actionSheet = await this.actionSheetCtrl.create({
+     header: 'Opciones', // Encabezado del action sheet
+     buttons: [
+       {
+         text: 'Editar', // Opción de edición
+         icon: 'create',
+         handler: ( ) => {
+           // Lógica para la opción de edición
+           this.abrirModal(); // Llamar al método editar() al hacer clic en la opción "Editar"
+         }
+       },
+       {
+         text: 'Borrar', // Opción de borrado
+         icon: 'trash',
+         handler: () => {
+           // Lógica para la opción de borrado
+           console.log('Borrar seleccionado');
+           this.deleteNota(this.carro);
+         }
+       },
+       {
+         text: 'completado', // Opción de completado
+         icon: 'checkmark-outline',
+         handler: () => {
+         }
+       },
+       {
+         text: 'Cancelar', // Opción de cancelar
+         icon: 'close',
+         role: 'cancel',
+         handler: () => {
+           // Lógica para la opción de cancelar
+           console.log('Cancelar seleccionado');
+         }
+       }
+     ]
+   });
+
+   await actionSheet.present(); // Mostrar el action sheet
+ }
+
+  */
 
 
 }
