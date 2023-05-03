@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button ></ion-back-button>
+    </ion-buttons>
+      <ion-searchbar [(ngModel)]="searchTerm" (ionChange)="searchChanged()"></ion-searchbar>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ng-container *ngIf="searchResults | async as results; else loading">
+    <ion-list>
+      <ng-container *ngIf="results.length > 0; else noResults">
+        <ion-item *ngFor="let result of results">
+          <ion-label>{{ result.name }}</ion-label>
+          <p>{{ result.description }}</p>
+        </ion-item>
+      </ng-container>
+
+      <ng-template #noResults>
+        <ion-item>
+          <ion-label>No results found</ion-label>
+        </ion-item>
+      </ng-template>
+    </ion-list>
+  </ng-container>
+
+  <ng-template #loading>
+    <ion-spinner></ion-spinner>
+  </ng-template>
+</ion-content>

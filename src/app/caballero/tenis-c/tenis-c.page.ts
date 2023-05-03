@@ -18,6 +18,7 @@ interface Tenis {
 })
 export class TenisCPage implements OnInit {
 
+
   private path = 'Tenis/';
   private pathAgregar='Carrito/';
   enableNewNota  = true;
@@ -89,7 +90,7 @@ export class TenisCPage implements OnInit {
     this.tallaSelecion = "25"
   }
 
-  valor = 1
+  valor = 0
 
   async presentAlert() {
     this.valor=2

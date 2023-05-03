@@ -11,7 +11,19 @@ const routes: Routes = [
   {
     path: 'tenis-b',
     loadChildren: () => import('./tenis-b/tenis-b.module').then( m => m.TenisBPageModule)
+  },  {
+    path: 'zapatos-b',
+    loadChildren: () => import('./zapatos-b/zapatos-b.module').then( m => m.ZapatosBPageModule)
+  },
+  {
+    path: 'sandalias-b',
+    loadChildren: () => import('./sandalias-b/sandalias-b.module').then( m => m.SandaliasBPageModule)
+  },
+  {
+    path: 'accesorios-b',
+    loadChildren: () => import('./accesorios-b/accesorios-b.module').then( m => m.AccesoriosBPageModule)
   }
+
 ];
 
 @NgModule({
