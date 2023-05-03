@@ -6,12 +6,6 @@ ion-title {
   color: black;
 }
 
-.my-fab {
-  position: fixed;
-  top:600px;
-
-}
-
 .fondo {
   position: fixed;
   top:60px;
@@ -83,6 +77,10 @@ ion-slide {
 }
 .custom-slides {
   width: 30%; /* Establece el ancho del ion-slide */
+}
+h3{
+  margin: 0;
+  padding: 0;
 }
 
 

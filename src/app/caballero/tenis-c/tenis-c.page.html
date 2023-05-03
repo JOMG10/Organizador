@@ -1,22 +1,16 @@
-
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
       <ion-back-button ></ion-back-button>
     </ion-buttons>
-    <ion-title>Area de tenis</ion-title>
-    <ion-buttons slot="end">
+    <ion-title>Area de tenis Caballero</ion-title>
+    <ion-buttons slot="end" *ngFor="let teniss of contenidoS" >
       <ion-icon name="cart-outline" routerLink="/carrito"></ion-icon>
-      <ion-badge>{{valor}}</ion-badge>
+      <ion-badge>{{teniss.campo}}</ion-badge>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
-
-<ion-content>
-  <div>
-    <ion-card-header>
-      <ion-card-title></ion-card-title>
-    </ion-card-header>
+  <ion-content>
     <div class=" ion-padding">
     <ion-grid >
       <ion-row>
@@ -33,7 +27,6 @@
       </ion-row>
     </ion-grid>
     </div>
-  </div>
 
   <!--inicio del modal para mostrar mas detallado el producto -->
 
@@ -46,10 +39,6 @@
           </ion-buttons>
 
           <ion-title >DETALLES DE PRODUCTO</ion-title>
-          <ion-buttons slot="end">
-            <ion-icon name="cart-outline" onclick="href = '/carrito';"></ion-icon>
-            <ion-badge>{{valor}}</ion-badge>
-          </ion-buttons>
         </ion-toolbar>
       </ion-header>
       <ion-content class="ion-padding">
@@ -76,7 +65,7 @@
         </div>
 
         <ion-button expand="block" class="ion-margin-top"  (click)="setOpen(true); seleccionarTalla();">{{tallaSelecion}}</ion-button>
-        <ion-button expand="block" class="ion-margin-top" (click)="presentAlert(); closeModal(); guardarNota() " >Agregar a carrito</ion-button>
+        <ion-button expand="block" class="ion-margin-top" (click)="presentAlert(); closeModal(); guardarNota();modificarCarrito()" >Agregar a carrito</ion-button>
 
         <!--modal para seleccionar la talla -->
 

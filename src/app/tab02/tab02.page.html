@@ -126,7 +126,7 @@
 </div>
 
 
-<!--comienza el tercer segmento -->
+<!-- **********/*********comienza el tercer segmento /**********************************-->
 <div *ngIf="segmentValue === 'option3'">
   <div class="espacio"></div>
   <div class="categories">
@@ -136,10 +136,10 @@
     </ion-card>
   </div>
 
-  <ion-col size="6" size-md="4" size-lg="3" *ngFor="let categoria of modelos">
-    <ion-card routerLink="/productos/" >
+  <ion-col size="6" size-md="4" size-lg="3" *ngFor="let categoriaB of modelosB">
+    <ion-card routerLink="{{categoriaB.link}}"  >
       <ion-card-header>
-        <ion-card-title>{{categoria.nombre}}</ion-card-title>
+        <ion-card-title>{{categoriaB.nombre}}</ion-card-title>
         <ion-card-subtitle>Card Subtitle</ion-card-subtitle>
       </ion-card-header>
     </ion-card>
@@ -192,10 +192,10 @@
     </ion-card>
   </div>
 
-  <ion-col size="6" size-md="4" size-lg="3" *ngFor="let categoria of modelos">
-    <ion-card routerLink="/productos/" >
+  <ion-col size="6" size-md="4" size-lg="3" *ngFor="let categoriaG of modelosG">
+    <ion-card routerLink="{{categoriaG.link}}" >
       <ion-card-header>
-        <ion-card-title>{{categoria.nombre}}</ion-card-title>
+        <ion-card-title>{{categoriaG.nombre}}</ion-card-title>
         <ion-card-subtitle>Card Subtitle</ion-card-subtitle>
       </ion-card-header>
     </ion-card>
