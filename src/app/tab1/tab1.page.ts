@@ -1,6 +1,16 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import { ModalController ,IonModal} from '@ionic/angular';
+import {ModalController, IonModal, IonSlides} from '@ionic/angular';
 import {FirestoreService} from "../services/firestore.service";
+
+interface Zapatos {
+  nombre: string;
+  descripcion: string;
+  precio:number;
+  colores:string;
+  rutaImagen:string;
+  id:string;
+}
+
 @Component({
   selector: 'app-tab1',
   templateUrl: 'tab1.page.html',
@@ -12,16 +22,38 @@ export class Tab1Page {
   fechaActual: Date;
 
 
+
   constructor(public modalController: ModalController, public firestore: FirestoreService,) {
     this.fechaActual=new Date();
+  }
+
+  ngOnInit(): void {
+    this.getActividad();
+  }
+
+
+  //contenido de selecciones destacadas para ti
+  contend:Zapatos[] = [];
+  act : Zapatos = {
+    nombre:'',
+    descripcion:'',
+    precio: 0,
+    colores: '',
+    rutaImagen:'',
+    id:this.firestore.getId()
+  };
+
+  getActividad(){
+    this.firestore.getCollection<Zapatos>(this.path).subscribe( res => {
+      this.contend = res;
+    });
   }
 
 
   enableNewNota  = true;
 
-  private path = 'Fondo/';
+  private path = 'Zapatos/';
 
-  ngOnInit(): void { }
 
   models = [
     { id: 1, nombre: 'Sandalias', subtitulo:'contenido de sandalias' },
@@ -51,5 +83,10 @@ export class Tab1Page {
   }
 
 
+  @ViewChild('slideRef', { static: true }) slide: IonSlides;
+
+  slideNext() {
+    this.slide.slideNext();
+  }
 
 }

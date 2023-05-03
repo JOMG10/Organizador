@@ -1,11 +1,7 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {IonModal, ModalController} from "@ionic/angular";
+import {ActionSheetController, AlertController, IonModal, ModalController} from "@ionic/angular";
 import {FirestoreService} from "../services/firestore.service";
 
-interface DataItem {
-  nombre: String;
-  apellido:String;
-}
 
 interface Pendientes {
   nombre: string;
@@ -27,18 +23,16 @@ export class Tab3Page implements OnInit{
 
   @ViewChild(IonModal) modal!: IonModal ;
 
-  constructor(public modalController: ModalController, private firestore:FirestoreService) {
+  constructor(public modalController: ModalController, private firestore:FirestoreService,
+              private actionSheetCtrl: ActionSheetController, private alertController:AlertController) {
   }
   ngOnInit() {
     this.getActividad();
   }
 
   visible = false;
-
-
   data: any;
   isVisible: any;
-  currentSolicitud: any;
   enableNewNota  = true;
 
   private path="Pendientes/";
@@ -73,9 +67,6 @@ export class Tab3Page implements OnInit{
     this.isVisible = false;
   }
 
-  nuevoItem = { nombre: '', apellido: '' }; // Variable para almacenar los datos del nuevo item
-
-
   async mostrarModal() {
     const modal = await this.modalController.create({
       component: 'mi-modal', // Nombre del componente del modal
@@ -87,22 +78,82 @@ export class Tab3Page implements OnInit{
     this.modalController.dismiss();
   }
 
-  guardarNuevoItem() {
-    // Validar que se hayan llenado ambos campos del formulario
-    if (this.nuevoItem.nombre && this.nuevoItem.apellido) {
-      // Cerrar el modal y pasar los datos del nuevo item como resultado
-      this.modalController.dismiss({ data: this.nuevoItem });
-    }
-  }
-
-  //abrir modal
   onWillDismiss($event: any) {  }
   async abrirModal() {
     await this.modal.present(); // Abrir el ion-modal
   }
 
+  //copiado de coleccion de pendientes a historial
+  private pathDestino='Historial/';
+  copiarColeccion(){
+    this.firestore.copyCollection(this.path,this.pathDestino)
+  }
+  async mostrarActionSheet() {
+    const actionSheet = await this.actionSheetCtrl.create({
+      header: 'Opciones', // Encabezado del action sheet
+      buttons: [
+        {
+          text: 'Entregado', // Opción de borrado
+          icon: 'checkmark-done-outline',
+          handler: () => {
+            // Lógica para la opción de borrado
+            console.log('Borrar seleccionado');
+              this.copiarDoc();
+              this.deleteNota()
+          }
+        },
+        {
+          text: 'Detalles del producto', // Opción de edición
+          icon: 'add-outline',
+          handler: ( ) => {
+            // Lógica para la opción de edición
+            this.abrirModal(); // Llamar al método editar() al hacer clic en la opción "Editar"
+          }
+        },
+        {
+          text: 'Cancelar', // Opción de cancelar
+          icon: 'close',
+          role: 'cancel',
+          handler: () => {
+            // Lógica para la opción de cancelar
+            console.log('Cancelar seleccionado');
+          }
+        }
+      ]
+    });
 
+    await actionSheet.present(); // Mostrar el action sheet
+  }
 
+  copiarDoc(){
+    this.firestore.copiarDocumento(this.carro.id,this.path,this.pathDestino)
+  }
+
+  deleteDocumento(){
+    this.firestore.deleteDoc(this.path,this.carro.id);
+  }
+
+  async deleteNota(){
+    const alert = await this.alertController.create({
+      header: 'Confirmar borrado',
+      message: '¿Estás seguro de que quieres borrar este elemento?',
+      buttons: [
+        {
+          text: 'Cancelar',
+          role: 'cancel',
+          handler: () => {
+          }
+        },
+        {
+          text: 'Aceptar',
+          handler: () => {
+            this.deleteDocumento();
+          }
+        }
+      ]
+    });
+    await alert.present();
+  }
 
 
 }
