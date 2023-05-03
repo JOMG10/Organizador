@@ -15,10 +15,6 @@ const routes: Routes = [
   {
     path: 'zapatos-c',
     loadChildren: () => import('./zapatos-c/zapatos-c.module').then( m => m.ZapatosCPageModule)
-  },
-  {
-    path: 'sandalias-c',
-    loadChildren: () => import('./sandalias-c/sandalias-c.module').then( m => m.SandaliasCPageModule)
   }
 ];
 

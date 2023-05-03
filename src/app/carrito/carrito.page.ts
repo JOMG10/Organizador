@@ -5,11 +5,24 @@ import {ActionSheetController, AlertController, IonModal, ModalController, Popov
 interface Carrito {
   nombre: string;
   descripcion: string;
-  precio:string;
+  precio:number;
   colores:string;
   rutaImagen:string;
   id:string;
+  tallas:string;
 }
+interface Ventas{
+  iva:number;
+  subtotal:number;
+  precioTotal:number;
+  id:string;
+  fecha:Date;
+}
+interface  CantidadCompras {
+  campo:number;
+  id:string;
+}
+
 @Component({
   selector: 'app-carrito',
   templateUrl: './carrito.page.html',
@@ -18,23 +31,38 @@ interface Carrito {
 export class CarritoPage implements OnInit {
 
   private path = 'Carrito/';
+  private pathV='Venta/';
+  private pathS='cantidadCompras/';
+
   public progress = 0;
   constructor(public firestore: FirestoreService, private modalController:ModalController,
-              private popoverController:PopoverController, private alertController:AlertController,
-              private actionSheetCtrl: ActionSheetController
+              private popoverController:PopoverController, private alertController:AlertController
               ) {  }
-
-
-  //iniciador de progreso de carga
-
   ngOnInit() {
     this.getActividad();
+  }
+
+  contenidoS:CantidadCompras[] = [];
+
+  conted:CantidadCompras = {
+    campo:0,
+    id:this.firestore.getId()
+  };
+
+  contenidoV:Ventas[]=[];
+  ventas:Ventas={
+    iva:0,
+    fecha: new Date(),
+    subtotal:0,
+    precioTotal:0,
+    id:this.firestore.getId()
   }
   contenido:Carrito[] = [];
   carro : Carrito = {
     nombre:'',
     descripcion:'',
-    precio: '',
+    tallas:"",
+    precio: 0,
     colores: '',
     rutaImagen:'',
     id:this.firestore.getId()
@@ -43,6 +71,14 @@ export class CarritoPage implements OnInit {
     this.firestore.getCollection<Carrito>(this.path).subscribe( res => {
       this.contenido = res;
     });
+      this.firestore.getCollection<Ventas>(this.pathV).subscribe( res => {
+        this.contenidoV = res;
+    });
+  }
+
+  // calcular costo total a pagar
+  registrarVenta() {
+    this.firestore.sumarPreciosDocumentos(this.path,this.ventas.id,this.pathV,this.ventas.iva, this.ventas.subtotal)
   }
 
   //iniciio de modal de carrito
@@ -53,11 +89,77 @@ export class CarritoPage implements OnInit {
     this.modalController.dismiss();
   }
   onWillDismiss($event: any) {  }
+
+  campoExtraido: any;
+  obtenerCampoDeColeccion() {
+    const documentId = 'UBxkoP05c6JSNU6sCdud';
+
+    this.firestore.obtenerCampoDeColeccion(this.pathS, documentId)
+      .subscribe((docSnapshot) => {
+        if (docSnapshot.exists) {
+          this.campoExtraido = (docSnapshot.data() as any).campo;
+          console.log('Valor del campo:', this.campoExtraido);
+          // Realiza acciones adicionales con el campo obtenido
+        } else {
+          console.log('El documento no existe');
+        }
+      });
+  }
+
   async abrirModal() {
     await this.modal.present(); // Abrir el ion-modal
   }
+
+  async confirmarCarrito() {
+    const alert = await this.alertController.create({
+      header: 'Confirmar',
+      message: "Finalizar compra?",
+      buttons: [
+        {
+          text: 'Cancelar',
+          role: 'cancel',
+          handler: () => {
+          }
+        },
+        {
+          text: 'Aceptar',
+          handler: () => {
+            this.closeModal()
+            this.deleteCarrito()
+            this.copiarColeccion()
+            this.registrarVenta()
+            this.cambiarC()
+          }
+        }
+      ]
+    });
+    await alert.present();
+  }
+
+  async presentToast(message: string) {
+    const alert = await this.alertController.create({
+      header: 'Confirmar',
+      message: message,
+      buttons: [
+        {
+          text: 'Aceptar',
+          role: 'cancel',
+          handler: () => {
+          }
+        }
+      ]
+    });
+    await alert.present();
+  }
   closePopover() {
     this.popoverController.dismiss();
+  }
+
+  private pathC = 'cantidadCompras/';
+
+  registrarRestaCarrito(){
+
+    this.firestore.guardarResta(this.pathC,this.documento);
   }
 
 //mensaje de finalizacion de compra
@@ -75,7 +177,6 @@ export class CarritoPage implements OnInit {
     await alert.present();
   }
 
-
   //borrar el carrito de compras, para nuevo carrito
   async deleteCarrito(){
     this.firestore.deleteCollection(this.path);
@@ -86,55 +187,37 @@ export class CarritoPage implements OnInit {
   copiarColeccion(){
     this.firestore.copyCollection(this.path,this.pathDestino)
   }
+  private documento ='UBxkoP05c6JSNU6sCdud';
 
+  cambiarC() {
 
+    this.firestore.cambiar(this.pathS,this.documento);
+  }
 
+  async deleteNota(){
+    const alert = await this.alertController.create({
+      header: 'Confirmar',
+      message: '¿Estas seguro de eliminar del carro de compra?',
+      buttons: [
+        {
+          text: 'Cancelar',
+          role: 'cancel',
+          handler: () => {
+          }
+        },
+        {
+          text: 'Aceptar',
+          handler: () => {
+            this.deleteDocumento();
+            this.registrarRestaCarrito();
+          }
+        }
+      ]
+    });
+    await alert.present();
+  }
 
-
-  /*actionShet de borrar, editar y eliminar
- async mostrarActionSheet() {
-   const actionSheet = await this.actionSheetCtrl.create({
-     header: 'Opciones', // Encabezado del action sheet
-     buttons: [
-       {
-         text: 'Editar', // Opción de edición
-         icon: 'create',
-         handler: ( ) => {
-           // Lógica para la opción de edición
-           this.abrirModal(); // Llamar al método editar() al hacer clic en la opción "Editar"
-         }
-       },
-       {
-         text: 'Borrar', // Opción de borrado
-         icon: 'trash',
-         handler: () => {
-           // Lógica para la opción de borrado
-           console.log('Borrar seleccionado');
-           this.deleteNota(this.carro);
-         }
-       },
-       {
-         text: 'completado', // Opción de completado
-         icon: 'checkmark-outline',
-         handler: () => {
-         }
-       },
-       {
-         text: 'Cancelar', // Opción de cancelar
-         icon: 'close',
-         role: 'cancel',
-         handler: () => {
-           // Lógica para la opción de cancelar
-           console.log('Cancelar seleccionado');
-         }
-       }
-     ]
-   });
-
-   await actionSheet.present(); // Mostrar el action sheet
- }
-
-  */
-
-
+  deleteDocumento(){
+    this.firestore.deleteDoc(this.path,this.carro.id);
+  }
 }

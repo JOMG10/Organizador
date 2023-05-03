@@ -2,15 +2,6 @@
 ion-button#guardar {
   background-color: #2dd36f;
 }
-ion-title {
-  color: black;
-}
-
-.my-fab {
-  position: fixed;
-  top:600px;
-
-}
 
 .fondo {
   position: fixed;
@@ -83,6 +74,32 @@ ion-slide {
 }
 .custom-slides {
   width: 30%; /* Establece el ancho del ion-slide */
+}
+h3{
+  margin: 0;
+  padding: 0;
+}
+
+h2{
+  margin: 0;
+  padding: 0;
+}
+item-p{
+  margin: 0;
+  padding: 0;
+
+}
+
+.imagen-usuario {
+  width: 300px; /* Ajusta el tamaño deseado */
+  height: 300px; /* Ajusta el tamaño deseado */
+  border-radius: 80%; /* Hace que la imagen sea redonda */
+  object-fit: cover; /* Ajusta el tamaño y recorta la imagen para que encaje */
+}
+.imagen-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 

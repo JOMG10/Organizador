@@ -1,36 +1,64 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>Acerca de nosotros</ion-title>
-  </ion-toolbar>
-</ion-header>
+
+
 
 <ion-content>
-   <div>
-     <ion-card>
-       <img alt="Genaro" src="https://ionicframework.com/docs/img/demos/card-media.png" />
-       <img alt="Daf" src="https://ionicframework.com/docs/img/demos/card-media.png" />
-       <img alt="Carlock" src="https://ionicframework.com/docs/img/demos/card-media.png" />
-       <ion-card-header>
-         <ion-card-title>NOSOTROS</ion-card-title>
-         <ion-card-subtitle>Nuestra convicción</ion-card-subtitle>
-       </ion-card-header>
+  <div style="text-align: center">
+      <img src="assets/img/logo_itvo_1.png"  class="logoItvo" style="display: block; margin: 0 auto;"> <br>
+    <label >APLICACION MOVIL SOBRE VENTA DE CALZADO EN LINEA, REALIZADA POR ALUMNOS DEL
+        INSTITUTO TECNOLOGICO DEL VALLE DE OAXACA</label> <br>
+  </div> <br><br>
+  <div>
+    <label>Alumnos: </label>
+  </div>
 
-       <ion-card-content>
-         Somos un selecto grupo de estudiantes inspirados en crear aplicaciones utiles para nuestra podructividad y uso diario.
-       </ion-card-content>
-     </ion-card>
+  <ion-card>
+    <ion-card-content  *ngFor="let usuarios of acerc">
+        <ion-item   (click)=" Acerca = usuarios; setOpen(true)" class="item-usuario">
+          <ion-thumbnail slot="start" >
+            <ion-img src="{{usuarios.rutaImagen}}" class="imagen-redonda"> </ion-img>
+          </ion-thumbnail>
+          <ion-label>{{usuarios.nombre}}</ion-label>
+        </ion-item>
+    </ion-card-content>
+  </ion-card>
 
-     <ion-card>
-       <ion-card-header>
-         <ion-card-title>Contactanos</ion-card-title>
-         <ion-card-subtitle>Aqui te dejamos nuestras redes sociales para que puedas contactarnos</ion-card-subtitle>
-       </ion-card-header>
 
-       <ion-card-content>
-         <img alt="LinkedInG" src="https://ionicframework.com/docs/img/demos/card-media.png" />
-         <img alt="LinkedInD" src="https://ionicframework.com/docs/img/demos/card-media.png" />
-         <img alt="LinkedInc" src="https://ionicframework.com/docs/img/demos/card-media.png" />
-       </ion-card-content>
-     </ion-card>
-   </div>
+
+  <ion-content class="ion-padding">
+  <ion-modal  [isOpen]="isModalOpen" >
+    <ng-template>
+      <ion-header>
+        <ion-toolbar>
+          <ion-buttons slot="start"  >
+            <ion-button (click)="setOpen(false)" ><ion-icon name="backspace" ></ion-icon></ion-button>
+          </ion-buttons>
+          <ion-title >DETALLES DEL ALUMNO</ion-title>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content class="ion-padding" >
+          <ion-card-header>
+            <ion-card-title></ion-card-title>
+          </ion-card-header>
+          <ion-card >
+            <ion-card-content>
+              <div class="imagen-container">
+
+              <img src="{{Acerca.rutaImagen}}" class="imagen-usuario">
+                </div>
+            </ion-card-content>
+          </ion-card>
+        <ion-card class="cart-usuario">
+          <ion-card-content>
+          <ion-label>
+            Nombre: <strong>{{Acerca.nombre}}</strong><br>
+            correo: <strong>{{Acerca.correo}}</strong><br>
+            <ion-icon name="logo-whatsapp"></ion-icon> WhatsApp: <strong>{{Acerca.whatsApp}}</strong> <br>
+            <ion-icon name="logo-github"></ion-icon> GitHub: <strong>{{Acerca.github}}</strong>
+          </ion-label>
+          </ion-card-content>
+        </ion-card>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
+</ion-content>
 </ion-content>

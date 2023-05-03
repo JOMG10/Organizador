@@ -1,90 +1,141 @@
-<ion-header>
-   <!-- <ion-label> {{ fechaActual | date: 'dd/MM/yyyy' }}</ion-label> -->
-  <h3>CALZADO Y ACCESORIOS</h3>
+<ion-header class="header-space" style="text-align: center">
+  <ion-item class="item-p" >
+    <ion-thumbnail slot="start" style="  margin: 2px;" >
+      <img alt="Silhouette of mountains" src="/assets/img/logo_completo.png" style="width: 55px; height: 55px;border-radius: 50%;"/>
+    </ion-thumbnail>
+   <strong> <h5> "THE SHOES VIRTUAL SPOT"</h5> </strong>
+  </ion-item>
 </ion-header>
-
 <ion-content>
-  <div class="hero">
-    <!-- <img src="assets/img/logo_zapateria.png" alt="Zapatería XYZ" style="max-width: 100px; max-height: 100px;"> -->
-    <h4>Encuentra los zapatos que necesitas</h4>
-    <p>Contamos con una amplia variedad de zapatos de la mejor calidad para ti</p>
-    <!-- <ion-button routerLink="/productos">Ver productos</ion-button> -->
-  </div>
-
-  <img alt="Silhouette of mountains" src="/assets/img/logo_tenis.jpg" />
-  <div>
+  <div >
     <ion-card-header>
-      <ion-card-title>Selecciones destacadas para ti</ion-card-title>
+      <ion-card-title>Destacados</ion-card-title>
     </ion-card-header>
-  <ion-slides  >
-    <ion-slide>
+  <ion-slides   pager="true" autoplay="true" speed="500">
+    <ion-slide *ngFor="let document of randomDocuments" >
       <ion-grid>
         <ion-row>
-          <ion-col (click)="abrirModal()" class="ion-col">
-            <img src="assets/img/tenis/tenis5.png">
-            <p>tenis nike </p>
-            <p>Precio: $3000</p>
+          <ion-col  size="12" >
+            <img src="{{document.rutaImagen}}" style="height: 250px; width: 250px" >
+            <strong> <p>{{ document.nombre}} </p></strong>
+            <strong> <p>{{ document.descripcion}} </p></strong>
+            <p>Precio:$ <strong> {{ document.precio}}  </strong> </p>
+            <ion-button (click)=" act = document; abrirModal()"> Agregar</ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
 
-          </ion-col>
-          <ion-col class="ion-col">
-            <img src="assets/img/tenis/tenis5.png">
-            <p>tenis nike </p>
-            <p>Precio: $3000</p>
-          </ion-col>
-          <ion-col class="ion-col">
-            <img src="assets/img/tenis/tenis5.png">
-            <p>tenis nike </p>
-            <p>Precio: $3000</p>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
     </ion-slide>
-    <ion-slide>
-      <ion-grid>
-        <ion-row>
-          <ion-col class="ion-col">
-            <img src="assets/img/tenis/tenis5.png">
-            <p>tenis nike </p>
-            <p>Precio: $3000</p>
-          </ion-col>
-          <ion-col class="ion-col">
-            <img src="assets/img/tenis/tenis5.png">
-            <p>tenis nike </p>
-            <p>Precio: $3000</p>
-          </ion-col>
-          <ion-col class="ion-col">
-            <img src="assets/img/tenis/tenis5.png">
-            <p>tenis nike </p>
-            <p>Precio: $3000</p>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-    </ion-slide>
+
   </ion-slides>
-  </div>
 
+
+  </div>
   <div>
     <ion-card-header>
-      <ion-card-title>Novedades de medina tenis</ion-card-title>
+      <ion-card-title>Novedades</ion-card-title>
     </ion-card-header>
-    <img src="assets/img/nuevo.jpg">
 
+    <img src="assets/img/portada.jpg">
+    <img src="assets/img/portada2.jpg">
+    <img src="assets/img/niño-principal.jpg ">
+  </div>
+  <div>
+    <ion-card-header>
+      <ion-card-title>Recomendado para ti</ion-card-title>
+    </ion-card-header>
+
+    <ion-slides   pager="true" autoplay="true" speed="500">
+      <ion-slide *ngFor="let document of recomendado">
+        <ion-grid>
+          <ion-row (click)=" act = document; abrirModal()">
+            <ion-col  size="12" >
+              <img src="{{document.rutaImagen}}" style="height: 300px; width: 300px" >
+              <strong> <p>{{ document.nombre}} </p></strong>
+              <strong> <p>{{ document.descripcion}} </p></strong>
+              <p>Precio:$ <strong> {{ document.precio}}  </strong> </p>
+              <ion-button (click)=" act = document; abrirModal()"> Agregar</ion-button>
+
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-slide>
+    </ion-slides>
   </div>
 
-  <ion-col size="6" size-md="4" size-lg="3" *ngFor="let categoria of models">
-    <ion-card routerLink="/productos/" >
-      <ion-card-header>
-        <ion-card-title>{{categoria.nombre}}</ion-card-title>
-      </ion-card-header>
-    </ion-card>
-  </ion-col>
 
+<!--inicio de modal -->
+  <ion-modal trigger="open-modal" (willDismiss)="onWillDismiss($event)" *ngIf="enableNewNota"  >
+    <ng-template>
+      <ion-header>
+        <ion-toolbar>
+          <ion-buttons slot="start"  >
+            <ion-button (click)="closeModal(); cambiar()" ><ion-icon name="backspace" ></ion-icon></ion-button>
+          </ion-buttons>
+          <ion-title >DETALLES DE PRODUCTO</ion-title>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content class="ion-padding">
+        <div>
+          <ion-card-header>
+            <ion-card-title></ion-card-title>
+          </ion-card-header>
+          <ion-slides>
+            <ion-slide>
+              <ion-card>
+                <ion-img [src]="act.rutaImagen"></ion-img>
+              </ion-card>
 
-<ion-fab class="my-fab" horizontal="end">
-  <ion-fab-button id="open-modal" >
-    <ion-icon name="add"></ion-icon>
-  </ion-fab-button>
-</ion-fab>
+            </ion-slide>
+          </ion-slides>
+
+          <ion-card >
+            <ion-card-content >
+              <label><strong>{{act.nombre}}</strong></label> <br>
+              <label><strong>{{act.descripcion}}</strong></label> <br>
+              <label>Precio: $ <strong>{{act.precio}}</strong> </label> <br>
+              <label>colores: <strong>{{act.colores}}</strong></label>
+            </ion-card-content>
+          </ion-card>
+        </div>
+
+        <ion-button expand="block" class="ion-margin-top"  (click)="setOpen(true); seleccionarTalla();">{{tallaSelecion}}</ion-button>
+        <ion-button expand="block" class="ion-margin-top" (click)="agregarCarro()" >Agregar a carrito</ion-button>
+
+        <!--modal para seleccionar la talla -->
+
+        <ion-content class="ion-padding">
+          <ion-modal [isOpen]="isModalOpen">
+            <ng-template>
+              <ion-header>
+                <ion-toolbar>
+                  <ion-title>Tallas disponibles</ion-title>
+                  <ion-buttons slot="end">
+                    <ion-button (click)="setOpen(false);cambiar()">cancelar</ion-button>
+                  </ion-buttons>
+                </ion-toolbar>
+              </ion-header>
+              <ion-content class="ion-padding">
+                <ion-list style="text-align: center">
+                  <ion-list>
+                    <ion-item>
+                      <ion-select aria-label="Fruit" placeholder="Seleccionar talla"
+                                  [(ngModel)]="act.tallas" aria-expanded="true">
+                        <ion-select-option *ngFor="let talla of tallas" >{{ talla }}</ion-select-option>
+                      </ion-select>
+                    </ion-item>
+                  </ion-list>
+                </ion-list>
+                <ion-button expand="full" (click)="seleccionarTalla(); setOpen(false)" >Guardar</ion-button>
+              </ion-content>
+            </ng-template>
+          </ion-modal>
+        </ion-content>
+
+      </ion-content>
+    </ng-template>
+  </ion-modal>
+
 
 </ion-content>
 
