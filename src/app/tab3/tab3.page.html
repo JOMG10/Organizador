@@ -30,22 +30,21 @@
 
 
 <ion-content >
-  <ion-card>
-    <ion-card-content>
-      <ion-list *ngFor="let pendientes of contenido">
-        <ion-item  (click)=" carro = pendientes; abrirModal()">
-          <ion-thumbnail slot="start">
-            <ion-img [src]="pendientes.rutaImagen"> </ion-img>
-          </ion-thumbnail>
-          <ion-label><strong>{{pendientes.nombre}}</strong></ion-label>
-        </ion-item>
-      </ion-list>
-    </ion-card-content>
+  <ion-card (click)=" carro = pendientes; abrirModal()" *ngFor="let pendientes of contenido">
+    <ion-item >
+      <ion-thumbnail slot="start">
+        <ion-img [src]="pendientes.rutaImagen"> </ion-img>
+      </ion-thumbnail>
+      <ion-label class="tamaño-label">
+        <strong>{{pendientes.nombre}} </strong> <br>
+        {{pendientes.descripcion}} <br>
+        talla:  <br>
+      </ion-label >
+      <ion-label class="pendientes">
+        pendiente
+      </ion-label>
+    </ion-item>
   </ion-card>
-
-
-  <ion-button expand="block">Finalizar compra</ion-button>
-
 
   <!--inicio de modal para registrar informacion de entrega al cliente -->
 
@@ -77,10 +76,14 @@
 
           <ion-card >
             <ion-card-content >
-              <label><strong>{{carro.nombre}}</strong></label> <br>
-              <label><strong>{{carro.descripcion}}</strong></label> <br>
-              <label>color:<strong>{{carro.colores}}</strong></label> <br>
-              <label>precio: $<strong>{{carro.precio}}</strong></label> <br>
+              <ion-label><strong>{{carro.nombre}}</strong> <br>
+              <strong>{{carro.descripcion}}</strong><br>
+              color:<strong>{{carro.colores}}</strong> <br>
+              precio: $<strong>{{carro.precio}}</strong>
+              </ion-label> <br>
+              <ion-label class="pendientes">
+                pendiente
+              </ion-label>
 
             </ion-card-content>
           </ion-card>
