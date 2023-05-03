@@ -1,0 +1,12 @@
+
+.imagen-usuario {
+  width: 300px; /* Ajusta el tamaño deseado */
+  height: 300px; /* Ajusta el tamaño deseado */
+  border-radius: 80%; /* Hace que la imagen sea redonda */
+  object-fit: cover; /* Ajusta el tamaño y recorta la imagen para que encaje */
+}
+.imagen-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

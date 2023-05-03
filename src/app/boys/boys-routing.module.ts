@@ -11,6 +11,10 @@ const routes: Routes = [
   {
     path: 'tenis-b',
     loadChildren: () => import('./tenis-b/tenis-b.module').then( m => m.TenisBPageModule)
+  },
+  {
+    path: 'zapatos-b',
+    loadChildren: () => import('./zapatos-b/zapatos-b.module').then( m => m.ZapatosBPageModule)
   }
 ];
 

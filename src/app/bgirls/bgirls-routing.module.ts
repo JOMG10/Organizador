@@ -11,7 +11,12 @@ const routes: Routes = [
   {
     path: 'tenis-g',
     loadChildren: () => import('./tenis-g/tenis-g.module').then( m => m.TenisGPageModule)
+  },
+  {
+    path: 'zapatos-g',
+    loadChildren: () => import('./zapatos-g/zapatos-g.module').then( m => m.ZapatosGPageModule)
   }
+
 ];
 
 @NgModule({
