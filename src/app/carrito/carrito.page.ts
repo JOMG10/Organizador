@@ -75,7 +75,6 @@ export class CarritoPage implements OnInit {
     await alert.present();
   }
 
-
   //borrar el carrito de compras, para nuevo carrito
   async deleteCarrito(){
     this.firestore.deleteCollection(this.path);
@@ -86,10 +85,6 @@ export class CarritoPage implements OnInit {
   copiarColeccion(){
     this.firestore.copyCollection(this.path,this.pathDestino)
   }
-
-
-
-
 
   /*actionShet de borrar, editar y eliminar
  async mostrarActionSheet() {
