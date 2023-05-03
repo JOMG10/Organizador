@@ -4,31 +4,33 @@
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
     </ion-buttons>
-    <ion-title>carrito de compras</ion-title>
+    <ion-title>Carrito de compras</ion-title>
   </ion-toolbar>
 </ion-header>
 
 
 <ion-content >
-  <ion-card>
+  <ion-card *ngFor="let carrito of contenido" class="contenedor-tarjeta">
+    <ion-img [src]="carrito.rutaImagen" class="imagen-grande"> </ion-img>
     <ion-card-content>
-      <ion-list *ngFor="let carrito of contenido">
-        <ion-item>
-          <ion-thumbnail slot="start">
-            <ion-img [src]="carrito.rutaImagen"> </ion-img>
-          </ion-thumbnail>
-          <ion-label><strong>{{carrito.nombre}}</strong></ion-label>
-        </ion-item>
-      </ion-list>
+      <ion-label>Nombre: <strong>{{carrito.nombre}}</strong> <br>
+        Descripcion:<strong>{{carrito.descripcion}}</strong><br>
+        Precio: $<strong>{{carrito.precio}}</strong><br>
+        Color:<strong>{{carrito.colores}}</strong></ion-label>
     </ion-card-content>
   </ion-card>
 
-  <ion-button expand="block" (click)="abrirModal()">Finalizar compra</ion-button>
 
+  <!--<ion-button expand="small" >Finalizar compra</ion-button> -->
 
+  <ion-fab class="my-fab">
+    <ion-fab-button (click)="abrirModal()">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
   <!--inicio de modal para registrar informacion de entrega al cliente -->
 
-<ion-modal trigger="open-modal" (willDismiss)="onWillDismiss($event)" *ngIf="enableNewNota"  >
+<ion-modal trigger="open-modal"  (willDismiss)="onWillDismiss($event)" *ngIf="enableNewNota"  >
   <ng-template>
     <ion-header>
       <ion-toolbar>
@@ -36,9 +38,8 @@
           <ion-button (click)="closeModal()" ><ion-icon name="backspace" ></ion-icon></ion-button>
         </ion-buttons>
 
-        <ion-title >FORMULARIO PARA FINALIZAR COMPRA</ion-title>
+        <ion-title >FINALIZAR COMPRA</ion-title>
         <ion-buttons slot="end">
-          <ion-icon name="cart-outline" onclick="href = '/carrito';"></ion-icon>
           <ion-badge></ion-badge>
         </ion-buttons>
       </ion-toolbar>
@@ -82,8 +83,9 @@
         </ion-list>
       </ion-item>
     </ion-content>
+    <!--<ion-button (click)="recuperarDatos()">nuevo</ion-button> -->
       <ion-button expand="block" class="ion-margin-top" (click)="presentAlert();closeModal(); deleteCarrito();
-      copiarColeccion()"
+      copiarColeccion(); registrarVenta()"
       >FINALIZAR COMPRA</ion-button>
 
   </ng-template>

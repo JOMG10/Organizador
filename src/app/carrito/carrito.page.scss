@@ -1,0 +1,18 @@
+
+.imagen-grande {
+  width: 200px; /* Ajusta el valor según el tamaño deseado */
+  height: 200px; /* Ajusta el valor según el tamaño deseado */
+}
+
+.contenedor-tarjeta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+
+.my-fab {
+  position: fixed;
+  top:600px;
+  margin-left: 360px;
+}

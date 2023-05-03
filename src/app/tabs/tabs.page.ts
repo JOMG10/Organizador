@@ -3,6 +3,11 @@ import {BehaviorSubject} from "rxjs";
 import {FirestoreService} from "../services/firestore.service";
 import {getBoolean} from "@angular/fire/remote-config";
 
+interface CantidadCompras{
+  campo:number;
+  id:string;
+}
+
 @Component({
   selector: 'app-tabs',
   templateUrl: 'tabs.page.html',
@@ -10,11 +15,11 @@ import {getBoolean} from "@angular/fire/remote-config";
 })
 export class TabsPage implements OnInit{
 
-  constructor(
-    ) {
+  constructor(public firestore: FirestoreService ) {
   }
 
   ngOnInit() {
+    this.getActividadC();
   }
 
   INICIO = "INICIO";
@@ -34,6 +39,19 @@ export class TabsPage implements OnInit{
   cambiarPerfil() {this.nombre = "MI PERFIL";}
   cambiarConfiguracion() {this.nombre = "CONFIGURACION";}
   cambiarAcerca() {this.nombre = "ACERCA DE";}
+
+
+  //contenido de carrito
+
+  private pathC = 'cantidadCompras/';
+  contenidoS:CantidadCompras[] = [];
+
+  getActividadC(){
+    this.firestore.getCollection<CantidadCompras>(this.pathC).subscribe(res=> {
+      this.contenidoS = res
+    });
+  }
+
 
 
 }

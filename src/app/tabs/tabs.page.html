@@ -43,9 +43,13 @@
     <ion-toolbar color="miColor">
       <ion-buttons slot="start" >
         <ion-menu-button ></ion-menu-button>
+        <ion-title >{{nombre}}</ion-title>
       </ion-buttons>
-      <ion-title >{{nombre}}</ion-title>
-      <ion-icon name="search-outline" slot="end" id="buscador"></ion-icon>
+      <ion-buttons slot="end" *ngFor="let carrito of contenidoS">
+        <ion-icon name="cart-outline" routerLink="/carrito"></ion-icon>
+               <ion-badge color="miColor" class="numero-carrito">{{carrito.campo}}</ion-badge>
+        <ion-icon name="search-outline" slot="end" id="buscador" routerLink="/buscar"></ion-icon>
+      </ion-buttons>
     </ion-toolbar>
   </ion-header>
   <ion-content class="ion-padding" >

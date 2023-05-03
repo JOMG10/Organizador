@@ -1,51 +1,30 @@
-<!--
-<ion-segment class="segment-fixed" [(ngModel)]="segmentValue">
-  <ion-segment-button value="option1">
-    <ion-label>TODO </ion-label>
-  </ion-segment-button>
-  <ion-segment-button value="option2">
-    <ion-label>ARCHIVADOS</ion-label>
-  </ion-segment-button>
-
-</ion-segment>
-
- Contenido que se mostrará dependiendo de la opción seleccionada en el segmento
-<div *ngIf="segmentValue === 'option1'">
-  <div class="espacio"></div>
-</div>
-<div *ngIf="segmentValue === 'option2'">
-  <div class="espacio"></div>
-  <p>Contenido de la opción 2</p>
-</div>
-<div *ngIf="segmentValue === 'option3'">
-  <p>Contenido de la opción 3</p>
-</div>
-
-<ion-fab class="my-fab" horizontal="end">
-  <ion-fab-button id="open-modal" >
-    <ion-icon name="add"></ion-icon>
-  </ion-fab-button>
-</ion-fab>
--->
-
 
 <ion-content >
-  <ion-card>
-    <ion-card-content>
-      <ion-list *ngFor="let pendientes of contenido">
-        <ion-item  (click)=" carro = pendientes; abrirModal()">
-          <ion-thumbnail slot="start">
-            <ion-img [src]="pendientes.rutaImagen"> </ion-img>
-          </ion-thumbnail>
-          <ion-label><strong>{{pendientes.nombre}}</strong></ion-label>
-        </ion-item>
-      </ion-list>
-    </ion-card-content>
+  <ion-card *ngFor="let pendientes of contenido">
+    <ion-item >
+      <ion-thumbnail slot="start" (click)=" carro = pendientes; abrirModal()">
+        <ion-img [src]="pendientes.rutaImagen"> </ion-img>
+      </ion-thumbnail>
+      <ion-label class="tamaño-label">
+        <strong>{{pendientes.nombre}} </strong> <br>
+        {{pendientes.descripcion}} <br>
+        talla:  <br>
+      </ion-label >
+      <ion-label class="pendientes">
+        pendiente
+      </ion-label>
+      <ion-item (click)="carro = pendientes; mostrarActionSheet()">
+        <ion-buttons slot="end">
+          <ion-button>
+            <ion-icon name="ellipsis-vertical-outline" ></ion-icon>
+
+          </ion-button>
+        </ion-buttons>
+      </ion-item>
+    </ion-item>
+
+
   </ion-card>
-
-
-  <ion-button expand="block">Finalizar compra</ion-button>
-
 
   <!--inicio de modal para registrar informacion de entrega al cliente -->
 
@@ -77,17 +56,18 @@
 
           <ion-card >
             <ion-card-content >
-              <label><strong>{{carro.nombre}}</strong></label> <br>
-              <label><strong>{{carro.descripcion}}</strong></label> <br>
-              <label>color:<strong>{{carro.colores}}</strong></label> <br>
-              <label>precio: $<strong>{{carro.precio}}</strong></label> <br>
+              <ion-label><strong>{{carro.nombre}}</strong> <br>
+              <strong>{{carro.descripcion}}</strong><br>
+              color:<strong>{{carro.colores}}</strong> <br>
+              precio: $<strong>{{carro.precio}}</strong>
+              </ion-label> <br>
+              <ion-label class="pendientes">
+                pendiente
+              </ion-label>
 
             </ion-card-content>
           </ion-card>
         </div>
-
-
-
       </ion-content>
     </ng-template>
   </ion-modal>

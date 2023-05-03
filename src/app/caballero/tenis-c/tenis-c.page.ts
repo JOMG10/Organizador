@@ -1,6 +1,11 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {FirestoreService} from "../../services/firestore.service";
 import {AlertController, IonModal, ModalController, PopoverController} from "@ionic/angular";
+import {AngularFirestore, AngularFirestoreDocument} from "@angular/fire/compat/firestore";
+import {Observable} from "rxjs";
+import { map } from 'rxjs/operators';
+
+
 
 interface Tenis {
   nombre: string;
@@ -8,6 +13,12 @@ interface Tenis {
   precio:number;
   colores:string;
   rutaImagen:string;
+  id:string;
+  tallas:string;
+}
+
+interface CantidadCompras{
+  campo:number;
   id:string;
 }
 
@@ -18,7 +29,10 @@ interface Tenis {
 })
 export class TenisCPage implements OnInit {
 
+
   private path = 'Tenis/';
+  private documento ='UBxkoP05c6JSNU6sCdud';
+  private pathC = 'cantidadCompras/';
   private pathAgregar='Carrito/';
   enableNewNota  = true;
 
@@ -26,13 +40,22 @@ export class TenisCPage implements OnInit {
               private popoverController: PopoverController, private alertController:AlertController) {
   }
 
+
   ngOnInit() {
     this.getActividad();
   }
 
+  contenidoS:CantidadCompras[] = [];
+
+  conted:CantidadCompras = {
+    campo:0,
+    id:this.firestore.getId()
+  };
+
   contenido:Tenis[] = [];
   act : Tenis = {
     nombre:'',
+    tallas:'',
     descripcion:'',
     precio: 0,
     colores: '',
@@ -40,7 +63,14 @@ export class TenisCPage implements OnInit {
     id:this.firestore.getId()
   };
 
+  modificarCarrito() {
+    this.firestore.agregarColeccion(this.conted.campo++, this.pathC, this.documento );
+  }
+
   getActividad(){
+    this.firestore.getCollection<CantidadCompras>(this.pathC).subscribe(res=> {
+      this.contenidoS = res
+    });
     this.firestore.getCollection<Tenis>(this.path).subscribe( res => {
       this.contenido = res;
     });
@@ -68,31 +98,28 @@ export class TenisCPage implements OnInit {
     this.isModalOpen = isOpen;
   }
 
-  tallas=[
-    {talla:"25"},
-    {talla:"26"},
-    {talla:"27"},
-    {talla:"28"},
-    {talla:"29"},
-    {talla:"30"},
-    {talla:"21"},
-  ]
+  //inicio de modal de tallas
 
-  isModalClose =false;
-  tallaSelecionada() {
+  public tallas: string[] = ['36', '37', '38', '39', '40'];
+
+  /*tallaSelecionada() {
     this.modalController.dismiss();
+  }*/
+  tallaSelecion = "seleccionar talla"
+
+  cambiar(){
+    this.tallaSelecion= "seleccionar talla";
   }
 
-
-  tallaSelecion="seleccionar talla"
   seleccionarTalla(){
-    this.tallaSelecion = "25"
+    this.tallaSelecion = this.act.tallas;
   }
 
-  valor = 1
+  valor = 0
 
   async presentAlert() {
-    this.valor=2
+    this.valor= this.valor +1
+
 
     const alert = await this.alertController.create({
       header: 'Carrito',
@@ -101,6 +128,32 @@ export class TenisCPage implements OnInit {
       buttons: ['De acuerdo'],
     });
 
+    await alert.present();
+  }
+
+  async agregarCarro(){
+    const alert = await this.alertController.create({
+      header: 'Confirmar',
+      message: '¿Estás seguro de que quieres agregar al carrito de compra?',
+      buttons: [
+        {
+          text: 'Cancelar',
+          role: 'cancel',
+          handler: () => {
+          }
+        },
+        {
+          text: 'Aceptar',
+          handler: () => {
+            this.closeModal();
+            this.guardarNota();
+            this.modificarCarrito();
+            this.cambiar();
+            this.presentAlert();
+          }
+        }
+      ]
+    });
     await alert.present();
   }
 
