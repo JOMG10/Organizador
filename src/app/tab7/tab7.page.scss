@@ -1,0 +1,36 @@
+ion-item {
+  --padding-start: 0;
+}
+
+.imagen-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.imagen-usuario {
+  width: 300px; /* Ajusta el tamaño deseado */
+  height: 300px; /* Ajusta el tamaño deseado */
+  border-radius: 80%; /* Hace que la imagen sea redonda */
+  object-fit: cover; /* Ajusta el tamaño y recorta la imagen para que encaje */
+}
+.cart-usuario{
+  text-align: center;
+  align-items: center;
+  font-size: 12pt;
+}
+
+.logoItvo {
+  width: 200px; /* Ajusta el tamaño deseado */
+  height: 200px; /* Ajusta el tamaño deseado */
+  border-radius: 80%; /* Hace que la imagen sea redonda */
+  object-fit: cover; /* Ajusta el tamaño y recorta la imagen para que encaje */
+  display: flex;
+  align-items: center;
+}
+
+.imagen-redonda {
+  border-radius: 50%; /* Hace que la imagen sea redonda */
+}
+
+

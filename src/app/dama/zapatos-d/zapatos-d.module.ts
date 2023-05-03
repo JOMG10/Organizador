@@ -4,17 +4,17 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { SandaliasCPageRoutingModule } from './sandalias-c-routing.module';
+import { ZapatosDPageRoutingModule } from './zapatos-d-routing.module';
 
-import { SandaliasCPage } from './sandalias-c.page';
+import { ZapatosDPage } from './zapatos-d.page';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    SandaliasCPageRoutingModule
+    ZapatosDPageRoutingModule
   ],
-  declarations: [SandaliasCPage]
+  declarations: [ZapatosDPage]
 })
-export class SandaliasCPageModule {}
+export class ZapatosDPageModule {}
