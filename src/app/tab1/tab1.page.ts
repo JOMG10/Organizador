@@ -89,4 +89,5 @@ export class Tab1Page {
     this.slide.slideNext();
   }
 
+
 }
