@@ -137,6 +137,8 @@ export class Tab3Page implements OnInit{
     const alert = await this.alertController.create({
       header: 'Confirmar',
       message: '¿Entrega completada?',
+      header: 'Confirmar borrado',
+      message: '¿Estás seguro de que quieres borrar este elemento?',
       buttons: [
         {
           text: 'Cancelar',

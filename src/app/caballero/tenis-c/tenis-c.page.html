@@ -7,6 +7,10 @@
     <ion-buttons slot="end" *ngFor="let teniss of contenidoS" class="numero-carrito">
       <ion-icon name="cart-outline" routerLink="/carrito" ></ion-icon>
       <ion-badge color="miColor" class="numero-carrito">{{teniss.campo}}</ion-badge>
+
+    <ion-buttons slot="end" *ngFor="let teniss of contenidoS" >
+      <ion-icon name="cart-outline" routerLink="/carrito"></ion-icon>
+      <ion-badge>{{teniss.campo}}</ion-badge>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
@@ -66,6 +70,7 @@
 
         <ion-button expand="block" class="ion-margin-top"  (click)="setOpen(true); seleccionarTalla();">{{tallaSelecion}}</ion-button>
         <ion-button expand="block" class="ion-margin-top" (click)="agregarCarro()" >Agregar a carrito</ion-button>
+        <ion-button expand="block" class="ion-margin-top" (click)="presentAlert(); closeModal(); guardarNota();modificarCarrito()" >Agregar a carrito</ion-button>
 
         <!--modal para seleccionar la talla -->
 

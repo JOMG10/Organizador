@@ -103,6 +103,18 @@ export class TenisCPage implements OnInit {
   public tallas: string[] = ['36', '37', '38', '39', '40'];
 
   /*tallaSelecionada() {
+  tallas=[
+    {id:1,talla:"25"},
+    {id:2,talla:"26"},
+    {id:3,talla:"27"},
+    {id:4,talla:"28"},
+    {id:5,talla:"29"},
+    {id:6,talla:"30"},
+    {id:7,talla:"21"},
+  ]
+
+  isModalClose =false;
+  tallaSelecionada() {
     this.modalController.dismiss();
   }*/
   tallaSelecion = "seleccionar talla"
@@ -113,12 +125,15 @@ export class TenisCPage implements OnInit {
 
   seleccionarTalla(){
     this.tallaSelecion = this.act.tallas;
+  tallaSelecion = "seleccionar talla"
+  seleccionarTalla(){
   }
 
   valor = 0
 
   async presentAlert() {
     this.valor= this.valor +1
+
 
 
     const alert = await this.alertController.create({
