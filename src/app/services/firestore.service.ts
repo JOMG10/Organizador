@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import {AngularFirestore, AngularFirestoreDocument} from "@angular/fire/compat/firestore";
+
 import {BehaviorSubject, Observable} from "rxjs";
 import * as path from "path";
 import {QueryFn} from "@angular/fire/compat/firestore/interfaces";
@@ -78,5 +79,43 @@ export class FirestoreService {
     });
   }
 
+
+  sumarPreciosDocumentos(path:string,id:string,pathV:string,iva:number, subtotal:number) {
+    let totalSuma = 0;
+
+    this.firestore
+      .collection(path)
+      .get()
+      .subscribe((snapshot) => {
+        snapshot.forEach((doc) => {
+          const precio = (doc.data() as any).precio;
+           iva += precio*.16;
+           subtotal +=precio
+          totalSuma = subtotal + iva;
+        });
+
+        // Guardar la suma en otro documento
+        this.guardarSumaEnDocumento(totalSuma,id,pathV, iva, subtotal);
+      });
+  }
+
+  guardarSumaEnDocumento(totalSuma: number,id:string,pathV:string, iva:number, subtotal:number) {
+
+    this.firestore
+      .collection(pathV)
+      .doc(id)
+      .set({ total: totalSuma,
+        fecha: new Date(),
+        iva:iva,
+        subtotal:subtotal
+
+        })
+      .then(() => {
+        console.log('Suma almacenada correctamente en el documento.');
+      })
+      .catch((error) => {
+        console.error('Error al almacenar la suma:', error);
+      });
+  }
 
 }

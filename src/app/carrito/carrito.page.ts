@@ -5,11 +5,19 @@ import {ActionSheetController, AlertController, IonModal, ModalController, Popov
 interface Carrito {
   nombre: string;
   descripcion: string;
-  precio:string;
+  precio:number;
   colores:string;
   rutaImagen:string;
   id:string;
 }
+interface Ventas{
+  iva:number;
+  subtotal:number;
+  precioTotal:number;
+  id:string;
+  fecha:Date;
+}
+
 @Component({
   selector: 'app-carrito',
   templateUrl: './carrito.page.html',
@@ -18,6 +26,7 @@ interface Carrito {
 export class CarritoPage implements OnInit {
 
   private path = 'Carrito/';
+
   public progress = 0;
   constructor(public firestore: FirestoreService, private modalController:ModalController,
               private popoverController:PopoverController, private alertController:AlertController,
@@ -30,11 +39,21 @@ export class CarritoPage implements OnInit {
   ngOnInit() {
     this.getActividad();
   }
+
+  private pathV='Venta/';
+  contenidoV:Ventas[]=[];
+  ventas:Ventas={
+    iva:0,
+    fecha: new Date(),
+    subtotal:0,
+    precioTotal:0,
+    id:this.firestore.getId()
+  }
   contenido:Carrito[] = [];
   carro : Carrito = {
     nombre:'',
     descripcion:'',
-    precio: '',
+    precio: 0,
     colores: '',
     rutaImagen:'',
     id:this.firestore.getId()
@@ -43,7 +62,19 @@ export class CarritoPage implements OnInit {
     this.firestore.getCollection<Carrito>(this.path).subscribe( res => {
       this.contenido = res;
     });
+      this.firestore.getCollection<Ventas>(this.pathV).subscribe( res => {
+        this.contenidoV = res;
+    });
   }
+
+  // calcular costo total a pagar
+  registrarVenta() {
+    this.firestore.sumarPreciosDocumentos(this.path,this.ventas.id,this.pathV,this.ventas.iva, this.ventas.subtotal)
+  }
+  registroTemporal() {
+    this.firestore.sumarPreciosDocumentos(this.path,this.ventas.id,this.path,this.ventas.iva, this.ventas.subtotal)
+  }
+
 
   //iniciio de modal de carrito
   enableNewNota  = true;

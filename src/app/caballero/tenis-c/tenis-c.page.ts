@@ -98,6 +98,11 @@ export class TenisCPage implements OnInit {
     this.isModalOpen = isOpen;
   }
 
+  //inicio de modal de tallas
+
+  public tallas: string[] = ['36', '37', '38', '39', '40'];
+
+  /*tallaSelecionada() {
   tallas=[
     {id:1,talla:"25"},
     {id:2,talla:"26"},
@@ -111,9 +116,15 @@ export class TenisCPage implements OnInit {
   isModalClose =false;
   tallaSelecionada() {
     this.modalController.dismiss();
+  }*/
+  tallaSelecion = "seleccionar talla"
+
+  cambiar(){
+    this.tallaSelecion= "seleccionar talla";
   }
 
-
+  seleccionarTalla(){
+    this.tallaSelecion = this.act.tallas;
   tallaSelecion = "seleccionar talla"
   seleccionarTalla(){
   }
@@ -123,6 +134,8 @@ export class TenisCPage implements OnInit {
   async presentAlert() {
     this.valor= this.valor +1
 
+
+
     const alert = await this.alertController.create({
       header: 'Carrito',
       subHeader: 'Se ha agregado un producto al carrito',
@@ -130,6 +143,32 @@ export class TenisCPage implements OnInit {
       buttons: ['De acuerdo'],
     });
 
+    await alert.present();
+  }
+
+  async agregarCarro(){
+    const alert = await this.alertController.create({
+      header: 'Confirmar',
+      message: '¿Estás seguro de que quieres agregar al carrito de compra?',
+      buttons: [
+        {
+          text: 'Cancelar',
+          role: 'cancel',
+          handler: () => {
+          }
+        },
+        {
+          text: 'Aceptar',
+          handler: () => {
+            this.closeModal();
+            this.guardarNota();
+            this.modificarCarrito();
+            this.cambiar();
+            this.presentAlert();
+          }
+        }
+      ]
+    });
     await alert.present();
   }
 

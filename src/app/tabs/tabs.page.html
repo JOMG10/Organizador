@@ -47,6 +47,8 @@
       </ion-buttons>
       <ion-buttons slot="end" *ngFor="let carrito of contenidoS">
         <ion-icon name="cart-outline" routerLink="/carrito"></ion-icon>
+               <ion-badge color="miColor" class="numero-carrito">{{carrito.campo}}</ion-badge>
+
         <ion-badge>{{carrito.campo}}</ion-badge>
         <ion-icon name="search-outline" slot="end" id="buscador" routerLink="/buscar"></ion-icon>
       </ion-buttons>

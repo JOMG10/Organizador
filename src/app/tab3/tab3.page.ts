@@ -135,6 +135,8 @@ export class Tab3Page implements OnInit{
 
   async deleteNota(){
     const alert = await this.alertController.create({
+      header: 'Confirmar',
+      message: '¿Entrega completada?',
       header: 'Confirmar borrado',
       message: '¿Estás seguro de que quieres borrar este elemento?',
       buttons: [

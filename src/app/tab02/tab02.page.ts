@@ -26,8 +26,7 @@ export class Tab02Page implements OnInit {
   modelos = [
     { id: 1, nombre: 'Tenis', link:"/caballero/tenis-c" },
     { id: 2, nombre: 'Zapatos', link: "/caballero/zapatos-c" },
-    { id: 3, nombre: 'Sandalias y chanclas',link:"/caballero/sandalias-c"},
-    { id: 4, nombre: 'Accesorios', link: "/accesorios"}
+    { id: 3, nombre: 'Sandalias y chanclas',link:"/caballero/sandalias-c"}
   ];
 
   segmentValue = 'option1'; // Valor por defecto del segmento
@@ -41,6 +40,8 @@ export class Tab02Page implements OnInit {
   modelosD = [
     { id: 1, nombre: 'Tenis', link:"/dama/tenis-d" },
     { id: 2, nombre: 'Zapatos', link: "/dama/zapatos-d" },
+    { id: 3, nombre: 'Sandalias y chanclas',link:"/dama/sandalias-d"}
+=======
     { id: 3, nombre: 'Sandalias y chanclas',link:"/dama/sandalias-d"},
     { id: 4, nombre: 'Accesorios', link: "/dama/accesorios-d"}
   ];
@@ -53,6 +54,24 @@ export class Tab02Page implements OnInit {
     { id: 3, nombre: 'Sandalias y chanclas',link:"/boys/sandalias-b"},
     { id: 4, nombre: 'Accesorios', link: "/boys/accesorios-b"}
   ];
+
+  //comienza el contenido de los tenis para NIÑO
+
+  modelosB = [
+    { id: 1, nombre: 'Tenis', link:"/boys/tenis-b" },
+    { id: 2, nombre: 'Zapatos', link: "/boys/zapatos-b" },
+    { id: 3, nombre: 'Sandalias y chanclas',link:"/boys/sandalias-b"}
+  ];
+
+
+  //comienza el contenido de los tenis para NIÑA
+
+  modelosG = [
+    { id: 1, nombre: 'Tenis', link:"/bgirls/tenis-g" },
+    { id: 2, nombre: 'Zapatos', link: "/bgirls/zapatos-g" },
+    { id: 3, nombre: 'Sandalias y chanclas',link:"/bgirls/sandalias-g"}
+  ];
+
 
 
   //comienza el contenido de los tenis para NIÑA
