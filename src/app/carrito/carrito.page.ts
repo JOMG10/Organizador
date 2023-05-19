@@ -11,6 +11,15 @@ interface Carrito {
   id:string;
   tallas:string;
 }
+interface usuario{
+  nombre:string;
+  telefono:string;
+  direccion:string;
+  correo:string;
+  referencias:string;
+  municipio:string;
+
+}
 interface Ventas{
   iva:number;
   subtotal:number;
@@ -48,6 +57,17 @@ export class CarritoPage implements OnInit {
     campo:0,
     id:this.firestore.getId()
   };
+
+  usuarios:usuario[]=[];
+
+  usuar:usuario={
+    nombre:"",
+    telefono:"",
+    correo:"",
+    direccion:"",
+    referencias:"",
+    municipio:""
+}
 
   contenidoV:Ventas[]=[];
   ventas:Ventas={
@@ -124,11 +144,16 @@ export class CarritoPage implements OnInit {
         {
           text: 'Aceptar',
           handler: () => {
-            this.closeModal()
-            this.deleteCarrito()
-            this.copiarColeccion()
-            this.registrarVenta()
-            this.cambiarC()
+            if(this.carro){
+              this.closeModal()
+              this.deleteCarrito()
+              this.copiarColeccion()
+              this.registrarVenta()
+              this.cambiarC()
+            }else{
+              //alert("");
+            }
+
           }
         }
       ]
@@ -158,7 +183,6 @@ export class CarritoPage implements OnInit {
   private pathC = 'cantidadCompras/';
 
   registrarRestaCarrito(){
-
     this.firestore.guardarResta(this.pathC,this.documento);
   }
 
