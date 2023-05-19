@@ -1,8 +1,7 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import { ModalController,IonModal,IonSlides, PopoverController,AlertController, ToastController
 } from '@ionic/angular';
-import {FirestoreService} from "../services/firestore.service";
-
+import {FirestoreService} from "../services/firestore.service"
 interface Zapatos {
   nombre: string;
   descripcion: string;
@@ -19,28 +18,23 @@ interface Zapatos {
   styleUrls: ['tab1.page.scss']
 })
 export class Tab1Page {
-
   isVisible = false;
   fechaActual: Date;
   private documento = 'UBxkoP05c6JSNU6sCdud';
   private pathC = 'cantidadCompras/';
   private pathAgregar = 'Carrito/';
 
-
-
+  //constructor
   constructor(public firestore: FirestoreService, private modalController: ModalController,
               private popoverController: PopoverController, private alertController: AlertController,
               private toastController: ToastController) {
     this.fechaActual=new Date();
   }
-
   ngOnInit(): void {
     this.getActividad();
     this.getRandomDocument();
     this.RecomendadoParaTi();
-
   }
-
 
   //contenido de selecciones destacadas para ti
   contend:Zapatos[] = [];
@@ -53,16 +47,13 @@ export class Tab1Page {
     rutaImagen:'',
     id:this.firestore.getId()
   };
-
   getActividad(){
     this.firestore.getCollection<Zapatos>(this.path).subscribe( res => {
       this.contend = res;
     });
   }
-
   collectionNames: string[] = ['Zapatos', 'Tenis', 'TenisD','ZapatosD','TenisG','TenisB','ZapatosG','ZapatosB'];
   randomDocuments: any[] = [];
-
   getRandomDocument() {
     this.collectionNames.forEach((collectionName) => {
       this.firestore.getRandomDocumentFromCollection(collectionName).subscribe((randomDocument) => {
@@ -70,11 +61,8 @@ export class Tab1Page {
       });
     });
   }
-
   colecciones:string [] = ['Zapatos', 'Tenis','TenisB','ZapatosB'];
   recomendado: any[] = [];
-
-
   RecomendadoParaTi() {
     this.colecciones.forEach((collectionName) => {
       this.firestore.getRandomDocumentFromCollection(collectionName).subscribe((randomDocument) => {
@@ -82,13 +70,8 @@ export class Tab1Page {
       });
     });
   }
-
   public tallas: string[] = ['25', '25.5', '26', '26.5', '27', '27.5', '28', '28.5', '29', '29.5', '30'];
-
-
-
   enableNewNota  = true;
-
   private path = 'Zapatos/';
   models = [
     { id: 1, nombre: 'Sandalias', subtitulo:'contenido de sandalias' },
@@ -96,7 +79,6 @@ export class Tab1Page {
     { id: 3, nombre: 'Tenis',  subtitulo:'contenido de tenis'},
     { id: 4, nombre: 'Deportes',  subtitulo:'contenido de Deportes ' }
   ];
-
   @ViewChild(IonModal) modal!: IonModal ;
   cancel() {
     this.modal.dismiss(null, 'cancel');
@@ -160,8 +142,6 @@ export class Tab1Page {
   valor = 0
   async presentAlert() {
     this.valor = this.valor + 1
-
-
     const alert = await this.alertController.create({
       header: 'Carrito',
       subHeader: 'Se ha agregado un producto al carrito',
@@ -191,22 +171,16 @@ export class Tab1Page {
   guardarNota(){
     this.firestore.creatDoc( this.act,this.pathAgregar, this.act.id);
   }
-
   @ViewChild('slideRef', { static: true }) slide: IonSlides;
 
   slideNext() {
     this.slide.slideNext();
   }
-
   isModalOpen = false;
-
   setOpen(isOpen: boolean) {
     this.isModalOpen = isOpen;
   }
-
   seleccionarTalla() {
     this.tallaSelecion = this.act.tallas;
   }
-
-
 }
