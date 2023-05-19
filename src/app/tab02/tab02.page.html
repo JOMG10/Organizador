@@ -21,16 +21,16 @@
 <div *ngIf="segmentValue === 'option1'">
   <div class="espacio"></div>
 
-  <div class="categories">
+  <div class="categories; ion-no-padding">
     <h2>Caballero</h2>
     <ion-card>
       <img alt="Silhouette of mountains" src="assets/img/portadas/hombre2.jpg" />
     </ion-card>
   </div>
-  <ion-col size="6" size-md="4" size-lg="3" *ngFor="let categoria of modelos">
-    <ion-card routerLink="{{categoria.link}}" >
+  <ion-col size="6" size-md="4" size-lg="3" *ngFor="let categoria of modelos" class="ion-no-padding">
+    <ion-card routerLink="{{categoria.link}}"  style=" border: 1px solid #5ba5c7;" >
       <ion-card-header>
-        <ion-card-title>{{categoria.nombre}}</ion-card-title>
+        <ion-card-title >{{categoria.nombre}}</ion-card-title>
       </ion-card-header>
     </ion-card>
   </ion-col>
@@ -38,24 +38,27 @@
   <!--comienzo de recomendado  -->
 
   <div>
-    <ion-card-header>
-      <ion-card-title>Recomendado para ti</ion-card-title>
-    </ion-card-header>
-    <ion-slides   pager="true" autoplay="true" speed="500">
-      <ion-slide *ngFor="let document of recomendado">
-        <ion-grid>
-          <ion-row (click)=" act = document; abrirModal()">
-            <ion-col  size="12" >
-              <img src="{{document.rutaImagen}}" style="height: 200px; width: 200px" >
-              <strong> <p>{{ document.nombre}} </p></strong>
-              <strong> <p>{{ document.descripcion}} </p></strong>
-              <p>Precio:$ <strong> {{ document.precio}}  </strong> </p>
-             <!-- <ion-button (click)=" act = document; abrirModal()"> Agregar</ion-button>-->
-            </ion-col>
-          </ion-row>
-        </ion-grid>
-      </ion-slide>
-    </ion-slides>
+    <div >
+
+      <div class="offer-container">
+        <h2>Recomendado para ti</h2>
+        <div class="offer-slider">
+          <ion-slides>
+            <ion-slide *ngFor="let offer of recomendado">
+              <div class="offer-card">
+                <img [src]="offer.rutaImagen" alt="Offer Image">
+                <div class="offer-details">
+                  <h3>{{ offer.nombre }}</h3>
+                  <p>{{ offer.description }}</p>
+                  <ion-button (click)="act = offer; abrirModal()" class="custom-button" expand="block">Comprar</ion-button>
+                </div>
+              </div>
+            </ion-slide>
+          </ion-slides>
+        </div>
+      </div>
+    </div>
+
     <!--inicio de modal -->
     <ion-modal trigger="open-modal" (willDismiss)="onWillDismiss($event)" *ngIf="enableNewNota"  >
       <ng-template>
@@ -138,15 +141,15 @@
 <div *ngIf="segmentValue === 'option2'">
   <div class="espacio"></div>
 
-  <div class="categories">
+  <div class="categories; ion-no-padding">
     <h2>Dama</h2>
     <ion-card>
       <img alt="Silhouette of mountains" src="assets/img/portadas/dama2.jpg" />
     </ion-card>
   </div>
 
-  <ion-col size="6" size-md="4" size-lg="3" *ngFor="let categoriaD of modelosD">
-    <ion-card routerLink="{{categoriaD.link}}" >
+  <ion-col size="6" size-md="4" size-lg="3" *ngFor="let categoriaD of modelosD" class="ion-no-padding">
+    <ion-card routerLink="{{categoriaD.link}}" style=" border: 1px solid #5ba5c7;">
       <ion-card-header>
         <ion-card-title>{{categoriaD.nombre}}</ion-card-title>
       </ion-card-header>
@@ -180,15 +183,15 @@
 <!-- **********/*********comienza el tercer segmento /**********************************-->
 <div *ngIf="segmentValue === 'option3'">
   <div class="espacio"></div>
-  <div class="categories">
+  <div class="categories; ion-no-padding">
     <h2>Niño</h2>
     <ion-card>
       <img alt="Silhouette of mountains" src="../../assets/img/portadas/niño.jpg" />
     </ion-card>
   </div>
 
-  <ion-col size="6" size-md="4" size-lg="3" *ngFor="let categoriaB of modelosB">
-    <ion-card routerLink="{{categoriaB.link}}"  >
+  <ion-col size="6" size-md="4" size-lg="3" *ngFor="let categoriaB of modelosB" class="ion-no-padding">
+    <ion-card routerLink="{{categoriaB.link}}"  style=" border: 1px solid #5ba5c7;">
       <ion-card-header>
         <ion-card-title>{{categoriaB.nombre}}</ion-card-title>
       </ion-card-header>
@@ -219,15 +222,15 @@
 
 <div *ngIf="segmentValue === 'option4'">
   <div class="espacio"></div>
-  <div class="categories">
+  <div class="categories; ion-no-padding">
     <h2>Niña</h2>
     <ion-card>
       <img alt="Silhouette of mountains" src="assets/img/portadas/niña_portada.png" />
     </ion-card>
   </div>
 
-  <ion-col size="6" size-md="4" size-lg="3" *ngFor="let categoriaG of modelosG">
-    <ion-card routerLink="{{categoriaG.link}}" >
+  <ion-col size="6" size-md="4" size-lg="3" *ngFor="let categoriaG of modelosG" class="ion-no-padding">
+    <ion-card routerLink="{{categoriaG.link}}" style=" border: 1px solid #5ba5c7;">
       <ion-card-header>
         <ion-card-title>{{categoriaG.nombre}}</ion-card-title>
       </ion-card-header>

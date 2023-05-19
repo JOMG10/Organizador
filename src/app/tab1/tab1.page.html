@@ -7,39 +7,73 @@
   </ion-item>
 </ion-header>
 <ion-content>
-  <div >
-    <ion-card-header>
-      <ion-card-title>Destacados</ion-card-title>
-    </ion-card-header>
-  <ion-slides   pager="true" autoplay="true" speed="500">
-    <ion-slide *ngFor="let document of randomDocuments" >
-      <ion-grid>
-        <ion-row>
-          <ion-col  size="12" >
-            <img src="{{document.rutaImagen}}" style="height: 250px; width: 250px" >
-            <strong> <p>{{ document.nombre}} </p></strong>
-            <strong> <p>{{ document.descripcion}} </p></strong>
-            <p>Precio:$ <strong> {{ document.precio}}  </strong> </p>
-            <ion-button (click)=" act = document; abrirModal()"> Agregar</ion-button>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
 
-    </ion-slide>
-
-  </ion-slides>
-
-
-  </div>
   <div>
-    <ion-card-header>
-      <ion-card-title>Novedades</ion-card-title>
-    </ion-card-header>
-
-    <img src="assets/img/portada.jpg">
-    <img src="assets/img/portada2.jpg">
-    <img src="assets/img/niño-principal.jpg ">
+    <ion-slides class="slide-container">
+      <ion-slide>
+        <div class="slide-image">
+          <img src="assets/img/portada.jpg">
+          <ion-button class="slide-button" expand="block">Comprar producto</ion-button>
+        </div>
+      </ion-slide>
+      <ion-slide>
+        <div class="slide-image">
+          <img src="assets/img/portada2.jpg">
+          <ion-button class="slide-button" expand="block">Mi botón</ion-button>
+        </div>
+      </ion-slide>
+      <ion-slide>
+        <div class="slide-image">
+          <img src="assets/img/niño-principal.jpg">
+        </div>
+      </ion-slide>
+    </ion-slides>
   </div>
+
+  <div >
+
+    <div class="offer-container">
+      <h2>¡Ofertas especiales!</h2>
+      <div class="offer-slider">
+        <ion-slides>
+          <ion-slide *ngFor="let offer of randomDocuments">
+            <div class="offer-card">
+              <img [src]="offer.rutaImagen" alt="Offer Image">
+              <div class="offer-details">
+                <h3>{{ offer.nombre }}</h3>
+                <ion-button (click)="act = offer; abrirModal()" class="custom-button" expand="block">Ver oferta</ion-button>
+              </div>
+            </div>
+          </ion-slide>
+        </ion-slides>
+      </div>
+    </div>
+  </div>
+
+
+  <div>
+    <ion-slides class="slide-container">
+      <ion-slide>
+        <div class="slide-image">
+          <img src="assets/img/portada2.jpg">
+          <ion-button class="slide-button" expand="block">Comprar producto</ion-button>
+        </div>
+      </ion-slide>
+      <ion-slide>
+        <div class="slide-image">
+          <img src="assets/img/portada.jpg">
+          <ion-button class="slide-button" expand="block">Mi botón</ion-button>
+        </div>
+      </ion-slide>
+      <ion-slide>
+        <div class="slide-image">
+          <img src="assets/img/niño-principal.jpg">
+        </div>
+      </ion-slide>
+    </ion-slides>
+
+  </div>
+
   <div>
     <ion-card-header>
       <ion-card-title>Recomendado para ti</ion-card-title>
@@ -49,19 +83,26 @@
       <ion-slide *ngFor="let document of recomendado">
         <ion-grid>
           <ion-row (click)=" act = document; abrirModal()">
-            <ion-col  size="12" >
-              <img src="{{document.rutaImagen}}" style="height: 300px; width: 300px" >
-              <strong> <p>{{ document.nombre}} </p></strong>
-              <strong> <p>{{ document.descripcion}} </p></strong>
-              <p>Precio:$ <strong> {{ document.precio}}  </strong> </p>
-              <ion-button (click)=" act = document; abrirModal()"> Agregar</ion-button>
+            <ion-col size="12">
+              <div class="product-container">
+                <img src="{{document.rutaImagen}}" class="product-image">
+                <div class="product-details">
+                  <strong class="product-name">{{ document.nombre}}</strong>
+                  <p class="product-price">Precio: $<strong>{{ document.precio}}</strong></p>
+                  <div>
+                    <ion-button (click)="act = document; abrirModal()" class="custom-button" expand="block">Agregar</ion-button>
 
+                  </div>
+                </div>
+              </div>
             </ion-col>
           </ion-row>
         </ion-grid>
       </ion-slide>
     </ion-slides>
   </div>
+
+  <div></div>
 
 
 <!--inicio de modal -->
@@ -136,8 +177,8 @@
     </ng-template>
   </ion-modal>
 
-
 </ion-content>
+
 
 
 

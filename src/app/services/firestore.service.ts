@@ -1,12 +1,19 @@
 import { Injectable } from '@angular/core';
-import {AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument} from "@angular/fire/compat/firestore";
+import {
+  AngularFirestore,
+  AngularFirestoreCollection,
+  AngularFirestoreDocument,
+  QuerySnapshot
+} from "@angular/fire/compat/firestore";
 import {combineLatest, map, Observable} from 'rxjs';
+import {AngularFireAuth} from "@angular/fire/compat/auth";
+import firebase from "firebase/compat";
 
 @Injectable({
   providedIn: 'root'
 })
 export class FirestoreService {
-  constructor(private firestore: AngularFirestore) { }
+  constructor(private firestore: AngularFirestore,private afAuth: AngularFireAuth) { }
   creatDoc(data: any, path: string, id: string) {
     const collection = this.firestore.collection(path);
     return collection.doc(id).set(data);
@@ -50,6 +57,7 @@ export class FirestoreService {
     const collection = this.firestore.collection<tipo>(path);
     return collection.valueChanges();
   }
+
   copiarDocumento(id_documento:string,coleccionOrigen:string,coleccionDestino:string) {
     const documentoId = id_documento; // Reemplaza con el ID del documento que deseas copiar
     const origenColeccion = coleccionOrigen; // Reemplaza con el nombre de la colección de origen
@@ -143,6 +151,8 @@ export class FirestoreService {
       })
   }
 
+/*
+
 //metodo para realizar la busqueda
   search(query: string, path:string,path2:string, path3:string,path4:string,path5:string,
          path6:string, path7:string,path8:string): Observable<any[]> {
@@ -181,14 +191,34 @@ export class FirestoreService {
       })
     );
   }
+*/
 
+  search(query: string, ...paths: string[]): Observable<any[]> {
+    const observables = paths.map((path) => {
+      const collectionRef = this.firestore.collection(path);
+      return collectionRef.valueChanges();
+    });
+
+    return combineLatest(observables).pipe(
+      map((collections) => {
+        const combinedCollection = collections.reduce((acc, curr) => acc.concat(curr), []);
+
+        const searchResults = combinedCollection.filter((item) => {
+          const descripcion = item['categoria'];
+          return descripcion && descripcion.toLowerCase().includes(query.toLowerCase());
+        });
+
+        return searchResults;
+      })
+    );
+  }
+
+  //***********************************************************************************************************/
   getData(path:string): Observable<any> {
     const collectionRef: AngularFirestoreCollection<any> = this.firestore.collection(path);
 
     return collectionRef.valueChanges();
   }
-
-
     getRandomDocumentFromCollection(collectionName: string): Observable<any> {
     const collectionRef: AngularFirestoreCollection<any> = this.firestore.collection(collectionName);
 
@@ -201,6 +231,45 @@ export class FirestoreService {
         return snapshot[randomIndex].payload.doc.data();
       })
     );
+  }
+
+  //comienzo de validacion de usuarios
+  getUserByEmail(nombre: string, contrasena: string, path: string): Promise<QuerySnapshot<any>> {
+    return this.firestore.collection(path, ref => ref.where('nombre', '==', nombre).where('contrasena', '==', contrasena)).get().toPromise();
+  }
+
+  private userData: any; // Variable privada para almacenar los datos del usuario
+
+  clearUserData(): void {
+    this.userData = null;
+  }
+
+  copyDocumentByName(originalCollection: string, destinationCollection: string, nombre: string): Promise<void> {
+    return new Promise((resolve, reject) => {
+      this.firestore
+        .collection(originalCollection, ref => ref.where('nombre', '==', nombre))
+        .get()
+        .subscribe((querySnapshot) => {
+          if (!querySnapshot.empty) {
+            const originalDocument = querySnapshot.docs[0];
+            const originalDocumentId = originalDocument.id;
+            const data = originalDocument.data();
+            const newDocumentId = this.firestore.createId();
+
+            this.firestore
+              .doc(`${destinationCollection}/${newDocumentId}`)
+              .set(data)
+              .then(() => {
+                resolve();
+              })
+              .catch((error) => {
+                reject(error);
+              });
+          } else {
+            reject('No se encontró un documento con ese nombre');
+          }
+        });
+    });
   }
 
 
