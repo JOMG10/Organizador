@@ -2,38 +2,38 @@
 
 <ion-header >
   <ion-toolbar>
-    <ion-title class="ion-text-center">Iniciar sesión</ion-title>
+
+      <ion-title class="ion-text-center">  <strong>The shoes virtual spot </strong></ion-title>
+
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="ion-padding"
-             >
-  <ion-grid class="centered">
-    <ion-row justify-content-center>
-      <ion-col size="12" size-md="6" class="ion-text-center" >
-        <ion-img src="/assets/img/logo_itvo_1.png" style="max-width: 200px; max-height: 200px;"></ion-img>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
+<ion-content class="ion-padding">
+  <div style="display: flex; justify-content: center; align-items: center; height: 40%;">
+    <ion-img src="/assets/img/logo_usuario.jpg" style="max-width: 200px; max-height: 200px;"></ion-img>
+  </div>
 
-  <form  class="ion-margin-top">
+  <form  class="ion-margin-top" >
     <ion-item>
-      <ion-label position="floating">Correo electrónico</ion-label>
-      <ion-input type="email" name="email" ></ion-input>
+      <ion-label position="floating">Usuario</ion-label>
+      <ion-input type="texto" name="nombre" [(ngModel)]="nombre" required=""></ion-input>
     </ion-item>
     <ion-item>
       <ion-label position="floating">Contraseña</ion-label>
-      <ion-input type="password"  name="password" ></ion-input>
+      <ion-input type="password" id="password" [(ngModel)]="contrasena" name="password" required=""></ion-input>
     </ion-item>
     <ion-button type="submit" expand="block" class="ion-margin-top" color="primary"
-                (click)="iniciarSesion()" routerLink="/tabs"   >Iniciar sesión</ion-button>
+               (click)="login()">Iniciar sesión</ion-button>
+
+    <div class="error-message" *ngIf="errorMessage">{{ errorMessage }}</div>
+
   </form>
 
   <div class="ion-text-center ion-margin-top">
-    <a routerLink="/restablecer-contrasena">¿Olvidaste tu contraseña?</a>
+    <a routerLink="/restablecer-contrasena" class="olvidaste_contraseña">¿Olvidaste tu contraseña?</a>
   </div>
 
-  <ion-button expand="block" routerLink="/registro" class="ion-margin-top" color="secondary">Registrarse</ion-button>
+  <ion-button expand="block" routerLink="/formulario" class="ion-margin-top" color="secondary">Registrarse</ion-button>
 
 </ion-content>
 

@@ -62,7 +62,7 @@ export class Tab7Page implements OnInit {
     this.isModalOpen = isOpen;
   }
 
-  private path="Usuarios/"
+  private path="UsuariosUso/"
 
    acerc:AcercaD[]=[];
   Acerca: AcercaD= {
