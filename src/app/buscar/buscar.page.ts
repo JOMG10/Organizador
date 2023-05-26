@@ -67,6 +67,7 @@ export class BuscarPage implements OnInit {
     if (this.searchQuery && this.searchQuery.trim() !== '') {
       this.firestore.search(this.searchQuery,this.path,this.path2,this.path3,this.path4,
         this.path5,this.path6,this.path7,this.path8)
+
         .subscribe(
           (results) => {
             this.searchResults = results;
@@ -80,6 +81,7 @@ export class BuscarPage implements OnInit {
       this.searchResults = [];
     }
   }
+
 
   @ViewChild(IonModal) modal!: IonModal ;
   enableNewNota: true;

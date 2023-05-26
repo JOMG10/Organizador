@@ -151,6 +151,8 @@ export class FirestoreService {
       })
   }
 
+/*
+
 //metodo para realizar la busqueda
   search(query: string, path:string,path2:string, path3:string,path4:string,path5:string,
          path6:string, path7:string,path8:string): Observable<any[]> {
@@ -189,7 +191,29 @@ export class FirestoreService {
       })
     );
   }
+*/
 
+  search(query: string, ...paths: string[]): Observable<any[]> {
+    const observables = paths.map((path) => {
+      const collectionRef = this.firestore.collection(path);
+      return collectionRef.valueChanges();
+    });
+
+    return combineLatest(observables).pipe(
+      map((collections) => {
+        const combinedCollection = collections.reduce((acc, curr) => acc.concat(curr), []);
+
+        const searchResults = combinedCollection.filter((item) => {
+          const descripcion = item['categoria'];
+          return descripcion && descripcion.toLowerCase().includes(query.toLowerCase());
+        });
+
+        return searchResults;
+      })
+    );
+  }
+
+  //***********************************************************************************************************/
   getData(path:string): Observable<any> {
     const collectionRef: AngularFirestoreCollection<any> = this.firestore.collection(path);
 

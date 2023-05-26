@@ -49,6 +49,7 @@ export class Tab5Page implements OnInit {
     this.getActividad();
   }
 
+
   logout() {
     this.afAuth.signOut().then(() => {
       this.firestore.clearUserData();
@@ -78,6 +79,12 @@ export class Tab5Page implements OnInit {
         {
           text: 'Aceptar',
           handler: () => {
+            this.afAuth.signOut().then(() => {
+              this.firestore.clearUserData();
+              this.router.navigate(['/login']);
+              this.borrarUsuario();
+            })
+
            this.router.navigate(['/login']);
             this.borrarUsuario();
           }
