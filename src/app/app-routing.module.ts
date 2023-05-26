@@ -3,7 +3,16 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   {
+    path: 'login',
+    loadChildren: () => import('./login/login.module').then(m => m.LoginPageModule)
+  },
+  {
     path: '',
+    redirectTo: 'login',
+    pathMatch: 'full'
+  },
+  {
+    path: 'tabs',
     loadChildren: () => import('./tabs/tabs.module').then(m => m.TabsPageModule)
   },
   {
@@ -47,7 +56,7 @@ const routes: Routes = [
     loadChildren: () => import('./carrito/carrito.module').then( m => m.CarritoPageModule)
   },
   {
-    path: 'login',
+    path: '',
     loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
   },
   {
@@ -55,11 +64,7 @@ const routes: Routes = [
     loadChildren: () => import('./buscar/buscar.module').then( m => m.BuscarPageModule)
   },
 
-
  ];
-
-
-
 
 @NgModule({
   imports: [

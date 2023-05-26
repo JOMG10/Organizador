@@ -15,11 +15,11 @@
   </ion-item>
 -->
 
-<!--boton para agregar nuevo -->
+<!--boton para agregar nuevo
 
 <ion-button (click)="abrirModal(); nuevo()">tenis
 </ion-button>
-
+-->
 
 <!--inicio del formulario modal
 
@@ -39,7 +39,7 @@
       <ion-content class="ion-padding">
         <ion-item>
           <ion-input  [clearInput]="true"
-                     placeholder="AGREGAR UN TITULO"  [(ngModel)]="act.title">
+                     placeholder="AGREGAR UN TITULO"  >
           </ion-input>
         </ion-item>
 
@@ -51,7 +51,7 @@
         <ion-popover trigger="click-trigger" triggerAction="click">
           <ng-template>
             <ion-content class="ion-padding" ></ion-content>
-            <ion-datetime  displayFormat="AAAA-MM-DD" [(ngModel)]="act.fecha" >
+            <ion-datetime  displayFormat="AAAA-MM-DD" >
             </ion-datetime>
             <ion-button (click)="closePopover()" size="small" shape="round" >aceptar</ion-button>
           </ng-template>
@@ -60,13 +60,13 @@
         <ion-item>
           <ion-label>Agregar a favoritos</ion-label>
           <ion-icon slot="start" name="star-outline"></ion-icon>
-          <ion-toggle [checked]="false" slot="end" [(ngModel)]="act.import"
+          <ion-toggle [checked]="false" slot="end"
                       (click)="importante()"></ion-toggle><br /><br />
         </ion-item>
         <ion-item>
           <ion-icon slot="start" name="document-outline"></ion-icon>
           <ion-input [clearInput]="true"
-                     placeholder="Agregar nota" [(ngModel)]="act.nota">
+                     placeholder="Agregar nota">
           </ion-input>
         </ion-item>
       </ion-content>
@@ -75,7 +75,7 @@
 
 -->
 
-<!--agregar zapatos -->
+<!--agregar zapatos
 
 <ion-button id="click-trigger">Zapatos</ion-button>
 <ion-popover trigger="click-trigger" triggerAction="click">
@@ -105,7 +105,6 @@
   </ng-template>
 </ion-popover>
 
-<!--agregar tenis -->
 <ion-modal trigger="open-modal" (willDismiss)="onWillDismiss($event)" *ngIf="enableNewNota"  >
   <ng-template>
     <ion-header>
@@ -156,7 +155,6 @@
 </ion-modal>
 
 
-<!--agregar sanadalias y chanclas  -->
 
 <ion-button id="sandalias">sandalias</ion-button>
 <ion-popover trigger="sandalias" triggerAction="click">
@@ -186,7 +184,53 @@
   </ng-template>
 </ion-popover>
 
+-->
 
+
+<!-- register.page.html -->
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button ></ion-back-button>
+    </ion-buttons>
+    <ion-title>Registro de Usuario</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item>
+    <ion-label position="floating">Nombre</ion-label>
+    <ion-input [(ngModel)]="Usua.nombre"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating">Apellidos</ion-label>
+    <ion-input type="text" [(ngModel)]="Usua.apellidos"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating">Contraseña</ion-label>
+    <ion-input type="password" [(ngModel)]="Usua.contrasena"></ion-input>
+  </ion-item>
+
+  <!--
+  <ion-item>
+    <ion-label position="floating">Ingresa nuevamente la contraseña</ion-label>
+    <ion-input type="password" ></ion-input>
+  </ion-item>
+  -->
+
+  <ion-item>
+    <ion-label position="floating">Correo</ion-label>
+    <ion-input type="text" [(ngModel)]="Usua.correo"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label position="floating">Telefono</ion-label>
+    <ion-input type="number" [(ngModel)]="Usua.whatsApp" ></ion-input>
+  </ion-item>
+
+  <ion-button expand="full" (click)="guardarUsuario();nuevoUsuario()"  routerLink="/login">Registrarse</ion-button>
+</ion-content>
 
 
 

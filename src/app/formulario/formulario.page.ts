@@ -11,7 +11,14 @@ interface Actividad {
   id:string;
   check: boolean;
 }
-
+interface Usuario {
+  nombre: string;
+  apellidos: string;
+  contrasena:string;
+  correo: string;
+  whatsApp: number;
+  id:string;
+}
 interface Tenis {
   nombre: string;
   descripcion: string;
@@ -64,8 +71,58 @@ export class FormularioPage implements OnInit {
     this.getActividad();
     this. getActividadZ();
     this.getActividadS();
+    this.getUsuario();
   }
 
+  username: string;
+  password: string;
+
+  register() {
+    // Aquí implementa la lógica para registrar el nuevo usuario
+    console.log('Registrando usuario:', this.username);
+    console.log('Contraseña:', this.password);
+
+    // Aquí puedes agregar la lógica adicional, como hacer una solicitud HTTP para registrar el usuario en tu backend
+  }
+
+  //contenido de usuarios /************************************************************************/
+  private pathU = 'Usuarios/';
+  contenidoU:Usuario[] = [];
+  Usua : Usuario = {
+    nombre:'',
+    apellidos:'',
+    contrasena: '',
+    correo: '',
+    whatsApp:0,
+    id:this.firestore.getId()
+  };
+
+  getUsuario(){
+    this.firestore.getCollection<Usuario>(this.pathU).subscribe( res => {
+      this.contenidoU = res;
+    });
+  }
+
+  nuevoUsuario() {
+    this.enableNewNota = true;
+    this.Usua  = {
+      nombre:'',
+      apellidos:'',
+      contrasena: '',
+      correo: '',
+      whatsApp:0,
+      id:this.firestore.getId()
+    };
+  }
+
+  guardarUsuario(){
+    this.firestore.creatDoc( this.Usua,this.pathU, this.Usua.id);
+  }
+
+
+
+
+  /*********************************************************************************/
   //comienza agrega a tenis
   contenido:Tenis[] = [];
   act : Tenis = {
@@ -167,85 +224,12 @@ export class FormularioPage implements OnInit {
 
 
 
-  //comienza la agregar a formulkarionotas
-
-/* notas:Actividad[] = [];
-
-  act : Actividad = {
-    title:'',
-    nota:'',
-    fecha: new Date(),
-    import: false,
-    check:false,
-    id:this.firestore.getId()
-  };
-
- */
-
-
-
 
  // ngOnInit() { this.getActividad(); }
 
   guardarNota(){
       this.firestore.creatDoc( this.act,this.path, this.act.id);
   }
-
- /* getActividad(){
-    this.firestore.getCollection<Actividad>(this.path).subscribe( res => {
-      this.notas = res;
-    });
-  }
-  */
-
-
-
-
-  /*actionShet de borrar, editar y eliminar
-  async mostrarActionSheet() {
-    const actionSheet = await this.actionSheetCtrl.create({
-      header: 'Opciones', // Encabezado del action sheet
-      buttons: [
-        {
-          text: 'Editar', // Opción de edición
-          icon: 'create',
-          handler: ( ) => {
-            // Lógica para la opción de edición
-            this.abrirModal(); // Llamar al método editar() al hacer clic en la opción "Editar"
-          }
-        },
-        {
-          text: 'Borrar', // Opción de borrado
-          icon: 'trash',
-          handler: () => {
-            // Lógica para la opción de borrado
-            console.log('Borrar seleccionado');
-            this.deleteNota(this.act);
-          }
-        },
-        {
-          text: 'completado', // Opción de completado
-          icon: 'checkmark-outline',
-          handler: () => {
-          }
-        },
-        {
-          text: 'Cancelar', // Opción de cancelar
-          icon: 'close',
-          role: 'cancel',
-          handler: () => {
-            // Lógica para la opción de cancelar
-            console.log('Cancelar seleccionado');
-          }
-        }
-      ]
-    });
-
-    await actionSheet.present(); // Mostrar el action sheet
-  }
-
-   */
-
 
   async borrar() {
     const alert = await this.alertController.create({
@@ -276,19 +260,7 @@ export class FormularioPage implements OnInit {
   }
   onWillDismiss($event: any) {  }
 
-  /* nuevo() {
-    this.enableNewNota = true;
-    this.act  = {
-      title:'',
-      nota:'',
-      fecha: new Date(''),
-      import: false,
-      check:false,
-      id:this.firestore.getId()
-    };
-  }
 
-   */
 
 
 

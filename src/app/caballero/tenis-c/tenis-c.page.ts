@@ -11,7 +11,6 @@ interface Tenis {
   id:string;
   tallas:string;
 }
-
 interface CantidadCompras{
   campo:number;
   id:string;
@@ -23,8 +22,6 @@ interface CantidadCompras{
   styleUrls: ['./tenis-c.page.scss'],
 })
 export class TenisCPage implements OnInit {
-
-
   private path = 'Tenis/';
   private documento = 'UBxkoP05c6JSNU6sCdud';
   private pathC = 'cantidadCompras/';
@@ -33,10 +30,7 @@ export class TenisCPage implements OnInit {
 
   constructor(public firestore: FirestoreService, private modalController: ModalController,
               private popoverController: PopoverController, private alertController: AlertController,
-              private toastController: ToastController) {
-  }
-
-
+              private toastController: ToastController) { }
   ngOnInit() {
     this.getActividad();
   }
@@ -71,8 +65,6 @@ export class TenisCPage implements OnInit {
   registrarSumaCarrito() {
     this.firestore.guardarSuma(this.pathC, this.documento);
   }
-
-
   //inicio del modal
   @ViewChild(IonModal) modal!: IonModal;
 
@@ -105,7 +97,6 @@ export class TenisCPage implements OnInit {
   public tallasM: string[] = ['22', '23.5', '23', '24.5', '24', '25.5', '25', '26.5', '26', '27.5', '27'];
   public tallasN: string[] = ['9.5', '10', '10.5', '11', '11.5', '12', '12.5', '13', '13.5', '14', '14.5',
     '15', '15.5', '16', '17', '17.5', '18', '18.5', '19', '19.5', '20', '21.5', '22', '22.5'];
-
   public tallasG: string[] = ['9.5', '10', '10.5', '11', '11.5', '12', '12.5', '13', '13.5', '14', '14.5',
     '15', '15.5', '16', '17', '17.5', '18', '18.5', '19', '19.5', '20', '21.5', '22', '22.5'];
 
@@ -116,7 +107,20 @@ export class TenisCPage implements OnInit {
   }
 
   seleccionarTalla() {
-    this.tallaSelecion = this.act.tallas;
+      this.tallaSelecion = this.act.tallas;
+  }
+
+  /****ALERTA DE QUE ESTEN SELECCIONADA LAS TALLAS***/
+
+  async presentAlertT() {
+    const alert = await this.alertController.create({
+      header: 'Carrito',
+      subHeader: 'Campo vacio',
+      message: 'El campo esta vacio debes seleccionar una talla',
+      buttons: ['De acuerdo'],
+    });
+
+    await alert.present();
   }
 
   valor = 0
