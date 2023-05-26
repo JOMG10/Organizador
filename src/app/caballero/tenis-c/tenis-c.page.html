@@ -18,6 +18,13 @@
           <ion-card (click)=" act = teniss; abrirModal()" class="custom-card" >
             <div class="offer-card">
             <ion-img [src]="teniss.rutaImagen"  class="imagen-center" ></ion-img>
+    <div class=" ion-padding">
+    <ion-grid >
+      <ion-row>
+        <ion-col size="6" *ngFor="let teniss of contenido" class="ion-col">
+          <ion-card (click)=" act = teniss; abrirModal()" class="custom-card">
+            <div class="offer-card">
+            <ion-img [src]="teniss.rutaImagen"  style="height: 150px;width: 150px" ></ion-img>
             <ion-card-content>
               <label><strong>{{teniss.nombre}}</strong></label> <br>
               <label>Precio: $ <strong>{{teniss.precio}}</strong> </label> <br>

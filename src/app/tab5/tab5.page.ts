@@ -49,6 +49,17 @@ export class Tab5Page implements OnInit {
     this.getActividad();
   }
 
+
+  logout() {
+    this.afAuth.signOut().then(() => {
+      this.firestore.clearUserData();
+
+    }).catch((error) => {
+      // Manejo de errores al cerrar sesión
+      console.log('Error al cerrar sesión:', error);
+    });
+  }
+
   private path='UsuarioUso';
   borrarUsuario(){
     this.firestore.deleteCollection(this.path);
@@ -74,6 +85,8 @@ export class Tab5Page implements OnInit {
               this.borrarUsuario();
             })
 
+           this.router.navigate(['/login']);
+            this.borrarUsuario();
           }
         }
       ]

@@ -26,6 +26,14 @@ ion-card {
 }
 .custom-card {
   border: 2px solid #9cb0b0; /* Color de borde deseado (en este caso, rojo) */
+  margin: 0;
+  padding: 0;
+  justify-content: center;
+  text-align: center;
+  color: black;
+}
+.custom-card {
+  border: 2px solid #1de165; /* Color de borde deseado (en este caso, rojo) */
   border-radius: 10px; /* Opcional: agrega esquinas redondeadas al borde */
 }
 
@@ -34,6 +42,11 @@ ion-card {
   flex-direction: column;
   background-color: #fdfafa;
   color: black;
+  align-items: center;
+  justify-content: center;
+  background-color: #fdfafa;
+  border-radius: 10px;
+  padding: 20px;
 }
 
 .offer-card img {
@@ -48,4 +61,6 @@ ion-card {
   display: flex;
   justify-content: center;
   align-items: center;
+  border-radius: 10px;
 }
+

@@ -40,7 +40,7 @@
             <div class="offer-card">
               <img [src]="offer.rutaImagen" alt="Offer Image">
               <div class="offer-details">
-                <h3>{{ offer.nombre }}</h3>
+                <h3>{{ offer.nombre }}</h3                <p>{{ offer.description }}</p>
                 <ion-button (click)="act = offer; abrirModal()" class="custom-button" expand="block">Ver oferta</ion-button>
               </div>
             </div>
