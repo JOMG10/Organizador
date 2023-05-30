@@ -7,27 +7,14 @@
   </ion-item>
 </ion-header>
 <ion-content>
-
-  <div>
-    <ion-slides class="slide-container">
-      <ion-slide>
-        <div class="slide-image">
-          <img src="assets/img/portada.jpg">
-        <!--  <ion-button class="slide-button" expand="block">Comprar producto</ion-button> -->
-        </div>
-      </ion-slide>
-      <ion-slide>
-        <div class="slide-image">
-          <img src="assets/img/portada2.jpg">
-        </div>
-      </ion-slide>
-      <ion-slide>
-        <div class="slide-image">
-          <img src="assets/img/niño-principal.jpg">
-        </div>
-      </ion-slide>
-    </ion-slides>
-  </div>
+  <ion-slides   pager="true" autoplay="true" speed="500">
+    <ion-slide *ngFor="let document of randomDocumentsP">
+            <div >
+              <img src="{{document.imagenModelo}}">
+              <ion-button (click)="act = document; abrirModal()" class="slide-button" expand="block">Comprar producto</ion-button>
+            </div>
+    </ion-slide>
+  </ion-slides>
 
   <div>
     <div class="offer-container">
@@ -52,19 +39,18 @@
   </div>
 
 
-
   <div>
     <ion-slides class="slide-container">
       <ion-slide>
         <div class="slide-image">
           <img src="assets/img/portada2.jpg">
-          <ion-button class="slide-button" expand="block">Comprar producto</ion-button>
+      <!--    <ion-button class="slide-button" expand="block">Comprar producto</ion-button> -->
         </div>
       </ion-slide>
       <ion-slide>
         <div class="slide-image">
           <img src="assets/img/portada.jpg">
-          <ion-button class="slide-button" expand="block">Mi botón</ion-button>
+          <!--<ion-button class="slide-button" expand="block">Mi botón</ion-button> -->
         </div>
       </ion-slide>
       <ion-slide>

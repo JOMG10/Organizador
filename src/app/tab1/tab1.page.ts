@@ -13,6 +13,19 @@ interface Zapatos {
   descuento: number;
 }
 
+interface Tenis {
+  nombre: string;
+  descripcion: string;
+  precio:number;
+  colores:string;
+  rutaImagen:string;
+  id:string;
+  tallas:string;
+  marca:string;
+  rutaImagen2:string
+  imagenModelo:string
+}
+
 @Component({
   selector: 'app-tab1',
   templateUrl: 'tab1.page.html',
@@ -24,6 +37,8 @@ export class Tab1Page {
   private documento = 'UBxkoP05c6JSNU6sCdud';
   private pathC = 'cantidadCompras/';
   private pathAgregar = 'Carrito/';
+  private pathT = 'Tenis/';
+
 
   //constructor
   constructor(public firestore: FirestoreService, private modalController: ModalController,
@@ -35,7 +50,23 @@ export class Tab1Page {
     this.getActividad();
     this.getRandomDocument();
     this.RecomendadoParaTi();
+    this.getRandomDocumentP();
   }
+
+  contenido: Tenis[] = [];
+  actT: Tenis = {
+    nombre: '',
+    marca:'',
+    tallas: '',
+    descripcion: '',
+    precio: 0,
+    colores: '',
+    imagenModelo:'',
+    rutaImagen: '',
+    rutaImagen2: '',
+    id: this.firestore.getId()
+  };
+
 
   //contenido de selecciones destacadas para ti
   contend:Zapatos[] = [];
@@ -53,6 +84,9 @@ export class Tab1Page {
     this.firestore.getCollection<Zapatos>(this.path).subscribe( res => {
       this.contend = res;
     });
+    this.firestore.getCollection<Tenis>(this.pathT).subscribe(res => {
+      this.contenido = res;
+    });
   }
   collectionNames: string[] = ['Zapatos', 'Tenis', 'TenisD','ZapatosD','TenisG','TenisB','ZapatosG','ZapatosB'];
   randomDocuments: any[] = [];
@@ -60,6 +94,15 @@ export class Tab1Page {
     this.collectionNames.forEach((collectionName) => {
       this.firestore.getRandomDocumentFromCollection(collectionName).subscribe((randomDocument) => {
         this.randomDocuments.push(randomDocument);
+      });
+    });
+  }
+  colletionPrincipal: string[] = ['Tenis'];
+  randomDocumentsP: any[] = [];
+  getRandomDocumentP() {
+    this.colletionPrincipal.forEach((collectionName) => {
+      this.firestore.getRandomDocumentFromCollection(collectionName).subscribe((randomDocument) => {
+        this.randomDocumentsP.push(randomDocument);
       });
     });
   }
