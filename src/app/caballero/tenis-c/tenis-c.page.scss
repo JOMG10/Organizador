@@ -19,6 +19,15 @@
 }
 
 ion-card {
+
+}
+.custom-card {
+  border: 2px solid #9cb0b0; /* Color de borde deseado (en este caso, rojo) */
+  border-radius: 10px; /* Opcional: agrega esquinas redondeadas al borde */
+  flex-basis: calc(33.33% - 0px); /* Ajusta el ancho según la cantidad de cards */
+  margin: 2px;
+  padding: 0;
+  justify-content: center;
   flex-basis: calc(33.33% - 0px); /* Ajusta el ancho según la cantidad de cards */
   margin: 2px;
   padding: 0;
@@ -42,6 +51,7 @@ ion-card {
   flex-direction: column;
   background-color: #fdfafa;
   color: black;
+
   align-items: center;
   justify-content: center;
   background-color: #fdfafa;
@@ -53,6 +63,14 @@ ion-card {
   width: 200px;
   height: 200px;
   object-fit: cover;
+}
+
+.imagen-center{
+  height: 200px;
+  width: 190px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .imagen-center{

@@ -1,6 +1,7 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {FirestoreService} from "../../services/firestore.service";
 import {AlertController, IonModal, ModalController, PopoverController, ToastController} from "@ionic/angular";
+import {AngularFirestore} from "@angular/fire/compat/firestore";
 
 interface Tenis {
   nombre: string;
@@ -10,6 +11,8 @@ interface Tenis {
   rutaImagen:string;
   id:string;
   tallas:string;
+  marca:string;
+  rutaImagen2:string
 }
 interface CantidadCompras{
   campo:number;
@@ -30,10 +33,20 @@ export class TenisCPage implements OnInit {
 
   constructor(public firestore: FirestoreService, private modalController: ModalController,
               private popoverController: PopoverController, private alertController: AlertController,
+              private toastController: ToastController, private firestoreA: AngularFirestore) { }
               private toastController: ToastController) { }
   ngOnInit() {
     this.getActividad();
+    this.firestoreA.collection('tenis', ref => ref.where('marca', '==', 'Nike'))
+      .valueChanges()
+      .subscribe((data: Tenis[]) => { // Asegúrate de especificar el tipo de datos en el método `subscribe`
+        this.tenisCollection = data;
+      });
   }
+
+  tenisCollection: Tenis[]; // Define el tipo de datos como Tenis[]
+
+
 
   contenidoS: CantidadCompras[] = [];
 
@@ -45,11 +58,13 @@ export class TenisCPage implements OnInit {
   contenido: Tenis[] = [];
   act: Tenis = {
     nombre: '',
+    marca:'',
     tallas: '',
     descripcion: '',
     precio: 0,
     colores: '',
     rutaImagen: '',
+    rutaImagen2: '',
     id: this.firestore.getId()
   };
 

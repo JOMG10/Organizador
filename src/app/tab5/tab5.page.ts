@@ -50,6 +50,7 @@ export class Tab5Page implements OnInit {
   }
 
 
+
   logout() {
     this.afAuth.signOut().then(() => {
       this.firestore.clearUserData();
@@ -84,6 +85,7 @@ export class Tab5Page implements OnInit {
               this.router.navigate(['/login']);
               this.borrarUsuario();
             })
+
 
            this.router.navigate(['/login']);
             this.borrarUsuario();

@@ -19,8 +19,8 @@
 <!--comienza el primer segmento -->
 
 <div *ngIf="segmentValue === 'option1'">
-  <div class="espacio"></div>
 
+  <div class="espacio"></div>
   <div class="categories; ion-no-padding">
     <h2>Caballero</h2>
     <ion-card>
@@ -59,6 +59,8 @@
       </div>
     </div>
 
+
+
     <!--inicio de modal -->
     <ion-modal trigger="open-modal" (willDismiss)="onWillDismiss($event)" *ngIf="enableNewNota"  >
       <ng-template>
@@ -72,15 +74,11 @@
         </ion-header>
         <ion-content class="ion-padding">
           <div>
-            <ion-card-header>
-              <ion-card-title></ion-card-title>
-            </ion-card-header>
             <ion-slides>
               <ion-slide>
                 <ion-card>
                   <ion-img [src]="act.rutaImagen"></ion-img>
                 </ion-card>
-
               </ion-slide>
             </ion-slides>
 
@@ -130,12 +128,15 @@
         </ion-content>
       </ng-template>
     </ion-modal>
+
   </div>
 
 
 
 
+
 </div>
+
 
 <!-- *******************comienza el segundo segmento  ***************************-->
 <div *ngIf="segmentValue === 'option2'">
@@ -156,27 +157,26 @@
     </ion-card>
   </ion-col>
 
-<div>
+  <div >
 
-  <ion-card-header>
-    <ion-card-title>recomendado para ti</ion-card-title>
-  </ion-card-header>
-  <ion-slides   pager="true" autoplay="true" speed="500">
-    <ion-slide *ngFor="let document of recomendadoDama">
-      <ion-grid>
-        <ion-row (click)=" act = document; abrirModal()">
-          <ion-col  size="12" >
-            <img src="{{document.rutaImagen}}" style="height: 300px; width: 300px" >
-            <strong> <p>{{ document.nombre}} </p></strong>
-            <strong> <p>{{ document.descripcion}} </p></strong>
-            <p>Precio:$ <strong> {{ document.precio}}  </strong> </p>
-            <!--<ion-button (click)=" act = document; abrirModal()"> Agregar</ion-button>-->
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-    </ion-slide>
-  </ion-slides>
-</div>
+    <div class="offer-container">
+      <h2>Recomendado para ti</h2>
+      <div class="offer-slider">
+        <ion-slides>
+          <ion-slide *ngFor="let offer of recomendadoDama">
+            <div class="offer-card">
+              <img [src]="offer.rutaImagen" alt="Offer Image">
+              <div class="offer-details">
+                <h3>{{ offer.nombre }}</h3>
+                <p>{{ offer.description }}</p>
+                <ion-button (click)="act = offer; abrirModal()" class="custom-button" expand="block">Comprar</ion-button>
+              </div>
+            </div>
+          </ion-slide>
+        </ion-slides>
+      </div>
+    </div>
+  </div>
 </div>
 
 
@@ -198,24 +198,26 @@
     </ion-card>
   </ion-col>
 
-  <ion-card-header>
-    <ion-card-title>recomendado para ti</ion-card-title>
-  </ion-card-header>
-  <ion-slides   pager="true" autoplay="true" speed="500">
-    <ion-slide *ngFor="let document of recomendado">
-      <ion-grid>
-        <ion-row (click)=" act = document; abrirModal()">
-          <ion-col  size="12" >
-            <img src="{{document.rutaImagen}}" style="height: 300px; width: 300px" >
-            <strong> <p>{{ document.nombre}} </p></strong>
-            <strong> <p>{{ document.descripcion}} </p></strong>
-            <p>Precio:$ <strong> {{ document.precio}}  </strong> </p>
-          <!--  <ion-button (click)=" act = document; abrirModal()"> Agregar</ion-button>-->
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-    </ion-slide>
-  </ion-slides>
+  <div >
+
+    <div class="offer-container">
+      <h2>Recomendado para ti</h2>
+      <div class="offer-slider">
+        <ion-slides>
+          <ion-slide *ngFor="let offer of recomendado">
+            <div class="offer-card">
+              <img [src]="offer.rutaImagen" alt="Offer Image">
+              <div class="offer-details">
+                <h3>{{ offer.nombre }}</h3>
+                <p>{{ offer.description }}</p>
+                <ion-button (click)="act = offer; abrirModal()" class="custom-button" expand="block">Comprar</ion-button>
+              </div>
+            </div>
+          </ion-slide>
+        </ion-slides>
+      </div>
+    </div>
+  </div>
 </div>
 
 <!--comienza el cuarto segmento -->
@@ -237,24 +239,26 @@
     </ion-card>
   </ion-col>
 
-  <ion-card-header>
-    <ion-card-title>recomendado para ti</ion-card-title>
-  </ion-card-header>
-  <ion-slides   pager="true" autoplay="true" speed="500">
-    <ion-slide *ngFor="let document of recomendadoDama">
-      <ion-grid>
-        <ion-row (click)=" act = document; abrirModal()">
-          <ion-col  size="12" >
-            <img src="{{document.rutaImagen}}" style="height: 300px; width: 300px" >
-            <strong> <p>{{ document.nombre}} </p></strong>
-            <strong> <p>{{ document.descripcion}} </p></strong>
-            <p>Precio:$ <strong> {{ document.precio}}  </strong> </p>
-            <!--<ion-button (click)=" act = document; abrirModal()"> Agregar</ion-button>-->
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-    </ion-slide>
-  </ion-slides>
+  <  <div >
+
+  <div class="offer-container">
+    <h2>Recomendado para ti</h2>
+    <div class="offer-slider">
+      <ion-slides>
+        <ion-slide *ngFor="let offer of recomendadoDama">
+          <div class="offer-card">
+            <img [src]="offer.rutaImagen" alt="Offer Image">
+            <div class="offer-details">
+              <h3>{{ offer.nombre }}</h3>
+              <p>{{ offer.description }}</p>
+              <ion-button (click)="act = offer; abrirModal()" class="custom-button" expand="block">Comprar</ion-button>
+            </div>
+          </div>
+        </ion-slide>
+      </ion-slides>
+    </div>
+  </div>
+</div>
 
 </div>
 

@@ -235,6 +235,7 @@ export class FirestoreService {
 
   //comienzo de validacion de usuarios
   getUserByEmail(nombre: string, contrasena: string, path: string): Promise<QuerySnapshot<any>> {
+    return this.userData = this.firestore.collection(path, ref => ref.where('nombre', '==', nombre).where('contrasena', '==', contrasena)).get().toPromise();
     return this.firestore.collection(path, ref => ref.where('nombre', '==', nombre).where('contrasena', '==', contrasena)).get().toPromise();
   }
 
@@ -269,6 +270,12 @@ export class FirestoreService {
             reject('No se encontró un documento con ese nombre');
           }
         });
+      return nombre;
+    });
+  }
+
+
+  /***************************catalogar por marca**************************************/
     });
   }
 

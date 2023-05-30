@@ -10,6 +10,7 @@ interface Zapatos {
   rutaImagen:string;
   id:string;
   tallas:string
+  descuento: number;
 }
 
 @Component({
@@ -44,6 +45,7 @@ export class Tab1Page {
     tallas:'',
     precio: 0,
     colores: '',
+    descuento:0,
     rutaImagen:'',
     id:this.firestore.getId()
   };

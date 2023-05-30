@@ -13,6 +13,50 @@
       <ion-slide>
         <div class="slide-image">
           <img src="assets/img/portada.jpg">
+        <!--  <ion-button class="slide-button" expand="block">Comprar producto</ion-button> -->
+        </div>
+      </ion-slide>
+      <ion-slide>
+        <div class="slide-image">
+          <img src="assets/img/portada2.jpg">
+        </div>
+      </ion-slide>
+      <ion-slide>
+        <div class="slide-image">
+          <img src="assets/img/niño-principal.jpg">
+        </div>
+      </ion-slide>
+    </ion-slides>
+  </div>
+
+  <div>
+    <div class="offer-container">
+      <h2>¡Ofertas especiales!</h2>
+      <div class="offer-slider">
+        <ion-slides>
+          <ion-slide *ngFor="let offer of randomDocuments">
+            <div class="offer-card">
+              <img [src]="offer.rutaImagen" alt="Offer Image">
+              <div class="discount-badge">
+                {{ offer.descuento }}% de descuento
+              </div>
+              <div class="offer-details">
+                <h3>{{ offer.nombre }}</h3>
+                <ion-button (click)="act = offer; abrirModal()" class="custom-button" expand="block">Ver oferta</ion-button>
+              </div>
+            </div>
+          </ion-slide>
+        </ion-slides>
+      </div>
+    </div>
+  </div>
+
+
+  <div>
+    <ion-slides class="slide-container">
+      <ion-slide>
+        <div class="slide-image">
+          <img src="assets/img/portada.jpg">
           <ion-button class="slide-button" expand="block">Comprar producto</ion-button>
         </div>
       </ion-slide>
@@ -31,6 +75,7 @@
   </div>
 
   <div >
+
 
     <div class="offer-container">
       <h2>¡Ofertas especiales!</h2>
@@ -118,15 +163,11 @@
       </ion-header>
       <ion-content class="ion-padding">
         <div>
-          <ion-card-header>
-            <ion-card-title></ion-card-title>
-          </ion-card-header>
           <ion-slides>
             <ion-slide>
               <ion-card>
                 <ion-img [src]="act.rutaImagen"></ion-img>
               </ion-card>
-
             </ion-slide>
           </ion-slides>
 
@@ -136,6 +177,7 @@
               <label><strong>{{act.descripcion}}</strong></label> <br>
               <label>Precio: $ <strong>{{act.precio}}</strong> </label> <br>
               <label>colores: <strong>{{act.colores}}</strong></label>
+              <h3> <strong>{{act.descuento}}% De descuento</strong></h3>
             </ion-card-content>
           </ion-card>
         </div>
