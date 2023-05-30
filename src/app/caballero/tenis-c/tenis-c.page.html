@@ -18,11 +18,22 @@
           <ion-card (click)=" act = teniss; abrirModal()" class="custom-card" >
             <div class="offer-card">
             <ion-img [src]="teniss.rutaImagen"  class="imagen-center" ></ion-img>
+
+    <div class=" ion-padding">
+    <ion-grid >
+      <ion-row>
+        <ion-col size="6" *ngFor="let teniss of contenido" class="ion-col">
+          <ion-card (click)=" act = teniss; abrirModal()" class="custom-card">
+            <div class="offer-card">
+            <ion-img [src]="teniss.rutaImagen"  style="height: 150px;width: 150px" ></ion-img>
             <ion-card-content>
               <label><strong>{{teniss.nombre}}</strong></label> <br>
               <label>color: <strong>{{teniss.colores}}</strong></label><br>
               <label>marca: <strong>{{teniss.marca}}</strong></label> <br><br>
               <label>Precio: $ <strong>{{teniss.precio}}</strong> </label> <br>
+              <label>colores: <strong>{{teniss.colores}}</strong></label><br>
+              <label>marca: <strong>nike</strong></label>
+
             </ion-card-content>
               </div>
           </ion-card>
@@ -62,6 +73,18 @@
             </ion-slides>
           </div>
           <div >
+
+          <ion-card-header>
+            <ion-card-title></ion-card-title>
+          </ion-card-header>
+          <div>
+            <ion-slides>
+              <ion-slide>
+                <ion-img [src]="act.rutaImagen" style="height: 200px;width: 200px"></ion-img>
+              </ion-slide>
+            </ion-slides>
+          </div>
+          <div>
           <ion-card >
             <ion-card-content >
               <label><strong>{{act.nombre}}</strong></label> <br>

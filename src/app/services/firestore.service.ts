@@ -236,6 +236,7 @@ export class FirestoreService {
   //comienzo de validacion de usuarios
   getUserByEmail(nombre: string, contrasena: string, path: string): Promise<QuerySnapshot<any>> {
     return this.userData = this.firestore.collection(path, ref => ref.where('nombre', '==', nombre).where('contrasena', '==', contrasena)).get().toPromise();
+    return this.firestore.collection(path, ref => ref.where('nombre', '==', nombre).where('contrasena', '==', contrasena)).get().toPromise();
   }
 
   private userData: any; // Variable privada para almacenar los datos del usuario
@@ -275,5 +276,8 @@ export class FirestoreService {
 
 
   /***************************catalogar por marca**************************************/
+    });
+  }
+
 
 }

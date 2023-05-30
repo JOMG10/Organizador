@@ -52,6 +52,49 @@
   </div>
 
 
+  <div>
+    <ion-slides class="slide-container">
+      <ion-slide>
+        <div class="slide-image">
+          <img src="assets/img/portada.jpg">
+          <ion-button class="slide-button" expand="block">Comprar producto</ion-button>
+        </div>
+      </ion-slide>
+      <ion-slide>
+        <div class="slide-image">
+          <img src="assets/img/portada2.jpg">
+          <ion-button class="slide-button" expand="block">Mi botón</ion-button>
+        </div>
+      </ion-slide>
+      <ion-slide>
+        <div class="slide-image">
+          <img src="assets/img/niño-principal.jpg">
+        </div>
+      </ion-slide>
+    </ion-slides>
+  </div>
+
+  <div >
+
+
+    <div class="offer-container">
+      <h2>¡Ofertas especiales!</h2>
+      <div class="offer-slider">
+        <ion-slides>
+          <ion-slide *ngFor="let offer of randomDocuments">
+            <div class="offer-card">
+              <img [src]="offer.rutaImagen" alt="Offer Image">
+              <div class="offer-details">
+                <h3>{{ offer.nombre }}</h3                <p>{{ offer.description }}</p>
+                <ion-button (click)="act = offer; abrirModal()" class="custom-button" expand="block">Ver oferta</ion-button>
+              </div>
+            </div>
+          </ion-slide>
+        </ion-slides>
+      </div>
+    </div>
+  </div>
+
 
   <div>
     <ion-slides class="slide-container">

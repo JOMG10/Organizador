@@ -85,8 +85,42 @@ export class LoginPage implements OnInit {
           this.errorMessage = 'El usuario no existe';
         }
       })
+
   }
 
+  //agregar el carrito de compra a pendientes
+
+
+  errorMessage: string;
+  nombre: string;
+  contrasena: string;
+
+  login(): void {
+    if (!this.nombre || !this.contrasena) {
+      this.errorMessage = 'Por favor, ingresa un nombre de usuario y una contraseña';
+      return;
+    }
+    this.firestore.getUserByEmail(this.nombre, this.contrasena, this.pathU)
+      .then((querySnapshot) => {
+        if (!querySnapshot.empty) {
+          if (this.nombre) {
+            this.firestore
+              .copyDocumentByName('Usuarios', 'UsuarioUso', this.nombre)
+              .then(() => {
+                console.log('Documento copiado exitosamente');
+              })
+              .catch((error) => {
+                console.error('Error al copiar el documento:', error);
+              });
+          } else {
+            console.error('Por favor, ingresa un nombre válido');
+          }
+          this.router.navigate(['/tabs']); // Redirecciona al usuario a la página deseada
+        } else {
+          this.errorMessage = 'El usuario no existe';
+        }
+      })
+  }
 
 
 }

@@ -34,6 +34,7 @@ export class TenisCPage implements OnInit {
   constructor(public firestore: FirestoreService, private modalController: ModalController,
               private popoverController: PopoverController, private alertController: AlertController,
               private toastController: ToastController, private firestoreA: AngularFirestore) { }
+              private toastController: ToastController) { }
   ngOnInit() {
     this.getActividad();
     this.firestoreA.collection('tenis', ref => ref.where('marca', '==', 'Nike'))
