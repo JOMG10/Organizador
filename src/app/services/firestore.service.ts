@@ -29,10 +29,6 @@ export class FirestoreService {
       });
     });
   }
-  getDoc(path: string, id: string){
-    const collection = this.firestore.collection(path);
-    return collection.doc(id).valueChanges();
-  }
 
   deleteDoc(path: string, id: string){
     const collection =this.firestore.collection(path);
@@ -151,47 +147,6 @@ export class FirestoreService {
       })
   }
 
-/*
-
-//metodo para realizar la busqueda
-  search(query: string, path:string,path2:string, path3:string,path4:string,path5:string,
-         path6:string, path7:string,path8:string): Observable<any[]> {
-    const collection1Ref = this.firestore.collection(path);
-    const collection2Ref = this.firestore.collection(path2);
-    const collection3Ref = this.firestore.collection(path3);
-    const collection4Ref = this.firestore.collection(path4);
-    const collection5Ref = this.firestore.collection(path5);
-    const collection6Ref = this.firestore.collection(path6);
-    const collection7Ref = this.firestore.collection(path7);
-    const collection8Ref = this.firestore.collection(path8);
-
-    const collection1Data: Observable<any[]> = collection1Ref.valueChanges();
-    const collection2Data: Observable<any[]> = collection2Ref.valueChanges();
-    const collection3Data: Observable<any[]> = collection3Ref.valueChanges();
-    const collection4Data: Observable<any[]> = collection4Ref.valueChanges();
-    const collection5Data: Observable<any[]> = collection5Ref.valueChanges();
-    const collection6Data: Observable<any[]> = collection6Ref.valueChanges();
-    const collection7Data: Observable<any[]> = collection7Ref.valueChanges();
-    const collection8Data: Observable<any[]> = collection8Ref.valueChanges();
-
-    return combineLatest([collection1Data, collection2Data,collection3Data,collection4Data,collection5Data,
-      collection6Data,collection7Data,collection8Data]).pipe(
-      map(([collection1Docs, collection2Docs, collection3Docs, collection4Docs,collection5Docs,
-             collection6Docs, collection7Docs, collection8Docs]) => {
-        const combinedCollection = [...collection1Docs, ...collection2Docs, ...collection3Docs,
-          ...collection4Docs,...collection5Docs,...collection6Docs,...collection7Docs,
-          ...collection8Docs];
-
-        const searchResults = combinedCollection.filter((item) => {
-          // Reemplaza 'name' por el campo en el que deseas realizar la búsqueda
-          return item['descripcion'].toLowerCase().includes(query.toLowerCase());
-        });
-
-        return searchResults;
-      })
-    );
-  }
-*/
 
   search(query: string, ...paths: string[]): Observable<any[]> {
     const observables = paths.map((path) => {
